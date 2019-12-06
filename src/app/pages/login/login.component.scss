@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+}
+
+.card {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 15px;
+}
+
+img {
+    height: 60px;
+    display: block;
+    align-content: center;
+    margin: 0 auto 40px auto;
+}
+
+button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

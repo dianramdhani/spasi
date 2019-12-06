@@ -1,0 +1,36 @@
+.tr-logo img {
+    height: 36px;
+}
+
+.tr-content-header {
+    justify-content: flex-end;
+}
+
+.tr-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Custom Aside
+$ASIDE-WIDTH: 300px;
+
+.aside {
+    width: $ASIDE-WIDTH;
+}
+
+@media (max-width: $ASIDE-WIDTH) {
+    .aside {
+        width: 100%;
+    }
+}
+
+.aside.maximize .aside-body {
+    width: $ASIDE-WIDTH;
+}
+
+@media (min-width: 1200px) {
+    .aside-fixed+.content {
+        margin-left: $ASIDE-WIDTH;
+    }
+}

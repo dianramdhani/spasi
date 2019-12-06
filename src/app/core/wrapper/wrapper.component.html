@@ -1,0 +1,64 @@
+<aside class="aside aside-fixed">
+    <div class="aside-header">
+        <a href="" class="aside-logo tr-logo"><img src="assets/img/logo.png"></a>
+        <a href="" class="aside-menu-link">
+            <i data-feather="menu"></i>
+            <i data-feather="x"></i>
+        </a>
+    </div>
+    <div id="navbarMenu" class="aside-body">
+        <ul class="nav nav-aside">
+            <li *ngFor="let menu of menus; let i = index" [ngClass]="{
+                    'nav-label': menu.type === type.TITLE, 
+                    'mg-t-25': menu.type === type.TITLE && i > 0,
+                    'nav-item': menu.type === type.LINK, 
+                    'nav-item with-sub': menu.type === type.HASSUBMENUS
+                }" routerLinkActive="nav-item active">
+                <ng-container *ngIf="menu.type === type.TITLE">{{ menu.label }}</ng-container>
+                <a href="" class="nav-link" *ngIf="menu.type === type.LINK" [routerLink]="[menu.state.to]">
+                    <i [attr.data-feather]="menu.icon"></i> <span>{{ menu.label }}</span>
+                </a>
+                <a href="" class="nav-link" *ngIf="menu.type === type.HASSUBMENUS">
+                    <i [attr.data-feather]="menu.icon"></i> <span>{{ menu.label }}</span>
+                </a>
+                <ul *ngIf="menu.type === type.HASSUBMENUS">
+                    <li *ngFor="let subMenu of menu.subMenus"><a href="">{{ subMenu.label }}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div class="content ht-100v pd-0">
+    <div class="content-header tr-content-header">
+        <div class="dropdown dropdown-profile">
+            <a href="" class="dropdown-link" data-toggle="dropdown" data-display="static">
+                <div class="avatar avatar-sm">
+                    <img src="assets/img/user.png" class="rounded-circle" alt="">
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right tx-13">
+                <div class="tr-profile">
+                    <div class="avatar avatar-lg mg-b-15">
+                        <img src="assets/img/user.png" class="rounded-circle" alt="">
+                    </div>
+                    <h6 class="tx-semibold mg-b-5">{{ user.name }}</h6>
+                    <p class="mg-b-10 tx-12 tx-color-03">{{ user.role }}</p>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="" class="dropdown-item" [routerLink]="['/user/account-settings']">
+                    <i data-feather="settings"></i>Account Settings
+                </a>
+                <a href="" class="dropdown-item" [routerLink]="['/login']">
+                    <i data-feather="log-out"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="container-fluid pd-x-0">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

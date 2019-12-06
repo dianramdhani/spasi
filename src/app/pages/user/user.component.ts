@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+
+import { Menu, Type } from 'src/app/core/wrapper/menu.model';
+
+@Component({
+  selector: 'app-user',
+  template: '<app-wrapper [menus]="menus"></app-wrapper>',
+  styles: []
+})
+export class UserComponent {
+  menus: Menu[];
+
+  constructor() {
+    this.menus = [
+      {
+        type: Type.LINK,
+        label: 'Dashboard',
+        icon: 'monitor',
+        state: { to: '/user/dashboard', params: {} }
+      },
+    ];
+  }
+}

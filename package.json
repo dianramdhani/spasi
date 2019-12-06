@@ -19,6 +19,9 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
+    "@auth0/angular-jwt": "^3.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "feather-icons": "^4.24.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -28,6 +31,7 @@
     "@angular/cli": "~8.3.8",
     "@angular/compiler-cli": "~8.2.9",
     "@angular/language-service": "~8.2.9",
+    "@types/feather-icons": "^4.7.0",
     "@types/node": "~8.9.4",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
