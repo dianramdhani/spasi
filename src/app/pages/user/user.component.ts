@@ -18,6 +18,12 @@ export class UserComponent {
         icon: 'monitor',
         state: { to: '/user/dashboard', params: {} }
       },
+      {
+        type: Type.LINK,
+        label: 'All Map',
+        icon: 'monitor',
+        state: { to: '/user/all-map', params: {} }
+      },
     ];
   }
 }

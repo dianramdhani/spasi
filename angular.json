@@ -32,6 +32,7 @@
               "src/themes/dashforge/lib/ionicons/css/ionicons.min.css",
               "src/themes/dashforge/assets/css/dashforge.css",
               "src/themes/dashforge/assets/css/dashforge.dashboard.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -51,7 +52,8 @@
                 "input": "src/themes/dashforge/assets/js/dashforge.aside.js",
                 "lazy": true,
                 "bundleName": "dashforge.aside"
-              }
+              },
+              "node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {
