@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tileLayer, latLng } from 'leaflet';
+import { tileLayer, latLng, Map, marker, icon } from 'leaflet';
 
 @Component({
   selector: 'app-all-map',
@@ -8,10 +8,34 @@ import { tileLayer, latLng } from 'leaflet';
 })
 export class AllMapComponent {
   options = {
-    layers: [
-      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 13 })
-    ],
-    zoom: 5,
-    center: latLng(46.879966, -121.726909)
+    layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
+    zoom: 13,
+    center: latLng(-6.8794222, 107.5386812)
   };
+  markerIcon = {
+    icon: icon({
+      iconSize: [25, 41],
+      iconAnchor: [10, 41],
+      popupAnchor: [2, -40],
+      iconUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png"
+    })
+  };
+  map: Map;
+
+  onMapReady(map: Map) {
+    this.map = map;
+
+    const marker1 = marker(latLng(-6.8794222, 107.5386812), this.markerIcon);
+    marker1.addEventListener('click', () => {
+      console.log('ini marker1');
+    });
+    marker1.addTo(this.map);
+
+    const marker2 = marker(latLng(-6.879337, 106.5386812), this.markerIcon);
+    marker2.addEventListener('click', () => {
+      console.log('ini marker2');
+    });
+    marker2.addTo(this.map);
+  }
 }

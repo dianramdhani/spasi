@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AllMapComponent } from './pages/all-map/all-map.component';
+import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     path: 'user', component: UserComponent, children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'all-map', component: AllMapComponent },
+      { path: 'detail-device', component: DetailDeviceComponent },
     ]
   },
   { path: '**', redirectTo: 'login' }

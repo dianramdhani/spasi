@@ -14,6 +14,7 @@ import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AllMapComponent } from './pages/all-map/all-map.component';
+import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AllMapComponent } from './pages/all-map/all-map.component';
     LoginComponent,
     UserComponent,
     DashboardComponent,
-    AllMapComponent
+    AllMapComponent,
+    DetailDeviceComponent
     // AlertComponent
   ],
   imports: [

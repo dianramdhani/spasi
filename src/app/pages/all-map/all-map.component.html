@@ -21,7 +21,7 @@
                 <h6 class="mg-b-0 tx-spacing--1">Warning</h6><span>6</span>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">testing</li>
+                <li class="list-group-item" routerLink="/user/detail-device">testing</li>
                 <li class="list-group-item">testing</li>
                 <li class="list-group-item">testing</li>
                 <li class="list-group-item">testing</li>
@@ -48,5 +48,5 @@
             <option value="4">Normal</option>
         </select>
     </div>
-    <div style="height: 500px;" leaflet [leafletOptions]="options"></div>
+    <div style="height: 500px;" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
 </div>
