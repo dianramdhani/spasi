@@ -1,12 +1,34 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
+    <h6 class="modal-title">Detail</h6>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <p>Hello, indonesia!</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sensor</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>sensor 1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>sensor 1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>sensor 1</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-dark" routerLink="/user/detail-device"
+        (click)="activeModal.dismiss('Cross click')">More Detail</button>
 </div>

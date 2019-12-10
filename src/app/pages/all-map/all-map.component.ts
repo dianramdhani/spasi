@@ -34,6 +34,7 @@ export class AllMapComponent {
     const marker1 = marker(latLng(-6.8794222, 107.5386812), this.markerIcon);
     marker1.addEventListener('click', () => {
       console.log('ini marker1');
+      this.zone.run(() => this.openModalDetail());
     });
     marker1.addTo(this.map);
 
