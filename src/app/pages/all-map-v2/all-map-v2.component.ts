@@ -62,10 +62,9 @@ export class AllMapV2Component implements OnInit {
   constructor(private alertService: AlertService, private zone: NgZone, private modal: NgbModal) { }
 
   ngOnInit() {
-    // sample from dangers
     this.dangers = this.alertService.getDangers();
-    this.warnings = this.alertService.getDangers();
-    this.normals = this.alertService.getDangers();
+    this.warnings = this.alertService.getWarnings();
+    this.normals = this.alertService.getNormals();
   }
 
   onMapReady(map: Map) {
