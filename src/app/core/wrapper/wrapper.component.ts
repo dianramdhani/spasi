@@ -16,7 +16,7 @@ export class WrapperComponent implements AfterViewInit, OnDestroy {
     document.createElement('script'),
     document.createElement('script')
   ];
-  user = { name: 'name', role: 'admin' };
+  user = { name: 'SPASI', role: 'admin' };
 
   ngAfterViewInit() {
     this.scriptElements[0].src = './dashforge.js';
