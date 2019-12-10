@@ -14,7 +14,8 @@
                 data-target="#dangerList" aria-expanded="true" aria-controls="dangerList" style="cursor: pointer;">
                 <h6 class="mg-b-0 tx-spacing--1">Danger</h6><span>1</span>
             </div>
-            <div id="dangerList" class="collapse table-responsive" aria-labelledby="danger" data-parent="#accordion">
+            <div id="dangerList" class="collapse show table-responsive" aria-labelledby="danger"
+                data-parent="#accordion">
                 <table class="table table-hover mg-b-0">
                     <thead>
                         <tr>
@@ -24,9 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Site 1</td>
-                            <td>Suggest</td>
+                        <tr *ngFor="let danger of dangers" (mouseenter)="focusTo($event, danger)">
+                            <td>{{ danger.site }}</td>
+                            <td>{{ danger.suggestAction }}</td>
                             <td class="tx-right">
                                 <button class="btn btn-primary">More Detail</button>
                             </td>
@@ -116,6 +117,6 @@
         </div>
     </div>
     <div class="col-md-8">
-        <div style="height: 500px;" leaflet [leafletOptions]="options"></div>
+        <div style="height: 500px;" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
     </div>
 </div>
