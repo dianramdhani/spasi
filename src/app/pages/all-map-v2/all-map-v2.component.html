@@ -1,0 +1,128 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">All Map</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active" aria-current="page">All Map</li>
+        </ol>
+    </nav>
+</div>
+<div class="row row-xs">
+    <div id="accordion" class="col-md-4">
+        <div class="card mg-b-10">
+            <div id="danger" class="card-header tx-danger d-md-flex justify-content-between" data-toggle="collapse"
+                data-target="#dangerList" aria-expanded="true" aria-controls="dangerList" style="cursor: pointer;"
+                (click)="updateLayer(dangers, markerIcon.danger)">
+                <h6 class=" mg-b-0 tx-spacing--1">Danger</h6><span>{{ dangers.length }}</span>
+            </div>
+            <div id="dangerList" class="collapse show table-responsive" aria-labelledby="danger"
+                data-parent="#accordion">
+                <table class="table table-hover mg-b-0">
+                    <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th>Suggest Action</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let danger of dangers" (mouseenter)="focusTo(danger, $event)">
+                            <td>{{ danger.site }}</td>
+                            <td>{{ danger.suggestAction }}</td>
+                            <td class="tx-right">
+                                <button class="btn btn-primary"
+                                    (click)="openModalDetail(danger, $event)">Detail</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card mg-b-10">
+            <div id="warning" class="card-header tx-warning d-md-flex justify-content-between" data-toggle="collapse"
+                data-target="#warningList" aria-expanded="true" aria-controls="warningList" style="cursor: pointer;"
+                (click)="updateLayer(warnings, markerIcon.warning)">
+                <h6 class="mg-b-0 tx-spacing--1">Warning</h6><span>{{ warnings.length }}</span>
+            </div>
+            <div id="warningList" class="collapse table-responsive" aria-labelledby="warning" data-parent="#accordion">
+                <table class="table table-hover mg-b-0">
+                    <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th>Suggest Action</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let warning of warnings" (mouseenter)="focusTo(warning, $event)">
+                            <td>{{ warning.site }}</td>
+                            <td>{{ warning.suggestAction }}</td>
+                            <td class="tx-right">
+                                <button class="btn btn-primary"
+                                    (click)="openModalDetail(warning, $event)">Detail</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card mg-b-10">
+            <div id="normal" class="card-header d-md-flex justify-content-between" data-toggle="collapse"
+                data-target="#normalList" aria-expanded="true" aria-controls="normalList" style="cursor: pointer;"
+                (click)="updateLayer(normals, markerIcon.normal)">
+                <h6 class="mg-b-0 tx-spacing--1">Normal</h6><span>{{ normals.length }}</span>
+            </div>
+            <div id="normalList" class="collapse table-responsive" aria-labelledby="normal" data-parent="#accordion">
+                <table class="table table-hover mg-b-0">
+                    <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let normal of normals" (mouseenter)="focusTo(normal, $event)">
+                            <td>{{ normal.site }}</td>
+                            <td class="tx-right">
+                                <button class="btn btn-primary"
+                                    (click)="openModalDetail(normal, $event)">Detail</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <h6 id="filter" class="card-header" data-toggle="collapse" data-target="#filterList" aria-expanded="true"
+                aria-controls="filterList" style="cursor: pointer;">Filter Data</h6>
+            <div id="filterList" class="collapse" aria-labelledby="filter" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="status">Filter by status</label>
+                        <select id="status" class="form-control">
+                            <option value="">None</option>
+                            <option value="danger">Danger</option>
+                            <option value="warning">Warning</option>
+                            <option value="normal">Normal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Filter by region</label>
+                        <select id="region" class="form-control">
+                            <option value="">None</option>
+                            <option value="region1">Region 1</option>
+                            <option value="region2">Region 2</option>
+                            <option value="region3">Region 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <button class="btn btn-primary">Set Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div style="height: 500px;" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
+    </div>
+</div>
