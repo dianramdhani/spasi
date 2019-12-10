@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tileLayer, latLng, Map, marker, icon, featureGroup, Marker } from 'leaflet';
+import { tileLayer, latLng, Map, marker, icon, featureGroup, Marker, FeatureGroup } from 'leaflet';
 
 import { AlertService, Device } from 'src/app/services/alert.service';
 
@@ -49,20 +49,34 @@ export class AllMapV2Component implements OnInit {
     }
   };
   focusMarker: Marker;
+  lastLayer: FeatureGroup;
+
   dangers: Device[];
+  warnings: Device[];
+  normals: Device[];
 
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
-    this.dangers = this.alertService.getDanger();
+    // sample from dangers
+    this.dangers = this.alertService.getDangers();
+    this.warnings = this.alertService.getDangers();
+    this.normals = this.alertService.getDangers();
   }
 
   onMapReady(map: Map) {
     this.map = map;
-    const markers = this.dangers.map(danger => marker(latLng(danger.position.lat, danger.position.lng), this.markerIcon.normal)),
-      layer = featureGroup(markers);
-    this.map.addLayer(layer);
-    this.map.fitBounds(layer.getBounds());
+    this.updateLayer(this.dangers, this.markerIcon.danger);
+  }
+
+  updateLayer(devices: Device[], markerIcon) {
+    if (this.lastLayer) {
+      this.lastLayer.removeFrom(this.map);
+    }
+    const markers = devices.map(device => marker(latLng(device.position.lat, device.position.lng), markerIcon));
+    this.lastLayer = featureGroup(markers);
+    this.lastLayer.addTo(this.map);
+    this.map.fitBounds(this.lastLayer.getBounds());
   }
 
   focusTo(event, device: Device) {

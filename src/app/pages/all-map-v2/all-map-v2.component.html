@@ -11,8 +11,9 @@
     <div id="accordion" class="col-md-4">
         <div class="card mg-b-10">
             <div id="danger" class="card-header tx-danger d-md-flex justify-content-between" data-toggle="collapse"
-                data-target="#dangerList" aria-expanded="true" aria-controls="dangerList" style="cursor: pointer;">
-                <h6 class="mg-b-0 tx-spacing--1">Danger</h6><span>1</span>
+                data-target="#dangerList" aria-expanded="true" aria-controls="dangerList" style="cursor: pointer;"
+                (click)="updateLayer(dangers, markerIcon.danger)">
+                <h6 class=" mg-b-0 tx-spacing--1">Danger</h6><span>{{ dangers.length }}</span>
             </div>
             <div id="dangerList" class="collapse show table-responsive" aria-labelledby="danger"
                 data-parent="#accordion">
@@ -29,7 +30,7 @@
                             <td>{{ danger.site }}</td>
                             <td>{{ danger.suggestAction }}</td>
                             <td class="tx-right">
-                                <button class="btn btn-primary">More Detail</button>
+                                <button class="btn btn-primary">Detail</button>
                             </td>
                         </tr>
                     </tbody>
@@ -38,8 +39,9 @@
         </div>
         <div class="card mg-b-10">
             <div id="warning" class="card-header tx-warning d-md-flex justify-content-between" data-toggle="collapse"
-                data-target="#warningList" aria-expanded="true" aria-controls="warningList" style="cursor: pointer;">
-                <h6 class="mg-b-0 tx-spacing--1">Warning</h6><span>1</span>
+                data-target="#warningList" aria-expanded="true" aria-controls="warningList" style="cursor: pointer;"
+                (click)="updateLayer(warnings, markerIcon.warning)">
+                <h6 class="mg-b-0 tx-spacing--1">Warning</h6><span>{{ warnings.length }}</span>
             </div>
             <div id="warningList" class="collapse table-responsive" aria-labelledby="warning" data-parent="#accordion">
                 <table class="table table-hover mg-b-0">
@@ -51,11 +53,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Site 1</td>
-                            <td>Suggest</td>
+                        <tr *ngFor="let warning of warnings" (mouseenter)="focusTo($event, warning)">
+                            <td>{{ warning.site }}</td>
+                            <td>{{ warning.suggestAction }}</td>
                             <td class="tx-right">
-                                <button class="btn btn-primary">More Detail</button>
+                                <button class="btn btn-primary">Detail</button>
                             </td>
                         </tr>
                     </tbody>
@@ -64,8 +66,9 @@
         </div>
         <div class="card mg-b-10">
             <div id="normal" class="card-header d-md-flex justify-content-between" data-toggle="collapse"
-                data-target="#normalList" aria-expanded="true" aria-controls="normalList" style="cursor: pointer;">
-                <h6 class="mg-b-0 tx-spacing--1">Normal</h6><span>1</span>
+                data-target="#normalList" aria-expanded="true" aria-controls="normalList" style="cursor: pointer;"
+                (click)="updateLayer(normals, markerIcon.normal)">
+                <h6 class="mg-b-0 tx-spacing--1">Normal</h6><span>{{ normals.length }}</span>
             </div>
             <div id="normalList" class="collapse table-responsive" aria-labelledby="normal" data-parent="#accordion">
                 <table class="table table-hover mg-b-0">
@@ -76,10 +79,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Site 1</td>
+                        <tr *ngFor="let normal of normals" (mouseenter)="focusTo($event, normal)">
+                            <td>{{ normal.site }}</td>
                             <td class="tx-right">
-                                <button class="btn btn-primary">More Detail</button>
+                                <button class="btn btn-primary">Detail</button>
                             </td>
                         </tr>
                     </tbody>

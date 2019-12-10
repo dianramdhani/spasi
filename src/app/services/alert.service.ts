@@ -7,7 +7,7 @@ export class AlertService {
 
   constructor() { }
 
-  getDanger(): Device[] {
+  getDangers(): Device[] {
     return [
       {
         position: { lat: -6.8973318, lng: 107.6096949 },
