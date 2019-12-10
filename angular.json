@@ -25,12 +25,7 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/leaflet/dist/images",
-                "output": "assets/"
-              }
+              "src/assets"
             ],
             "styles": [
               "src/themes/dashforge/lib/@fortawesome/fontawesome-free/css/all.min.css",

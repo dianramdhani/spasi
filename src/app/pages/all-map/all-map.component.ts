@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { tileLayer, latLng, Map, marker, icon } from 'leaflet';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ModalDetailComponent } from './modal-detail/modal-detail.component';
 
 @Component({
   selector: 'app-all-map',
@@ -23,6 +26,8 @@ export class AllMapComponent {
   };
   map: Map;
 
+  constructor(private modalService: NgbModal, private zone: NgZone) { }
+
   onMapReady(map: Map) {
     this.map = map;
 
@@ -35,7 +40,12 @@ export class AllMapComponent {
     const marker2 = marker(latLng(-6.879337, 106.5386812), this.markerIcon);
     marker2.addEventListener('click', () => {
       console.log('ini marker2');
+      this.zone.run(() => this.openModalDetail());
     });
     marker2.addTo(this.map);
+  }
+
+  openModalDetail() {
+    this.modalService.open(ModalDetailComponent);
   }
 }
