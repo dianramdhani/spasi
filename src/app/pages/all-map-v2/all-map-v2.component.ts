@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { tileLayer, latLng, Map, marker, icon, featureGroup, Marker, FeatureGroup } from 'leaflet';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AlertService, Device } from 'src/app/services/alert.service';
+
+import { ModalDetailV2Component } from './modal-detail-v2/modal-detail-v2.component';
 
 @Component({
   selector: 'app-all-map-v2',
@@ -45,7 +48,8 @@ export class AllMapV2Component implements OnInit {
         iconAnchor: [10, 41],
         popupAnchor: [2, -40],
         iconUrl: './assets/img/marker-icon-focus.png',
-      })
+      }),
+      opacity: 0.6
     }
   };
   focusMarker: Marker;
@@ -55,7 +59,7 @@ export class AllMapV2Component implements OnInit {
   warnings: Device[];
   normals: Device[];
 
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService, private zone: NgZone, private modal: NgbModal) { }
 
   ngOnInit() {
     // sample from dangers
@@ -73,19 +77,29 @@ export class AllMapV2Component implements OnInit {
     if (this.lastLayer) {
       this.lastLayer.removeFrom(this.map);
     }
-    const markers = devices.map(device => marker(latLng(device.position.lat, device.position.lng), markerIcon));
+    const markers = devices.map(device => {
+      const _marker = marker(latLng(device.position.lat, device.position.lng), markerIcon);
+      _marker.addEventListener('click', () => this.zone.run(() => this.openModalDetail(device)));
+      return _marker;
+    });
     this.lastLayer = featureGroup(markers);
     this.lastLayer.addTo(this.map);
     this.map.fitBounds(this.lastLayer.getBounds());
   }
 
-  focusTo(event, device: Device) {
+  openModalDetail(device: Device, event = null) {
+    console.log('detail', device);
+    this.focusTo(device);
+    this.modal.open(ModalDetailV2Component);
+  }
+
+  focusTo(device: Device, event = null) {
     if (this.focusMarker) {
       this.focusMarker.removeFrom(this.map);
     }
     const latlng = latLng(device.position.lat, device.position.lng);
     this.map.panTo(latlng);
-    this.focusMarker = marker(latlng, Object.assign(this.markerIcon.focus, { opacity: 0.6 }));
+    this.focusMarker = marker(latlng, this.markerIcon.focus);
     this.focusMarker.addTo(this.map);
   }
 }

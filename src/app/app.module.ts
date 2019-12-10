@@ -17,6 +17,7 @@ import { AllMapComponent } from './pages/all-map/all-map.component';
 import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
 import { ModalDetailComponent } from './pages/all-map/modal-detail/modal-detail.component';
 import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
+import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal-detail-v2.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
     AllMapComponent,
     DetailDeviceComponent,
     ModalDetailComponent,
-    AllMapV2Component
+    AllMapV2Component,
+    ModalDetailV2Component
     // AlertComponent
   ],
   imports: [
@@ -44,7 +46,8 @@ import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
   bootstrap: [AppComponent],
   entryComponents: [
     // AlertComponent,
-    ModalDetailComponent
+    ModalDetailComponent,
+    ModalDetailV2Component
   ]
 })
 export class AppModule { }
