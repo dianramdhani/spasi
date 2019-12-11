@@ -30,6 +30,12 @@ export class UserComponent {
         icon: 'map',
         state: { to: '/user/all-map', params: {} }
       },
+      {
+        type: Type.LINK,
+        label: 'User Management',
+        icon: 'users',
+        state: { to: '/user/user-management', params: {} }
+      },
     ];
   }
 }

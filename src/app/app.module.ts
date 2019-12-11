@@ -22,6 +22,9 @@ import { SiteManagementComponent } from './pages/site-management-ct/site-managem
 import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
 import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
 import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
+import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
+import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
+import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
     SiteManagementComponent,
     SiteFormComponent,
     SiteManagementCtComponent,
-    AllMapCtComponent
+    AllMapCtComponent,
+    UserManagementCtComponent,
+    ListUserComponent,
+    UserFormComponent
     // AlertComponent
   ],
   imports: [
