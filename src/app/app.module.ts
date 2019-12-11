@@ -18,6 +18,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
 import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
 import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal-detail-v2.component';
+import { SiteManagementComponent } from './pages/site-management/site-management.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal
     DashboardComponent,
     DetailDeviceComponent,
     AllMapV2Component,
-    ModalDetailV2Component
+    ModalDetailV2Component,
+    SiteManagementComponent
     // AlertComponent
   ],
   imports: [

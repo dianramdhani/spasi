@@ -20,15 +20,15 @@ export class UserComponent {
       },
       {
         type: Type.LINK,
-        label: 'All Map',
-        icon: 'map',
-        state: { to: '/user/all-map', params: {} }
+        label: 'Site Management',
+        icon: 'check-square',
+        state: { to: '/user/site-management', params: {} }
       },
       {
         type: Type.LINK,
-        label: 'Site Management',
-        icon: 'check-square',
-        state: { to: '', params: {} }
+        label: 'All Map',
+        icon: 'map',
+        state: { to: '/user/all-map', params: {} }
       },
     ];
   }
