@@ -15,9 +15,13 @@ import { AlertComponent } from './core/alert/alert.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
-import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
-import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal-detail-v2.component';
+import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
+import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
+import { ModalDetailV2Component } from './pages/all-map-ct/all-map-v2/modal-detail-v2/modal-detail-v2.component';
+import { SiteManagementComponent } from './pages/site-management-ct/site-management/site-management.component';
+import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
+import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
+import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal
     DashboardComponent,
     DetailDeviceComponent,
     AllMapV2Component,
-    ModalDetailV2Component
+    ModalDetailV2Component,
+    SiteManagementComponent,
+    SiteFormComponent,
+    SiteManagementCtComponent,
+    AllMapCtComponent
     // AlertComponent
   ],
   imports: [

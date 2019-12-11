@@ -4,8 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { AllMapV2Component } from './pages/all-map-v2/all-map-v2.component';
-import { DetailDeviceComponent } from './pages/detail-device/detail-device.component';
+import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
+import { SiteManagementComponent } from './pages/site-management-ct/site-management/site-management.component';
+import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
+import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
+import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
+import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
 
 
 const routes: Routes = [
@@ -13,15 +17,25 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'all-map', component: AllMapV2Component },
-      { path: 'detail-device', component: DetailDeviceComponent },
+      {
+        path: 'site-management', component: SiteManagementCtComponent, children: [
+          { path: '', component: SiteManagementComponent },
+          { path: 'site-form', component: SiteFormComponent }
+        ]
+      },
+      {
+        path: 'all-map', component: AllMapCtComponent, children: [
+          { path: '', component: AllMapV2Component },
+          { path: 'detail-device', component: DetailDeviceComponent },
+        ]
+      },
     ]
   },
   { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
