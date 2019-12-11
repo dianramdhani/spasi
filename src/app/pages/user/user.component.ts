@@ -21,8 +21,14 @@ export class UserComponent {
       {
         type: Type.LINK,
         label: 'All Map',
-        icon: 'monitor',
+        icon: 'map',
         state: { to: '/user/all-map', params: {} }
+      },
+      {
+        type: Type.LINK,
+        label: 'Site Management',
+        icon: 'check-square',
+        state: { to: '', params: {} }
       },
     ];
   }

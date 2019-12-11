@@ -99,6 +99,7 @@ export class AllMapV2Component implements OnInit {
     const latlng = latLng(device.position.lat, device.position.lng);
     this.map.panTo(latlng);
     this.focusMarker = marker(latlng, this.markerIcon.focus);
+    this.focusMarker.addEventListener('click', () => this.zone.run(() => this.openModalDetail(device)));
     this.focusMarker.addTo(this.map);
   }
 }

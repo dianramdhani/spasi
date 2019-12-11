@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { TreeModule } from 'angular-tree-search';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,7 +38,9 @@ import { ModalDetailV2Component } from './pages/all-map-v2/modal-detail-v2/modal
     ReactiveFormsModule,
     NgbModule,
     JwtModule,
-    LeafletModule
+    LeafletModule,
+    TreeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
