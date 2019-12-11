@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailService } from 'src/app/services/detail.service';
+import { Node } from 'angular-tree-search';
 
 @Component({
   selector: 'app-detail-device',
@@ -6,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-device.component.scss']
 })
 export class DetailDeviceComponent implements OnInit {
-  constructor() { }
+  tree: Node;
 
-  ngOnInit() {
+  constructor(private detailService: DetailService) { }
+
+  async ngOnInit() {
+    this.tree = await this.detailService.getDetail().toPromise();
+    console.log(this.tree);
   }
 }
