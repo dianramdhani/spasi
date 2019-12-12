@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginGuard } from './services';
+
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -21,7 +23,7 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'user', component: UserComponent, children: [
+    path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
       { path: 'dashboard', component: DashboardComponent },
       {
         path: 'site-management', component: SiteManagementCtComponent, children: [
