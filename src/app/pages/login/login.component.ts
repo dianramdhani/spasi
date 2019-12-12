@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   formLogin: FormGroup;
   error: string;
   spinner = false;
@@ -22,25 +22,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async ngOnInit() {
-    await this.loginService.logout().toPromise();
-  }
-
   async login() {
     this.spinner = true;
     const { username, password } = this.formLogin.value;
-    const res = await this.loginService.login(username, password).toPromise();
+    const { loginSucces } = await this.loginService.login(username, password).toPromise();
     this.spinner = false;
-    this.router.navigate(['/user/dashboard']);
-
-    /**
-     * @todo
-     * use it if login has response
-     */
-    // if (res) {
-    //   this.router.navigate(['/user/dashboard']);
-    // } else {
-    //   this.error = 'Login failed!';
-    // }
+    if (loginSucces) {
+      this.router.navigate(['/user/dashboard']);
+    } else {
+      this.error = 'Login failed!';
+    }
   }
 }

@@ -17,16 +17,32 @@ export class LoginService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post(`${this.url}/login/login`, { username, password: Md5.hashStr(password) })
+    return this.httpClient.post<LoginResponse>(`${this.url}/login/login`, { username, password: Md5.hashStr(password) })
       .pipe(
-        tap(res => localStorage.setItem(`${this.storagePrefix}-login`, JSON.stringify(true)))
+        tap(res => localStorage.setItem(`${this.storagePrefix}-login`, JSON.stringify(res)))
       );
   }
 
-  logout() {
-    return this.httpClient.get(`${this.url}/login/logout`)
-      .pipe(
-        tap(() => localStorage.removeItem(`${this.storagePrefix}-login`))
-      );
+  async logout() {
+    const { token }: LoginResponse = JSON.parse(localStorage.getItem(`${this.storagePrefix}-login`));
+    if (token) {
+      await this.httpClient.post(`${this.url}/login/logout/${token}`, {})
+        .pipe(
+          tap(() => localStorage.removeItem(`${this.storagePrefix}-login`))
+        ).toPromise();
+    }
   }
+
+  getUser(): LoginResponse {
+    return JSON.parse(localStorage.getItem(`${this.storagePrefix}-login`));
+  }
+}
+
+interface LoginResponse {
+  loginSucces: boolean
+  loginTime: string
+  logoutSucces: string
+  logoutTime: string
+  token: string
+  username: string
 }
