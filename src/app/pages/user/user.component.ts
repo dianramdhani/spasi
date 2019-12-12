@@ -36,6 +36,12 @@ export class UserComponent {
         icon: 'users',
         state: { to: '/user/user-management', params: {} }
       },
+      {
+        type: Type.LINK,
+        label: 'Alert and Ticketing',
+        icon: 'alert-octagon',
+        state: { to: '/user/alert-and-ticketing', params: {} }
+      },
     ];
   }
 }

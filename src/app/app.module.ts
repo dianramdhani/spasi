@@ -25,6 +25,8 @@ import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
 import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
 import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
 import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
+import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/alert-and-ticketing-ct.component';
+import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { UserFormComponent } from './pages/user-management-ct/user-form/user-for
     AllMapCtComponent,
     UserManagementCtComponent,
     ListUserComponent,
-    UserFormComponent
+    UserFormComponent,
+    AlertAndTicketingCtComponent,
+    ListAlertComponent
     // AlertComponent
   ],
   imports: [
