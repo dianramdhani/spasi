@@ -27,6 +27,7 @@ import { ListUserComponent } from './pages/user-management-ct/list-user/list-use
 import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
 import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/alert-and-ticketing-ct.component';
 import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
+import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/li
     ListUserComponent,
     UserFormComponent,
     AlertAndTicketingCtComponent,
-    ListAlertComponent
+    ListAlertComponent,
+    AlertDetailComponent
     // AlertComponent
   ],
   imports: [
