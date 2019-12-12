@@ -13,6 +13,9 @@ import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-d
 import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
 import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
 import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
+import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/alert-and-ticketing-ct.component';
+import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
+import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 
 
 const routes: Routes = [
@@ -36,6 +39,12 @@ const routes: Routes = [
         path: 'user-management', component: UserManagementCtComponent, children: [
           { path: '', component: ListUserComponent },
           { path: 'user-form', component: UserFormComponent },
+        ]
+      },
+      {
+        path: 'alert-and-ticketing', component: AlertAndTicketingCtComponent, children: [
+          { path: '', component: ListAlertComponent },
+          { path: 'alert-detail', component: AlertDetailComponent },
         ]
       },
     ]
