@@ -10,6 +10,9 @@ import { SiteFormComponent } from './pages/site-management-ct/site-form/site-for
 import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
 import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
 import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
+import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
+import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
+import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
 
 
 const routes: Routes = [
@@ -27,6 +30,12 @@ const routes: Routes = [
         path: 'all-map', component: AllMapCtComponent, children: [
           { path: '', component: AllMapV2Component },
           { path: 'detail-device', component: DetailDeviceComponent },
+        ]
+      },
+      {
+        path: 'user-management', component: UserManagementCtComponent, children: [
+          { path: '', component: ListUserComponent },
+          { path: 'user-form', component: UserFormComponent },
         ]
       },
     ]
