@@ -1,6 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { tileLayer, latLng, Map, marker, icon, featureGroup, Marker, FeatureGroup } from 'leaflet';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChartType, ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 import { AlertService, Device } from 'src/app/services/alert.service';
 
@@ -12,6 +15,7 @@ import { ModalDetailV2Component } from './modal-detail-v2/modal-detail-v2.compon
   styleUrls: ['./all-map-v2.component.scss']
 })
 export class AllMapV2Component implements OnInit {
+  // map
   options = { layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') };
   map: Map;
   markerIcon = {
@@ -55,9 +59,36 @@ export class AllMapV2Component implements OnInit {
   focusMarker: Marker;
   lastLayer: FeatureGroup;
 
+  // alerts
   dangers: Device[];
   warnings: Device[];
   normals: Device[];
+
+  // Pie
+  pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'left',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
+  pieChartLabels: Label[] = ['Open', 'Resolve', 'Closed'];
+  pieChartData: number[] = [300, 500, 100];
+  pieChartType: ChartType = 'pie';
+  pieChartLegend = true;
+  pieChartPlugins = [pluginDataLabels];
+  pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.4)', 'rgba(0,255,0,0.4)', 'rgba(0,0,255,0.4)'],
+    },
+  ];
 
   constructor(private alertService: AlertService, private zone: NgZone, private modal: NgbModal) { }
 

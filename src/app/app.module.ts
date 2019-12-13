@@ -6,6 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from 'angular-tree-search';
 import { HttpClientModule } from '@angular/common/http'
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,7 +59,8 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
     JwtModule,
     LeafletModule,
     TreeModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
