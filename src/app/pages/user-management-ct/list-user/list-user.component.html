@@ -17,11 +17,21 @@
             <thead>
                 <tr>
                     <th>Username</th>
+                    <th>Email</th>
                     <th>Role</th>
                     <th>Region</th>
                     <th>Site</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

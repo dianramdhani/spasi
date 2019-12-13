@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tileLayer, latLng } from 'leaflet';
+import { SiteManagementService, AssetManagementService } from 'src/app/services';
 
 @Component({
   selector: 'app-site-form',
@@ -13,8 +14,23 @@ export class SiteFormComponent implements OnInit {
     center: latLng(46.879966, -121.726909)
   };
 
-  constructor() { }
+  constructor(private siteManagementService: SiteManagementService, private assetManagementService: AssetManagementService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    // success
+    // const res = await this.siteManagementService.getSiteType().toPromise();
+    // console.log(res);
+
+    // success
+    // const res = await this.siteManagementService.createSite('tesNameUI', 'tesTypeUI', 1, 2, 'tesRegionUI').toPromise();
+    // console.log(res);
+
+    // success
+    // const res = await this.assetManagementService.createAsset('site-ebad07cc-2f38-4e92-b334-32000fd260c0', 'tesNameUI').toPromise();
+    // console.log(res);
+
+    // success
+    // const res = await this.assetManagementService.createAssetProperty('asset-488c0270-7d01-466d-aba6-f0327630fb27', 'tesNameUI', 'tesValueTypeUI').toPromise();
+    // console.log(res);
   }
 }

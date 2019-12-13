@@ -19,9 +19,13 @@ export class UserManagementService {
   getRoles() {
     return this.httpClient.get<string[]>(`${this.url}/userManagement/roles`);
   }
+
+  getUser() {
+    return this.httpClient.get<UserResponse[]>(`${this.url}/userManagement/users`);
+  }
 }
 
-interface UserResponse {
+export interface UserResponse {
   username: string,
   email: string,
   password: string,

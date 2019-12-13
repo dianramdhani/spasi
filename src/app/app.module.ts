@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WrapperComponent } from './core/wrapper/wrapper.component';
 import { SpinnerComponent } from './core/spinner/spinner.component';
-import { AlertComponent } from './core/alert/alert.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -49,8 +48,7 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
     UserFormComponent,
     AlertAndTicketingCtComponent,
     ListAlertComponent,
-    AlertDetailComponent
-    // AlertComponent
+    AlertDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +63,6 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    // AlertComponent,
     ModalDetailV2Component
   ]
 })
