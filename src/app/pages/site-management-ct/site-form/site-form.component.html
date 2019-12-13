@@ -113,8 +113,10 @@
         </div>
     </div>
     <div class="card-footer tx-right">
-        <button type="submit" class="btn btn-primary mg-r-5" [disabled]="!formSite.valid"
-            (click)="submit()">Submit</button>
+        <button type="submit" class="btn btn-primary mg-r-5" [disabled]="!formSite.valid" (click)="submit()">
+            Submit
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="showLoading"></span>
+        </button>
         <button class="btn btn-danger" routerLink="../">Cancel</button>
     </div>
 </form>

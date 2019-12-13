@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { tileLayer, latLng, Map, icon, Marker, marker } from 'leaflet';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { SiteManagementService, AssetManagementService } from 'src/app/services';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-site-form',
@@ -25,10 +26,14 @@ export class SiteFormComponent implements OnInit {
   siteRegions: string[];
   formSite: FormGroup;
 
+  // loading
+  showLoading = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private siteManagementService: SiteManagementService,
-    private assetManagementService: AssetManagementService
+    private assetManagementService: AssetManagementService,
+    private router: Router
   ) {
     this.formSite = this.formBuilder.group({
       name: new FormControl('', Validators.required),
@@ -39,7 +44,6 @@ export class SiteFormComponent implements OnInit {
       assets: this.formBuilder.array([this.createAsset()])
     });
   }
-
 
   async ngOnInit() {
     [this.siteTypes, this.siteRegions] = await Promise.all([
@@ -109,6 +113,7 @@ export class SiteFormComponent implements OnInit {
   }
 
   async submit() {
+    this.showLoading = true;
     if (this.formSite.valid) {
       const value = this.formSite.value;
       const siteId = (await this.siteManagementService.createSite(value.name, value.type, value.latitude, value.longitude, value.region).toPromise()).id;
@@ -123,6 +128,7 @@ export class SiteFormComponent implements OnInit {
         }
       }
     }
-    console.log('udah berhasil');
+    this.showLoading = false;
+    this.router.navigate(['/user/site-management']);
   }
 }
