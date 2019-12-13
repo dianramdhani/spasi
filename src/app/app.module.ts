@@ -14,7 +14,6 @@ import { WrapperComponent } from './core/wrapper/wrapper.component';
 import { SpinnerComponent } from './core/spinner/spinner.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
 import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
 import { ModalDetailV2Component } from './pages/all-map-ct/all-map-v2/modal-detail-v2/modal-detail-v2.component';
@@ -36,7 +35,6 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
     SpinnerComponent,
     LoginComponent,
     UserComponent,
-    DashboardComponent,
     DetailDeviceComponent,
     AllMapV2Component,
     ModalDetailV2Component,

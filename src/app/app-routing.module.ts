@@ -5,7 +5,6 @@ import { LoginGuard } from './services';
 
 import { LoginComponent } from './pages/login/login.component';
 import { UserComponent } from './pages/user/user.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
 import { SiteManagementComponent } from './pages/site-management-ct/site-management/site-management.component';
 import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
@@ -24,17 +23,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
-      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'dashboard', component: AllMapCtComponent, children: [
+          { path: '', component: AllMapV2Component },
+          { path: 'detail-device', component: DetailDeviceComponent },
+        ]
+      },
       {
         path: 'site-management', component: SiteManagementCtComponent, children: [
           { path: '', component: SiteManagementComponent },
           { path: 'site-form', component: SiteFormComponent }
-        ]
-      },
-      {
-        path: 'all-map', component: AllMapCtComponent, children: [
-          { path: '', component: AllMapV2Component },
-          { path: 'detail-device', component: DetailDeviceComponent },
         ]
       },
       {
