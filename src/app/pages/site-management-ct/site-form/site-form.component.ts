@@ -88,10 +88,12 @@ export class SiteFormComponent implements OnInit {
     this.lastMarkerPoint.next({ latitude, longitude });
   }
 
+  // crud asset
   createAsset(): FormGroup {
     return this.formBuilder.group({
-      name: new FormControl('', Validators.required)
-    })
+      name: new FormControl('', Validators.required),
+      parameters: this.formBuilder.array([this.createParameter()])
+    });
   }
 
   addAsset() {
@@ -102,6 +104,24 @@ export class SiteFormComponent implements OnInit {
   removeAsset(index: number, e = null) {
     const assets = this.formSite.get('assets') as FormArray;
     assets.removeAt(index);
+  }
+
+  // crud parameter
+  createParameter(): FormGroup {
+    return this.formBuilder.group({
+      name: new FormControl('', Validators.required),
+      valueType: new FormControl('', Validators.required)
+    });
+  }
+
+  addParameter(formAsset: FormGroup, e = null) {
+    const parameters = formAsset.get('parameters') as FormArray;
+    parameters.push(this.createParameter());
+  }
+
+  removeParameter(formAsset: FormGroup, index: number, e = null) {
+    const parameters = formAsset.get('parameters') as FormArray;
+    parameters.removeAt(index);
   }
 
   submit() {

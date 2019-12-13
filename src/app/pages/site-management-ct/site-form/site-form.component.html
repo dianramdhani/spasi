@@ -66,7 +66,8 @@
         </div>
         <div class="bg-gray-100 mg-t-20 pd-10" formArrayName="assets">
             <h6>Asset</h6>
-            <div class="form-group row" *ngFor="let asset of formSite.get('assets').controls; let assetIndex = index;"
+            <div class="form-group row"
+                *ngFor="let asset of formSite['controls'].assets['controls']; let assetIndex = index;"
                 [formGroupName]="assetIndex">
                 <label class="col-md-2 col-form-label" for="">Asset Name</label>
                 <div class="col-md-7 col-lg-8">
@@ -78,20 +79,30 @@
                     </button>
                 </div>
                 <div class="col-md-12">
-                    <div class="bg-gray-200 mg-t-10 pd-10">
+                    <div class="bg-gray-200 mg-t-10 pd-10" formArrayName="parameters">
                         <h6>Parameter</h6>
-                        <div class="form-row bd-b">
-                            <div class="col-md form-group">
+                        <div class="form-row bd-b"
+                            *ngFor="let parameter of asset['controls'].parameters['controls']; let parameterIndex = index"
+                            [formGroupName]="parameterIndex">
+                            <div class="col-lg-5 col-md-4 form-group">
                                 <label for="">Parameter Name</label>
-                                <input type="text" class="form-control" placeholder="Parameter Name">
+                                <input type="text" class="form-control" placeholder="Parameter Name"
+                                    formControlName="name">
                             </div>
-                            <div class="col-md form-group">
+                            <div class="col-lg-5 col-md-4 form-group">
                                 <label for="">Parameter Unit</label>
-                                <input type="text" class="form-control" placeholder="Parameter Unit">
+                                <input type="text" class="form-control" placeholder="Parameter Unit"
+                                    formControlName="valueType">
+                            </div>
+                            <div class="col-lg-2 col-md-4 tx-right">
+                                <button class="btn btn-danger mg-t-5 mg-md-t-30"
+                                    (click)="removeParameter(asset, parameterIndex, $event)">
+                                    Remove Parameter
+                                </button>
                             </div>
                         </div>
                         <div class="tx-right mg-t-10">
-                            <button class="btn btn-primary">Add Parameter</button>
+                            <button class="btn btn-primary" (click)="addParameter(asset, $event)">Add Parameter</button>
                         </div>
                     </div>
                 </div>
@@ -102,7 +113,8 @@
         </div>
     </div>
     <div class="card-footer tx-right">
-        <button type="submit" class="btn btn-primary mg-r-5" (click)="submit()">Submit</button>
+        <button type="submit" class="btn btn-primary mg-r-5" [disabled]="!formSite.valid"
+            (click)="submit()">Submit</button>
         <button class="btn btn-danger" routerLink="../">Cancel</button>
     </div>
 </form>
