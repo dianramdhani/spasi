@@ -14,19 +14,26 @@ export class SiteManagementService {
   }
 
   /**
-   * Get site type for form site.
+   * Get site type.
    */
   getSiteType() {
-    return this.httpClient.get(`${this.url}/siteManagement/sites/type`);
+    return this.httpClient.get<string[]>(`${this.url}/siteManagement/sites/type`);
+  }
+
+  /**
+   * Get all region.
+   */
+  getRegionAll() {
+    return this.httpClient.get<string[]>(`${this.url}/siteManagement/regions`);
   }
 
   /**
    * Create site.
    * @param name - Site name.
-   * @param type - Site type.
+   * @param type - Site type from getSiteType.
    * @param latitude - Latitude location.
    * @param longitude - Longitude location.
-   * @param region - Region of site.
+   * @param region - Region of site from getRegionAll.
    */
   createSite(name: string, type: string, latitude: number, longitude: number, region: string) {
     return this.httpClient.post<any>(`${this.url}/siteManagement/sites`, { name, type, latitude, longitude, region, status: 'NORMAL' });

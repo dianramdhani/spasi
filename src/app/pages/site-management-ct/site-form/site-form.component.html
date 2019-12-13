@@ -8,22 +8,21 @@
         </ol>
     </nav>
 </div>
-<div class="card">
+<form class="card" [formGroup]="formSite">
     <h6 class="card-header">Form Site</h6>
     <div class="card-body">
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Site Name</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Site Name">
+                <input type="text" class="form-control" placeholder="Site Name" formControlName="name">
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Type Site</label>
             <div class="col-md-10">
-                <select class="form-control">
-                    <option value="">Select Type Site</option>
-                    <option value="1">Type 1</option>
-                    <option value="2">Type 2</option>
+                <select class="form-control" formControlName="type">
+                    <option value="" disabled>Select Type Site</option>
+                    <option *ngFor="let type of siteTypes" [ngValue]="type">{{ type }}</option>
                 </select>
             </div>
         </div>
@@ -33,29 +32,35 @@
                 <div class="form-row">
                     <div class="col">
                         <label for="" class="tx-gray-500">Latitude</label>
-                        <input type="text" class="form-control" placeholder="Latitude">
+                        <input type="number" class="form-control" placeholder="Latitude" formControlName="latitude">
                     </div>
                     <div class="col">
                         <label for="" class="tx-gray-500">Longitude</label>
-                        <input type="text" class="form-control" placeholder="Longitude">
+                        <input type="number" class="form-control" placeholder="Longitude" formControlName="longitude">
                     </div>
                     <div class="col-md-auto">
-                        <button class="btn btn-primary mg-t-5 mg-md-t-30">Check Location</button>
+                        <button class="btn btn-primary mg-t-5 mg-md-t-30"
+                            (click)="checkLocation(formSite.controls.latitude.value, formSite.controls.longitude.value, $event)"
+                            [disabled]="!(formSite.controls.latitude.valid && formSite.controls.longitude.valid)">
+                            Check Location
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="form-group row" *ngIf="showMap">
             <div class="col-md-2"></div>
             <div class="col-md-10 mg-t-10">
-                <div style="height: 350px;" leaflet [leafletOptions]="options"></div>
+                <div style="height: 350px;" leaflet [leafletOptions]="mapOptions"
+                    (leafletMapReady)="onMapReady($event)"></div>
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Region</label>
             <div class="col-md-10">
-                <select class="form-control">
-                    <option value="">Select Region</option>
-                    <option value="1">Region 1</option>
-                    <option value="2">Region 2</option>
+                <select class="form-control" formControlName="region">
+                    <option value="" disabled>Select Region</option>
+                    <option *ngFor="let region of siteRegions" [ngValue]="region">{{ region }}</option>
                 </select>
             </div>
         </div>
@@ -93,4 +98,4 @@
     <div class="card-footer tx-right">
         <button class="btn btn-primary mg-r-5">Submit</button><button class="btn btn-danger">Cancel</button>
     </div>
-</div>
+</form>
