@@ -36,6 +36,15 @@ export class SiteManagementService {
    * @param region - Region of site from getRegionAll.
    */
   createSite(name: string, type: string, latitude: number, longitude: number, region: string) {
-    return this.httpClient.post<any>(`${this.url}/siteManagement/sites`, { name, type, latitude, longitude, region, status: 'NORMAL' });
+    return this.httpClient.post<SiteResponse>(`${this.url}/siteManagement/sites`, { name, type, latitude, longitude, region, status: 'NORMAL' });
   }
+}
+interface SiteResponse {
+  id: string,
+  name: string,
+  region: string,
+  status: string,
+  type: string,
+  longitude: number,
+  latitude: number
 }

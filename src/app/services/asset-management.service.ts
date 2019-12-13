@@ -18,7 +18,7 @@ export class AssetManagementService {
    * @param name - Name of asset.
    */
   createAsset(siteId: string, name: string) {
-    return this.httpClient.post(`${this.url}/assetManagement/assets`, { siteId, name });
+    return this.httpClient.post<AssetResponse>(`${this.url}/assetManagement/assets`, { siteId, name });
   }
 
   /**
@@ -30,4 +30,11 @@ export class AssetManagementService {
   createAssetProperty(assetId: string, name: string, valueType: string) {
     return this.httpClient.post(`${this.url}/assetManagement/assets/properties`, { assetId, name, valueType });
   }
+}
+
+interface AssetResponse {
+  id: string,
+  name: string,
+  siteId: string,
+  type: string
 }

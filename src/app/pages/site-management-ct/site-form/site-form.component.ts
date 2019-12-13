@@ -46,22 +46,6 @@ export class SiteFormComponent implements OnInit {
       this.siteManagementService.getSiteType().toPromise(),
       this.siteManagementService.getRegionAll().toPromise()
     ]);
-
-    // success
-    // const res = await this.siteManagementService.getSiteType().toPromise();
-    // console.log(res);
-
-    // success
-    // const res = await this.siteManagementService.createSite('tesNameUI', 'tesTypeUI', 1, 2, 'tesRegionUI').toPromise();
-    // console.log(res);
-
-    // success
-    // const res = await this.assetManagementService.createAsset('site-ebad07cc-2f38-4e92-b334-32000fd260c0', 'tesNameUI').toPromise();
-    // console.log(res);
-
-    // success
-    // const res = await this.assetManagementService.createAssetProperty('asset-488c0270-7d01-466d-aba6-f0327630fb27', 'tesNameUI', 'tesValueTypeUI').toPromise();
-    // console.log(res);
   }
 
   onMapReady(map: Map) {
@@ -124,7 +108,21 @@ export class SiteFormComponent implements OnInit {
     parameters.removeAt(index);
   }
 
-  submit() {
-    console.log(this.formSite);
+  async submit() {
+    if (this.formSite.valid) {
+      const value = this.formSite.value;
+      const siteId = (await this.siteManagementService.createSite(value.name, value.type, value.latitude, value.longitude, value.region).toPromise()).id;
+
+      for (const i in value.assets) {
+        const asset = value.assets[i];
+        const assetId = (await this.assetManagementService.createAsset(siteId, asset.name).toPromise()).id;
+
+        for (const j in asset.parameters) {
+          const parameter = asset.parameters[j];
+          await this.assetManagementService.createAssetProperty(assetId, parameter.name, parameter.valueType).toPromise();
+        }
+      }
+    }
+    console.log('udah berhasil');
   }
 }
