@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+import { UserManagementService } from 'src/app/services/user-management.service';
 
 @Component({
   selector: 'app-user-form',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  roles: string[];
+  formUser: FormGroup;
 
-  constructor() { }
+  constructor(private userManagementService: UserManagementService, private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    // this.roles = await this.userManagementService.getRoles().toPromise();
+    // this.formUser = this.formBuilder.group({
+    //   email: [null, Validators.required],
+    //   username: [null, Validators.required],
+    //   role: [['TES0', 'TES1', 'TES2'], Validators.required]
+    // });
   }
-
 }
