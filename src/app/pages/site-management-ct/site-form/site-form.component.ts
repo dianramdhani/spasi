@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { tileLayer, latLng, Map, icon, Marker, marker } from 'leaflet';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 import { SiteManagementService, AssetManagementService } from 'src/app/services';
 import { BehaviorSubject } from 'rxjs';
@@ -21,9 +21,9 @@ export class SiteFormComponent implements OnInit {
   lastMarkerPoint = new BehaviorSubject({ latitude: 0, longitude: 0 });
 
   // form
-  formSite: FormGroup;
   siteTypes: string[];
   siteRegions: string[];
+  formSite: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,9 +35,11 @@ export class SiteFormComponent implements OnInit {
       type: new FormControl('', Validators.required),
       latitude: new FormControl(0, Validators.required),
       longitude: new FormControl(0, Validators.required),
-      region: new FormControl('', Validators.required)
+      region: new FormControl('', Validators.required),
+      assets: this.formBuilder.array([this.createAsset()])
     });
   }
+
 
   async ngOnInit() {
     [this.siteTypes, this.siteRegions] = await Promise.all([
@@ -84,5 +86,25 @@ export class SiteFormComponent implements OnInit {
   checkLocation(latitude: number, longitude: number, e = null) {
     this.showMap = true;
     this.lastMarkerPoint.next({ latitude, longitude });
+  }
+
+  createAsset(): FormGroup {
+    return this.formBuilder.group({
+      name: new FormControl('', Validators.required)
+    })
+  }
+
+  addAsset() {
+    const assets = this.formSite.get('assets') as FormArray;
+    assets.push(this.createAsset());
+  }
+
+  removeAsset(index: number, e = null) {
+    const assets = this.formSite.get('assets') as FormArray;
+    assets.removeAt(index);
+  }
+
+  submit() {
+    console.log(this.formSite);
   }
 }
