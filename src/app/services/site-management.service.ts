@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { AssetResponse } from './asset-management.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,6 +46,22 @@ export class SiteManagementService {
    */
   getSiteAll() {
     return this.httpClient.get<SiteResponse[]>(`${this.url}/siteManagement/sites`);
+  }
+
+  /**
+   * Get site data by site id.
+   * @param siteId - Site id.
+   */
+  getSiteById(siteId: string) {
+    return this.httpClient.get<SiteResponse>(`${this.url}/siteManagement/sites/${siteId}`);
+  }
+
+  /**
+   * Get all asset by site id.
+   * @param siteId - Site id.
+   */
+  getAssetBySite(siteId: string) {
+    return this.httpClient.get<AssetResponse[]>(`${this.url}/siteManagement/sites/${siteId}/asset`);
   }
 }
 

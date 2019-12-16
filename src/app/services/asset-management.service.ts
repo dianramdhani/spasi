@@ -30,9 +30,13 @@ export class AssetManagementService {
   createAssetProperty(assetId: string, name: string, valueType: string) {
     return this.httpClient.post(`${this.url}/assetManagement/assets/properties`, { assetId, name, valueType });
   }
+
+  getPropertyByAsset(assetId: string) {
+    return this.httpClient.get(`${this.url}/assetManagement/assets/${assetId}/properties`);
+  }
 }
 
-interface AssetResponse {
+export interface AssetResponse {
   id: string,
   name: string,
   siteId: string,

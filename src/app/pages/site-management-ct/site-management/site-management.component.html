@@ -31,7 +31,7 @@
                     <td>{{ site.status }}</td>
                     <td class="tx-right">
                         <button class="btn btn-primary mg-r-5" routerLink="config-device">Config Device</button>
-                        <button class="btn btn-primary" routerLink="site-profile">Profile</button>
+                        <button class="btn btn-primary" [routerLink]="['site-profile', site.id]">Profile</button>
                     </td>
                 </tr>
             </tbody>

@@ -3,44 +3,45 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../">Site Management</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../../">Site Management</a></li>
             <li class="breadcrumb-item active" aria-current="page">Site Profile</li>
         </ol>
     </nav>
 </div>
 <div class="card">
-    <h6 class="card-header">Form Site</h6>
+    <h6 class="card-header">Site Profile</h6>
     <div class="card-body">
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Site Name</label>
             <div class="col-md-10">
-                siteName1
+                {{ site.name }}
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Type Site</label>
             <div class="col-md-10">
-                type1
+                {{ site.type }}
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Location</label>
             <div class="col-md-10 mg-t-10">
-                <div style="height: 350px;" leaflet></div>
+                <div style="height: 350px;" leaflet [leafletOptions]="mapOptions"
+                    (leafletMapReady)="onMapReady($event)"></div>
             </div>
         </div>
         <div class="form-group row">
             <label for="" class="col-md-2 col-form-label">Region</label>
             <div class="col-md-10">
-                region
+                {{ site.region }}
             </div>
         </div>
         <div class="bg-gray-100 mg-t-20 pd-10">
             <h6>Asset</h6>
-            <div class="form-group row">
+            <div class="form-group row" *ngFor="let asset of site.assets">
                 <label class="col-md-2 col-form-label" for="">Asset Name</label>
                 <div class="col-md-10 col-lg-8">
-                    assetName
+                    {{ asset.name }}
                 </div>
                 <div class="col-md-12">
                     <div class="bg-gray-200 mg-t-10 pd-10">
@@ -54,9 +55,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>name (unit)</td>
-                                        <td>1</td>
+                                    <tr *ngFor="let property of asset.properties">
+                                        <td>{{ property.name }} ({{ property.valueType }})</td>
+                                        <td>{{ property.value === null? 'null': property.value }}</td>
                                     </tr>
                                 </tbody>
                             </table>
