@@ -1,0 +1,44 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">Site Management</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../">Site Management</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Config Device</li>
+        </ol>
+    </nav>
+</div>
+<div class="card">
+    <h6 class="card-header">List Assets</h6>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h6 class="tx-gray-500">Asset 1</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Property Name</th>
+                                <th>Device</th>
+                                <th>Sensor Name</th>
+                                <th>Sub Parameter</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>property 1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="tx-right">
+                                    <button class="btn btn-primary" (click)="openModalSetSensor()">Set Sensor</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
