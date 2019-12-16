@@ -27,6 +27,9 @@ import { UserFormComponent } from './pages/user-management-ct/user-form/user-for
 import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/alert-and-ticketing-ct.component';
 import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
+import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
+import { ModalSetSensorComponent } from './pages/site-management-ct/config-device/modal-set-sensor/modal-set-sensor.component';
+import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
     AlertAndTicketingCtComponent,
     ListAlertComponent,
     AlertDetailComponent,
+    ConfigDeviceComponent,
+    ModalSetSensorComponent,
+    SiteProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,8 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ModalDetailV2Component
+    ModalDetailV2Component,
+    ModalSetSensorComponent
   ]
 })
 export class AppModule { }

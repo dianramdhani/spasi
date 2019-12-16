@@ -17,6 +17,8 @@ import { UserFormComponent } from './pages/user-management-ct/user-form/user-for
 import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/alert-and-ticketing-ct.component';
 import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
+import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
+import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 
 
 const routes: Routes = [
@@ -32,7 +34,9 @@ const routes: Routes = [
       {
         path: 'site-management', component: SiteManagementCtComponent, children: [
           { path: '', component: SiteManagementComponent },
-          { path: 'site-form', component: SiteFormComponent }
+          { path: 'site-form', component: SiteFormComponent },
+          { path: 'config-device/:siteId', component: ConfigDeviceComponent },
+          { path: 'site-profile/:siteId', component: SiteProfileComponent },
         ]
       },
       {

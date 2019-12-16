@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { AssetResponse } from './asset-management.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,8 +40,32 @@ export class SiteManagementService {
   createSite(name: string, type: string, latitude: number, longitude: number, region: string) {
     return this.httpClient.post<SiteResponse>(`${this.url}/siteManagement/sites`, { name, type, latitude, longitude, region, status: 'NORMAL' });
   }
+
+  /**
+   * Get all site.
+   */
+  getSiteAll() {
+    return this.httpClient.get<SiteResponse[]>(`${this.url}/siteManagement/sites`);
+  }
+
+  /**
+   * Get site data by site id.
+   * @param siteId - Site id.
+   */
+  getSiteById(siteId: string) {
+    return this.httpClient.get<SiteResponse>(`${this.url}/siteManagement/sites/${siteId}`);
+  }
+
+  /**
+   * Get all asset by site id.
+   * @param siteId - Site id.
+   */
+  getAssetBySite(siteId: string) {
+    return this.httpClient.get<AssetResponse[]>(`${this.url}/siteManagement/sites/${siteId}/asset`);
+  }
 }
-interface SiteResponse {
+
+export interface SiteResponse {
   id: string,
   name: string,
   region: string,

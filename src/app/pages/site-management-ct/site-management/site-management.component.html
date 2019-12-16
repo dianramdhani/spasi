@@ -15,11 +15,28 @@
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <th>Site Name</th>
-                <th>Region</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <tr>
+                    <th>Site Name</th>
+                    <th>Region</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
             </thead>
+            <tbody>
+                <tr *ngFor="let site of sites">
+                    <td>{{ site.name }}</td>
+                    <td>{{ site.region }}</td>
+                    <td>{{ site.type }}</td>
+                    <td>{{ site.status }}</td>
+                    <td class="tx-right">
+                        <button class="btn btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
+                            Config Device
+                        </button>
+                        <button class="btn btn-primary" [routerLink]="['site-profile', site.id]">Profile</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>
