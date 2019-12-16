@@ -1,9 +1,9 @@
 <div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
-    <h4 class="mg-b-0 tx-spacing--1">Site Management</h4>
+    <h4 class="mg-b-0 tx-spacing--1">Config Device</h4>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../">Site Management</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../../">Site Management</a></li>
             <li class="breadcrumb-item active" aria-current="page">Config Device</li>
         </ol>
     </nav>
@@ -12,8 +12,8 @@
     <h6 class="card-header">List Assets</h6>
     <div class="card-body">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <h6 class="tx-gray-500">Asset 1</h6>
+            <li class="list-group-item" *ngFor="let asset of assets">
+                <h6 class="tx-gray-500">{{ asset.name }}</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -26,8 +26,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>property 1</td>
+                            <tr *ngFor="let property of asset.properties">
+                                <td>{{ property.name }}</td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
