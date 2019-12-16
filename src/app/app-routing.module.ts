@@ -18,6 +18,7 @@ import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/ale
 import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
+import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
           { path: '', component: SiteManagementComponent },
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device', component: ConfigDeviceComponent },
+          { path: 'site-profile', component: SiteProfileComponent },
         ]
       },
       {

@@ -29,6 +29,7 @@ import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/li
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
 import { ModalSetSensorComponent } from './pages/site-management-ct/config-device/modal-set-sensor/modal-set-sensor.component';
+import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ModalSetSensorComponent } from './pages/site-management-ct/config-devic
     AlertDetailComponent,
     ConfigDeviceComponent,
     ModalSetSensorComponent,
+    SiteProfileComponent,
   ],
   imports: [
     BrowserModule,
