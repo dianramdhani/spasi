@@ -18,19 +18,20 @@
                 <tr>
                     <th>Site Name</th>
                     <th>Region</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
+                    <th>Type</th>
+                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let site of sites">
+                    <td>{{ site.name }}</td>
+                    <td>{{ site.region }}</td>
+                    <td>{{ site.type }}</td>
+                    <td>{{ site.status }}</td>
                     <td class="tx-right">
                         <button class="btn btn-primary" routerLink="config-device">Config Device</button>
+                        
                     </td>
                 </tr>
             </tbody>

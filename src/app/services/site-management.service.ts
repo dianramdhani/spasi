@@ -38,8 +38,16 @@ export class SiteManagementService {
   createSite(name: string, type: string, latitude: number, longitude: number, region: string) {
     return this.httpClient.post<SiteResponse>(`${this.url}/siteManagement/sites`, { name, type, latitude, longitude, region, status: 'NORMAL' });
   }
+
+  /**
+   * Get all site.
+   */
+  getSiteAll() {
+    return this.httpClient.get<SiteResponse[]>(`${this.url}/siteManagement/sites`);
+  }
 }
-interface SiteResponse {
+
+export interface SiteResponse {
   id: string,
   name: string,
   region: string,
