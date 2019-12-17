@@ -14,13 +14,9 @@ import { WrapperComponent } from './core/wrapper/wrapper.component';
 import { SpinnerComponent } from './core/spinner/spinner.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
-import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
-import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
-import { ModalDetailV2Component } from './pages/all-map-ct/all-map-v2/modal-detail-v2/modal-detail-v2.component';
 import { SiteManagementComponent } from './pages/site-management-ct/site-management/site-management.component';
 import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
 import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
-import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
 import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
 import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
 import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
@@ -40,13 +36,9 @@ import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/mo
     SpinnerComponent,
     LoginComponent,
     UserComponent,
-    DetailDeviceComponent,
-    AllMapV2Component,
-    ModalDetailV2Component,
     SiteManagementComponent,
     SiteFormComponent,
     SiteManagementCtComponent,
-    AllMapCtComponent,
     UserManagementCtComponent,
     ListUserComponent,
     UserFormComponent,
@@ -74,7 +66,6 @@ import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/mo
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ModalDetailV2Component,
     ModalSetSensorComponent,
     ModalSiteDetailComponent
   ]

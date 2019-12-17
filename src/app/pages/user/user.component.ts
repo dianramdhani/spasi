@@ -20,12 +20,6 @@ export class UserComponent {
       },
       {
         type: Type.LINK,
-        label: 'Dashboard v2',
-        icon: 'monitor',
-        state: { to: '/user/dashboard-v2', params: {} }
-      },
-      {
-        type: Type.LINK,
         label: 'Site Management',
         icon: 'check-square',
         state: { to: '/user/site-management', params: {} }
