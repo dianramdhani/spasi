@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -30,6 +30,7 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
 import { ModalSetSensorComponent } from './pages/site-management-ct/config-device/modal-set-sensor/modal-set-sensor.component';
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SiteProfileComponent } from './pages/site-management-ct/site-profile/si
     ConfigDeviceComponent,
     ModalSetSensorComponent,
     SiteProfileComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { SiteProfileComponent } from './pages/site-management-ct/site-profile/si
     LeafletModule,
     TreeModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

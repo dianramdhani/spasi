@@ -19,6 +19,7 @@ import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/li
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
           { path: 'detail-device', component: DetailDeviceComponent },
         ]
       },
+      { path: 'dashboard-v2', component: DashboardComponent },
       {
         path: 'site-management', component: SiteManagementCtComponent, children: [
           { path: '', component: SiteManagementComponent },
