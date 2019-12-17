@@ -31,6 +31,7 @@ import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/
 import { ModalSetSensorComponent } from './pages/site-management-ct/config-device/modal-set-sensor/modal-set-sensor.component';
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/modal-site-detail.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     ModalSetSensorComponent,
     SiteProfileComponent,
     DashboardComponent,
+    ModalSiteDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   bootstrap: [AppComponent],
   entryComponents: [
     ModalDetailV2Component,
-    ModalSetSensorComponent
+    ModalSetSensorComponent,
+    ModalSiteDetailComponent
   ]
 })
 export class AppModule { }

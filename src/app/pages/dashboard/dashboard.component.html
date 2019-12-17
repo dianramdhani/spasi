@@ -91,3 +91,116 @@
         </div>
     </div>
 </div>
+<div class="card mg-t-10">
+    <h6 class="card-header">Alert and Ticketing</h6>
+    <div class="card-body row row-xs">
+        <div class="col-md-6">
+            <div class="card">
+                <h6 class="mg-b-0 card-header tx-gray-500">Ticket</h6>
+                <div class="card-body pd-lg-10">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors"
+                        [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mg-t-10 mg-md-t-0">
+                <h6 class="card-header tx-gray-500 bd-b-0">SLA and Escalation</h6>
+                <div class="table-responsive">
+                    <table class="table table-invoice mg-b-0">
+                        <tr>
+                            <th>0 - 4 Hours</th>
+                            <td class="tx-primary tx-right">-</td>
+                        </tr>
+                        <tr>
+                            <th>4 - 24 Hours</th>
+                            <td class="tx-primary tx-right">5 Tickets</td>
+                        </tr>
+                        <tr>
+                            <th>1 - 2 Days</th>
+                            <td class="tx-primary tx-right">-</td>
+                        </tr>
+                        <tr>
+                            <th>> 2 Days</th>
+                            <td class="tx-primary tx-right">10 Tickets</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mg-t-10">
+                <h6 class="card-header tx-gray-500 bd-b-0">Latest</h6>
+                <div class="table-responsive">
+                    <table class="table table-invoice mg-b-0">
+                        <tr>
+                            <th>BTSH Bandung 1</th>
+                            <td class="tx-primary tx-right">1 hour ago</td>
+                        </tr>
+                        <tr>
+                            <th>BTSP Jayapura 3</th>
+                            <td class="tx-primary tx-right">2 hour ago</td>
+                        </tr>
+                        <tr>
+                            <th>IPLH Padang 1</th>
+                            <td class="tx-primary tx-right">3 days ago</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer tx-center">
+                    <button class="btn btn-sm btn-primary">Show More</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mg-t-10">
+                <h6 class="card-header tx-gray-500 bd-b-0">Most Frequently Issues</h6>
+                <div class="table-responsive">
+                    <table class="table table-invoice mg-b-0">
+                        <tr>
+                            <th>High Temperature Battery</th>
+                            <td class="tx-primary tx-right">10 cases</td>
+                        </tr>
+                        <tr>
+                            <th>Empty Fuel Tank</th>
+                            <td class="tx-primary tx-right">3 cases</td>
+                        </tr>
+                        <tr>
+                            <th>High Kwh Usage</th>
+                            <td class="tx-primary tx-right">3 cases</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer tx-center">
+                    <button class="btn btn-sm btn-primary">Show More</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mg-t-10">
+                <h6 class="card-header tx-gray-500 bd-b-0">Most Attention Sites</h6>
+                <div class="table-responsive">
+                    <table class="table table-invoice mg-b-0">
+                        <tr>
+                            <th>BTSH Bandung 1</th>
+                            <td class="tx-primary tx-right">3 alerts/day</td>
+                        </tr>
+                        <tr>
+                            <th>BTSP Sukabumi 2</th>
+                            <td class="tx-primary tx-right">2 alerts/day</td>
+                        </tr>
+                        <tr>
+                            <th>IPLH Cianjur 7</th>
+                            <td class="tx-primary tx-right">3 alerts/day</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer tx-center">
+                    <button class="btn btn-sm btn-primary">Show More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
