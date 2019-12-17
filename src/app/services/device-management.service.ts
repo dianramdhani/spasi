@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,19 @@ export class DeviceManagementService {
    * Get device configurations by asset property id.
    * @param assetPropertyId - Asset property id.
    */
-  getDeviceConfigurationsBy(assetPropertyId) {
-    return this.httpClient.get(`${this.url}/deviceManagement/deviceConfigurations/assetProperty/${assetPropertyId}`);
+  getDeviceConfigurationsBy(assetPropertyId: string) {
+    return this.httpClient.get<ConfigDeviceResponse[]>(`${this.url}/deviceManagement/deviceConfigurations/assetProperty/${assetPropertyId}`)
+      .pipe(map(res => res[0] || { deviceId: '', deviceName: '', sensorId: '', sensorName: '', sensorPropertyId: '', sensorPropertyName: '' }));
   }
+}
+
+interface ConfigDeviceResponse {
+  deviceId: string
+  deviceName: string
+  sensorId: string
+  sensorName: string
+  sensorPropertyId: string
+  sensorPropertyName: string
 }
 
 export interface DeviceResponse {

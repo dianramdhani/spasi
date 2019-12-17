@@ -36,7 +36,7 @@ export class AssetManagementService {
    * @param assetId - Asset id.
    */
   getPropertyByAsset(assetId: string) {
-    return this.httpClient.get(`${this.url}/assetManagement/assets/${assetId}/properties`);
+    return this.httpClient.get<PropertyResponse[]>(`${this.url}/assetManagement/assets/${assetId}/properties`);
   }
 
   /**
@@ -54,4 +54,13 @@ export interface AssetResponse {
   name: string,
   siteId: string,
   type: string
+}
+
+export interface PropertyResponse {
+  id: string
+  name: string
+  assetId: string
+  type: string
+  value: number
+  valueType: string
 }

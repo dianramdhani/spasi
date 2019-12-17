@@ -28,9 +28,9 @@
                         <tbody>
                             <tr *ngFor="let property of asset.properties">
                                 <td>{{ property.name }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ property.device.deviceName }}</td>
+                                <td>{{ property.device.sensorName }}</td>
+                                <td>{{ property.device.sensorPropertyName }}</td>
                                 <td class="tx-right">
                                     <button class="btn btn-primary"
                                         (click)="openModalSetSensor(property.id, $event)">Set Sensor</button>

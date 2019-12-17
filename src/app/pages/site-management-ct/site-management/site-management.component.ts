@@ -16,8 +16,7 @@ export class SiteManagementComponent implements OnInit {
     this.refreshSites();
   }
 
-  async refreshSites(){
+  async refreshSites() {
     this.sites = await this.siteManagementService.getSiteAll().toPromise();
-    console.log(this.sites);
   }
 }
