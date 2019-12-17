@@ -33,11 +33,13 @@ export class ConfigDeviceComponent implements OnInit {
         properties = await this.assetManagementService.getPropertyByAsset(asset.id).toPromise();
       this.assets[i] = Object.assign(asset, { properties });
     }
-    console.log(this.assets);
   }
 
-  openModalSetSensor() {
-    console.log('tes set sensor');
-    this.modal.open(ModalSetSensorComponent);
+  openModalSetSensor(assetPropertyId: string, e = null) {
+    const modalRef = this.modal.open(ModalSetSensorComponent);
+    modalRef.componentInstance.assetPropertyId = assetPropertyId;
+    modalRef.componentInstance.success.subscribe(() => {
+      this.refreshAssets();
+    });
   }
 }

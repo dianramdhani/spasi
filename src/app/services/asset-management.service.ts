@@ -31,8 +31,21 @@ export class AssetManagementService {
     return this.httpClient.post(`${this.url}/assetManagement/assets/properties`, { assetId, name, valueType });
   }
 
+  /**
+   * Get property by asset id.
+   * @param assetId - Asset id.
+   */
   getPropertyByAsset(assetId: string) {
     return this.httpClient.get(`${this.url}/assetManagement/assets/${assetId}/properties`);
+  }
+
+  /**
+   * Create mapping betwen sensor and asset property.
+   * @param assetPropertyId - Asset property id.
+   * @param sensorPropertyId - Sensor property id (sub parameter sensor).
+   */
+  createAssetPropertyMapping(assetPropertyId: string, sensorPropertyId: string) {
+    return this.httpClient.post(`${this.url}/assetManagement/assets/sensors/properties/mapping`, { assetPropertyId, sensorPropertyId, id: 0 });
   }
 }
 
