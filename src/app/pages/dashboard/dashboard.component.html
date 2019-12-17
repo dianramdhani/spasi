@@ -16,11 +16,11 @@
             </div>
             <div class="col-md-3 mg-t-10 mg-md-t-0">
                 <div class="card ht-120 tx-center bg-pink danger"
-                    title="Danger {{ siteStatistics.danger }}/{{ siteStatistics.all }}"
+                    title="Danger {{ toPercent(siteStatistics.danger, siteStatistics.all) }}%"
                     (click)="onStatusChange('DANGER', $event)">
                     <div class="my-auto">
                         <h4 class="tx-normal tx-rubik tx-40 tx-spacing--1 mg-b-0">
-                            {{ toPercent(siteStatistics.danger, siteStatistics.all) }} %
+                            {{ siteStatistics.danger }}
                         </h4>
                         <span class="tx-16 tx-uppercase tx-semibold tx-spacing-1">Danger</span>
                     </div>
@@ -28,11 +28,11 @@
             </div>
             <div class="col-md-3 mg-t-10 mg-md-t-0">
                 <div class="card ht-120 tx-center bg-warning warning"
-                    title="Warning {{ siteStatistics.warning }}/{{ siteStatistics.all }}"
+                    title="Warning {{ toPercent(siteStatistics.warning, siteStatistics.all) }}%"
                     (click)="onStatusChange('WARNING', $event)">
                     <div class="my-auto">
                         <h4 class="tx-normal tx-rubik tx-40 tx-spacing--1 mg-b-0">
-                            {{ toPercent(siteStatistics.warning, siteStatistics.all) }} %
+                            {{ siteStatistics.warning }}
                         </h4>
                         <span class="tx-16 tx-uppercase tx-semibold tx-spacing-1">Warning</span>
                     </div>
@@ -40,11 +40,11 @@
             </div>
             <div class="col-md-3 mg-t-10 mg-md-t-0">
                 <div class="card ht-120 tx-center bg-brand-03 normal"
-                    title="Normal {{ siteStatistics.normal }}/{{ siteStatistics.all }}"
+                    title="Normal {{ toPercent(siteStatistics.normal, siteStatistics.all) }}%"
                     (click)="onStatusChange('NORMAL', $event)">
                     <div class="my-auto">
                         <h4 class="tx-normal tx-rubik tx-40 tx-spacing--1 mg-b-0">
-                            {{ toPercent(siteStatistics.normal, siteStatistics.all) }} %
+                            {{ siteStatistics.normal }}
                         </h4>
                         <span class="tx-16 tx-uppercase tx-semibold tx-spacing-1">Normal</span>
                     </div>
