@@ -30,6 +30,7 @@ import { SiteProfileComponent } from './pages/site-management-ct/site-profile/si
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/modal-site-detail.component';
 import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
+import { HealthHistoryComponent } from './pages/site-management-ct/health-history/health-history.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer
     DashboardComponent,
     ModalSiteDetailComponent,
     SensorExplorerComponent,
+    HealthHistoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,6 +52,7 @@
                                     <tr>
                                         <th class="wd-250">Parameter Name (Unit)</th>
                                         <th>Value</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,6 +60,12 @@
                                         <td>{{ property.name }} ({{ property.valueType }})</td>
                                         <td [title]="deviceValueGenerator(property).title">
                                             {{ deviceValueGenerator(property).value }}
+                                        </td>
+                                        <td class="tx-right">
+                                            <button class="btn btn-sm btn-primary"
+                                                [routerLink]="['/user/site-management/health-history', property.id]">
+                                                Health History
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
