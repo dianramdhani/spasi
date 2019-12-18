@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, timer } from 'rxjs';
 import * as moment from 'moment';
 
 import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-site-profile',
@@ -49,30 +50,35 @@ export class SiteProfileComponent implements OnInit {
     this.site = Object.assign(this.site, site);
 
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
-
-    const minDateTime = moment().subtract(1, 'h'),
-      maxDateTime = moment();
-
-    for (const i in this.site.assets) {
-      const asset = this.site.assets[i],
-        properties = await this.assetManagementService.getPropertyByAsset(asset.id).toPromise();
-
-      for (const j in properties) {
-        const property = properties[j],
-          hasDevice = (await this.deviceManagementService.getDeviceConfigurationsBy(property.id).toPromise()).deviceId !== '' ? true : false;
-        if (hasDevice) {
-          const values = await this.historicalDataService.getDataDevicesByAssetPropertyAndTime(property.id, minDateTime, maxDateTime).toPromise();
-          if (values.length !== 0) {
-            property.value = values[values.length - 1];
-          }
-          properties[j] = property;
-        }
-      }
-
-      this.site.assets[i] = Object.assign(asset, { properties });
-    }
-
     this.lastMarkerPoint.next({ latitude: this.site.latitude, longitude: this.site.longitude });
+
+    const deviceInterval = timer(0, 10000);
+    deviceInterval.pipe(
+      tap(async () => {
+        // set 1 hari
+        const minDateTime = moment().subtract(1, 'd'),
+          maxDateTime = moment();
+
+        for (const i in this.site.assets) {
+          const asset = this.site.assets[i],
+            properties = await this.assetManagementService.getPropertyByAsset(asset.id).toPromise();
+
+          for (const j in properties) {
+            const property = properties[j],
+              hasDevice = (await this.deviceManagementService.getDeviceConfigurationsBy(property.id).toPromise()).deviceId !== '' ? true : false;
+            if (hasDevice) {
+              const values = await this.historicalDataService.getDataDevicesByAssetPropertyAndTime(property.id, minDateTime, maxDateTime).toPromise();
+              if (values.length !== 0) {
+                property.value = values[values.length - 1];
+              }
+              properties[j] = property;
+            }
+          }
+
+          this.site.assets[i] = Object.assign(asset, { properties });
+        }
+      })
+    ).toPromise();
   }
 
   onMapReady(map: Map) {
@@ -92,5 +98,9 @@ export class SiteProfileComponent implements OnInit {
       markerMap.setLatLng(location);
       map.panTo(location);
     });
+  }
+
+  toDateString(isoDate: string) {
+    return moment(new Date(isoDate)).format('YYYY-MM-DD HH:mm:ss');
   }
 }

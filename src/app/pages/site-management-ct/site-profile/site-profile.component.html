@@ -50,7 +50,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="wd-200">Parameter Name (Unit)</th>
+                                        <th class="wd-250">Parameter Name (Unit)</th>
                                         <th>Value</th>
                                     </tr>
                                 </thead>
@@ -58,7 +58,7 @@
                                     <tr *ngFor="let property of asset.properties">
                                         <td>{{ property.name }} ({{ property.valueType }})</td>
                                         <td
-                                            [title]="property.value === null? 'No data device': property.value.dataTime">
+                                            [title]="property.value === null? 'No data device': toDateString(property.value.dataTime)">
                                             {{ property.value === null? 'null': property.value.subparamValue}}
                                         </td>
                                     </tr>
