@@ -8,44 +8,45 @@
         </ol>
     </nav>
 </div>
-<div class="card">
+<form class="card" [formGroup]="formResolve">
     <h6 class="card-header">Detail</h6>
     <div class="card-body">
         <div class="form-group form-row">
             <label for="" class="col-md-2">Site</label>
-            <div class="col-md-10 tx-gray-500">Site name</div>
+            <div class="col-md-10 tx-gray-500">{{ alert.name }}</div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">Created Date</label>
-            <div class="col-md-10 tx-gray-500">DD/MM/YYYY</div>
+            <div class="col-md-10 tx-gray-500">{{ alert.started_at }}</div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">Policy Name</label>
-            <div class="col-md-10 tx-gray-500">High Temperature</div>
+            <div class="col-md-10 tx-gray-500">{{ alert.policy_name }}</div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">Condition Name</label>
-            <div class="col-md-10 tx-gray-500">Condition High Temperature</div>
+            <div class="col-md-10 tx-gray-500">{{ alert.condition_name }}</div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">Summary</label>
-            <div class="col-md-10 tx-gray-500">High Temperature Summary</div>
+            <div class="col-md-10 tx-gray-500">{{ alert.sumary_incident }}</div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">More Detail</label>
             <div class="col-md-10">
-                <a href="http://www.google.com" class="link-04">http://www.google.com</a>
+                <a [href]="alert.url" class="link-04">{{ alert.url }}</a>
             </div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2">Resolve Note</label>
             <div class="col-md-10">
-                <textarea name="" id="" rows="2" class="form-control" placeholder="Enter resolve note"></textarea>
+                <textarea name="" id="" rows="2" class="form-control" placeholder="Enter resolve note"
+                    formControlName="message"></textarea>
             </div>
         </div>
     </div>
     <div class="card-footer tx-right">
-        <button class="btn btn-primary mg-r-5">Resolve</button>
+        <button class="btn btn-primary mg-r-5" [disabled]="!formResolve.valid" (click)="resolve()">Resolve</button>
         <button class="btn btn-danger" routerLink="../">Cancel</button>
     </div>
-</div>
+</form>
