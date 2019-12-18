@@ -17,6 +17,7 @@ import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detai
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
           { path: 'alert-detail', component: AlertDetailComponent },
         ]
       },
+      { path: 'sensor-explorer', component: SensorExplorerComponent },
     ]
   },
   { path: '**', redirectTo: '/user/dashboard' }

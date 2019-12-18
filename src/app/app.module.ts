@@ -29,6 +29,7 @@ import { ModalSetSensorComponent } from './pages/site-management-ct/config-devic
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/modal-site-detail.component';
+import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/mo
     SiteProfileComponent,
     DashboardComponent,
     ModalSiteDetailComponent,
+    SensorExplorerComponent,
   ],
   imports: [
     BrowserModule,
