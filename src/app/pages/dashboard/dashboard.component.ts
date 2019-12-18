@@ -184,6 +184,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openModalSiteDetail(site: SiteResponse, e = null) {
-    this.modal.open(ModalSiteDetailComponent);
+    const modalRef = this.modal.open(ModalSiteDetailComponent);
+    modalRef.componentInstance.site = site;
   }
 }
