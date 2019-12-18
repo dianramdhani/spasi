@@ -8,9 +8,6 @@ import { UserComponent } from './pages/user/user.component';
 import { SiteManagementCtComponent } from './pages/site-management-ct/site-management-ct.component';
 import { SiteManagementComponent } from './pages/site-management-ct/site-management/site-management.component';
 import { SiteFormComponent } from './pages/site-management-ct/site-form/site-form.component';
-import { AllMapCtComponent } from './pages/all-map-ct/all-map-ct.component';
-import { AllMapV2Component } from './pages/all-map-ct/all-map-v2/all-map-v2.component';
-import { DetailDeviceComponent } from './pages/all-map-ct/detail-device/detail-device.component';
 import { UserManagementCtComponent } from './pages/user-management-ct/user-management-ct.component';
 import { ListUserComponent } from './pages/user-management-ct/list-user/list-user.component';
 import { UserFormComponent } from './pages/user-management-ct/user-form/user-form.component';
@@ -19,18 +16,14 @@ import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/li
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
 import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
-      {
-        path: 'dashboard', component: AllMapCtComponent, children: [
-          { path: '', component: AllMapV2Component },
-          { path: 'detail-device', component: DetailDeviceComponent },
-        ]
-      },
+      { path: 'dashboard', component: DashboardComponent },
       {
         path: 'site-management', component: SiteManagementCtComponent, children: [
           { path: '', component: SiteManagementComponent },

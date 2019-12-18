@@ -1,29 +1,40 @@
-<div class="modal-header">
-    <h6 class="modal-title">Set Sensor</h6>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="modal-body">
-    <div class="form-group">
-        <label for="">Device</label>
-        <select name="" id="" class="form-control">
-            <option value="">Select Device</option>
-        </select>
+<form [formGroup]="formSetSensor">
+    <div class="modal-header">
+        <h6 class="modal-title">Set Sensor</h6>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <div class="form-group">
-        <label for="">Sensor Name</label>
-        <select name="" id="" class="form-control">
-            <option value="">Select Sensor</option>
-        </select>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="deviceId">Device</label>
+            <select id="deviceId" class="form-control" formControlName="deviceId">
+                <option value="">Select Device</option>
+                <option *ngFor="let device of devices" [ngValue]="device.id">{{ device.name }}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="formSetSensor.controls['deviceId'].valid">
+            <label for="sensorId">Sensor Name</label>
+            <select id="sensorId" class="form-control" formControlName="sensorId">
+                <option value="">Select Sensor</option>
+                <option *ngFor="let sensor of sensors" [ngValue]="sensor.id">{{ sensor.name }}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="formSetSensor.controls['sensorId'].valid">
+            <label for="sensorPropertyId">Sub Parameter</label>
+            <select id="sensorPropertyId" class="form-control" formControlName="sensorPropertyId">
+                <option value="">Select Sub Parameter</option>
+                <option *ngFor="let sensorProperty of sensorProperties" [ngValue]="sensorProperty.id">
+                    {{ sensorProperty.name }}</option>
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="">Sub Parameter</label>
-        <select name="" id="" class="form-control">
-            <option value="">Select Sub Parameter</option>
-        </select>
+    <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Submit</button> -->
+        <button type="button" class="btn btn-primary" (click)="submit()"
+            [disabled]="!formSetSensor.valid">
+            Submit
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="showLoading"></span>
+        </button>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Submit</button>
-</div>
+</form>

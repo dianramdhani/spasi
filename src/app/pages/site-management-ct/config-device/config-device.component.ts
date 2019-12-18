@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 
-import { AssetManagementService, SiteManagementService, AssetResponse } from 'src/app/services';
+import { AssetManagementService, SiteManagementService, AssetResponse, DeviceManagementService } from 'src/app/services';
 
 import { ModalSetSensorComponent } from './modal-set-sensor/modal-set-sensor.component';
 
@@ -18,7 +18,8 @@ export class ConfigDeviceComponent implements OnInit {
     private modal: NgbModal,
     private assetManagementService: AssetManagementService,
     private siteManagementService: SiteManagementService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private deviceManagementService: DeviceManagementService
   ) { }
 
   ngOnInit() {
@@ -31,13 +32,20 @@ export class ConfigDeviceComponent implements OnInit {
     for (const i in this.assets) {
       const asset = this.assets[i],
         properties = await this.assetManagementService.getPropertyByAsset(asset.id).toPromise();
+      for (const j in properties) {
+        const property = properties[j],
+          device = await this.deviceManagementService.getDeviceConfigurationsBy(property.id).toPromise();
+        properties[j] = Object.assign(property, { device });
+      }
       this.assets[i] = Object.assign(asset, { properties });
     }
-    console.log(this.assets);
   }
 
-  openModalSetSensor() {
-    console.log('tes set sensor');
-    this.modal.open(ModalSetSensorComponent);
+  openModalSetSensor(assetPropertyId: string, e = null) {
+    const modalRef = this.modal.open(ModalSetSensorComponent);
+    modalRef.componentInstance.assetPropertyId = assetPropertyId;
+    modalRef.componentInstance.success.subscribe(() => {
+      this.refreshAssets();
+    });
   }
 }

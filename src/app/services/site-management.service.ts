@@ -63,6 +63,14 @@ export class SiteManagementService {
   getAssetBySite(siteId: string) {
     return this.httpClient.get<AssetResponse[]>(`${this.url}/siteManagement/sites/${siteId}/asset`);
   }
+
+  /**
+   * Get site by region.
+   * @param region - Region.
+   */
+  getSiteByRegion(region: string) {
+    return this.httpClient.get<SiteResponse[]>(`${this.url}/siteManagement/sites/region/${region}`);
+  }
 }
 
 export interface SiteResponse {

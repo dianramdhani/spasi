@@ -19,7 +19,6 @@
                     <th>Site Name</th>
                     <th>Region</th>
                     <th>Type</th>
-                    <th>Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,12 +27,11 @@
                     <td>{{ site.name }}</td>
                     <td>{{ site.region }}</td>
                     <td>{{ site.type }}</td>
-                    <td>{{ site.status }}</td>
                     <td class="tx-right">
                         <button class="btn btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
                             Config Device
                         </button>
-                        <button class="btn btn-primary" [routerLink]="['site-profile', site.id]">Profile</button>
+                        <button class="btn btn-primary" [routerLink]="['site-profile', site.id]">Detail</button>
                     </td>
                 </tr>
             </tbody>
