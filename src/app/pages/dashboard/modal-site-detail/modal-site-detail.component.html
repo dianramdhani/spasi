@@ -1,32 +1,25 @@
 <div class="modal-header">
-    <h6 class="modal-title">Detail</h6>
+    <h6 class="modal-title">Site Info</h6>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Sensor</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>sensor 1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>sensor 1</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>sensor 1</td>
-                <td>1</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="form-group">
+        <label for="">Site</label>
+        <p class="tx-gray-500">
+            <a href="" [routerLink]="['/user/site-management/site-profile', site.id]"
+                (click)="activeModal.dismiss()">{{ site.name }}</a>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="">Status</label>
+        <p class="tx-gray-500">{{ site.status }}</p>
+    </div>
+    <div class="form-group">
+        <label for="">Latest Incident</label>
+        <p class="tx-gray-500">incindent name (date)</p>
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" routerLink="/user/dashboard/detail-device"
