@@ -1,20 +1,16 @@
 <div class="card">
-    <h6 class="card-header">Site Mapping</h6>
-    <div class="card-body">
-        <div class="row mg-b-10">
-            <div class="col-md-6">
-                <div class="card ht-120 pd-20">
-                    <div class="my-auto">
-                        <label for="region">Filter by Region</label>
-                        <select id="region" class="form-control" [(ngModel)]="selectedRegion"
-                            (ngModelChange)="onRegionChange(selectedRegion, $event)">
-                            <option value="ALL">ALL</option>
-                            <option *ngFor="let region of regions" [ngValue]="region">{{ region }}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <div class="card-header d-md-flex justify-content-between">
+        <h6>Site Mapping</h6>
+        <div class="form-inline">
+            <label for="region" class="mg-r-10">Filter by Region</label>
+            <select id="region" class="form-control form-control-sm" [(ngModel)]="selectedRegion"
+                (ngModelChange)="onRegionChange(selectedRegion, $event)">
+                <option value="ALL">ALL</option>
+                <option *ngFor="let region of regions" [ngValue]="region">{{ region }}</option>
+            </select>
         </div>
+    </div>
+    <div class="card-body">
         <div class="row row-xs mg-b-10">
             <div class="col-md-3 mg-t-10 mg-md-t-0">
                 <div class="card ht-120 tx-center bg-pink danger"
@@ -67,14 +63,14 @@
         </div>
         <div class="row row-xs">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card ht-500">
                     <div class="card-header bd-b-0">
                         <h6>LIST {{ selectedRegion }} SITES</h6>
                         <p class="tx-13 tx-color-03 mg-b-0">
                             Status: {{ selectedStatus === 'NO_COMM'? 'NO COMMUNICATION': selectedStatus }}
                         </p>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="overflow-y: scroll;">
                         <table class="table table-hover mg-b-0">
                             <thead>
                                 <tr>
