@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TicketingService } from 'src/app/services/ticketing.service';
 
@@ -14,7 +14,8 @@ export class AlertDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ticketingService: TicketingService
+    private ticketingService: TicketingService,
+    private router: Router
   ) {
     this.formResolve = new FormGroup({
       message: new FormControl('', Validators.required)
@@ -28,8 +29,8 @@ export class AlertDetailComponent implements OnInit {
   async resolve() {
     if (this.formResolve.valid) {
       const { message } = this.formResolve.value;
-      const res = await this.ticketingService.putIncident(this.alert.incident_id, message).toPromise();
-      console.log(res);
+      await this.ticketingService.putIncident(this.alert.incident_id, message).toPromise();
+      this.router.navigate(['../'], { relativeTo: this.route });
     }
   }
 }

@@ -26,7 +26,8 @@ export class DashboardComponent implements OnInit {
     all: 0,
     danger: 0,
     warning: 0,
-    normal: 0
+    normal: 0,
+    no_comm: 0
   };
 
   // map
@@ -86,7 +87,8 @@ export class DashboardComponent implements OnInit {
       all: this.filteredSites.length,
       danger: this.filteredSites.filter(site => site.status === 'DANGER').length,
       warning: this.filteredSites.filter(site => site.status === 'WARNING').length,
-      normal: this.filteredSites.filter(site => site.status === 'NORMAL').length
+      normal: this.filteredSites.filter(site => site.status === 'NORMAL').length,
+      no_comm: this.filteredSites.filter(site => site.status === 'NO_COMM').length
     }
 
     // set to map
@@ -136,6 +138,15 @@ export class DashboardComponent implements OnInit {
           iconAnchor: [10, 41],
           popupAnchor: [2, -40],
           iconUrl: './assets/img/marker-icon-normal.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
+      NO_COMM: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-no_comm.png',
           shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
         })
       }

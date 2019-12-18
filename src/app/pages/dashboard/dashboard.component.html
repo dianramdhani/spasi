@@ -1,9 +1,9 @@
 <div class="card">
     <h6 class="card-header">Site Mapping</h6>
     <div class="card-body">
-        <div class="row row-xs">
-            <div class="col-md-3">
-                <div class="card container ht-120 pd-20">
+        <div class="row mg-b-10">
+            <div class="col-md-6">
+                <div class="card ht-120 pd-20">
                     <div class="my-auto">
                         <label for="region">Filter by Region</label>
                         <select id="region" class="form-control" [(ngModel)]="selectedRegion"
@@ -14,6 +14,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row row-xs mg-b-10">
             <div class="col-md-3 mg-t-10 mg-md-t-0">
                 <div class="card ht-120 tx-center bg-pink danger"
                     title="Danger {{ toPercent(siteStatistics.danger, siteStatistics.all) }}%"
@@ -50,6 +52,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 mg-t-10 mg-md-t-0">
+                <div class="card ht-120 tx-center bg-gray-5 no-comm"
+                    title="No Communication {{ toPercent(siteStatistics.no_comm, siteStatistics.all) }}%"
+                    (click)="onStatusChange('NO_COMM', $event)">
+                    <div class="my-auto">
+                        <h4 class="tx-normal tx-rubik tx-40 tx-spacing--1 mg-b-0">
+                            {{ siteStatistics.no_comm }}
+                        </h4>
+                        <span class="tx-16 tx-uppercase tx-semibold tx-spacing-1">No Communication</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row row-xs">
             <div class="col-md-4">
@@ -57,7 +71,7 @@
                     <div class="card-header bd-b-0">
                         <h6>LIST {{ selectedRegion }} SITES</h6>
                         <p class="tx-13 tx-color-03 mg-b-0">
-                            Status: {{ selectedStatus }}
+                            Status: {{ selectedStatus === 'NO_COMM'? 'NO COMMUNICATION': selectedStatus }}
                         </p>
                     </div>
                     <div class="table-responsive">
