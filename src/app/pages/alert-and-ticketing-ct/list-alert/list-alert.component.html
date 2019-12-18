@@ -29,7 +29,7 @@
                     <td>{{ alert.condition_name }}</td>
                     <td>{{ alert.state }}</td>
                     <td class="tx-right"><button class="btn btn-sm btn-primary"
-                            routerLink="alert-detail">Detail</button></td>
+                            (click)="showDetail(alert, $event)">Detail</button></td>
                 </tr>
             </tbody>
         </table>

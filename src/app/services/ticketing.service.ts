@@ -10,4 +10,8 @@ export class TicketingService {
   getIncident() {
     return this.httpClient.get<[]>('https://us-central1-dev-tritronik.cloudfunctions.net/spasi-alert-management/incident?limit=99999');
   }
+
+  putIncident(incident_id: string, message: string) {
+    return this.httpClient.put(`https://us-central1-dev-tritronik.cloudfunctions.net/spasi-alert-management/incident/${incident_id}/resolve`, { message });
+  }
 }
