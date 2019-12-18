@@ -7,6 +7,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from 'angular-tree-search';
 import { HttpClientModule } from '@angular/common/http'
 import { ChartsModule } from 'ng2-charts';
+import { MomentModule } from 'ngx-moment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,7 +62,8 @@ import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/mo
     TreeModule,
     HttpClientModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent],

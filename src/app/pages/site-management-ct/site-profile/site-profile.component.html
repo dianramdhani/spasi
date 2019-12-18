@@ -57,7 +57,10 @@
                                 <tbody>
                                     <tr *ngFor="let property of asset.properties">
                                         <td>{{ property.name }} ({{ property.valueType }})</td>
-                                        <td>{{ property.value === null? 'null': property.value }}</td>
+                                        <td
+                                            [title]="property.value === null? 'No data device': property.value.dataTime">
+                                            {{ property.value === null? 'null': property.value.subparamValue}}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

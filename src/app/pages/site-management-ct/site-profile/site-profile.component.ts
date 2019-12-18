@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
 import { BehaviorSubject } from 'rxjs';
+import * as moment from 'moment';
 
-import { SiteManagementService, SiteResponse, AssetManagementService } from 'src/app/services';
-import { async } from 'rxjs/internal/scheduler/async';
+import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService } from 'src/app/services';
+import { HistoricalDataService } from 'src/app/services/historical-data.service';
 
 @Component({
   selector: 'app-site-profile',
@@ -33,17 +34,41 @@ export class SiteProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private siteManagementService: SiteManagementService,
     private assetManagementService: AssetManagementService,
+    private historicalDataService: HistoricalDataService,
+    private deviceManagementService: DeviceManagementService
   ) { }
 
   async ngOnInit() {
+    /**
+     * test historical data
+     * @todo observable date timeout
+     */
+
     const siteId = this.route.snapshot.params.siteId,
       site = await this.siteManagementService.getSiteById(siteId).toPromise();
     this.site = Object.assign(this.site, site);
 
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
+
+    const minDateTime = moment().subtract(1, 'h'),
+      maxDateTime = moment();
+
     for (const i in this.site.assets) {
       const asset = this.site.assets[i],
         properties = await this.assetManagementService.getPropertyByAsset(asset.id).toPromise();
+
+      for (const j in properties) {
+        const property = properties[j],
+          hasDevice = (await this.deviceManagementService.getDeviceConfigurationsBy(property.id).toPromise()).deviceId !== '' ? true : false;
+        if (hasDevice) {
+          const values = await this.historicalDataService.getDataDevicesByAssetPropertyAndTime(property.id, minDateTime, maxDateTime).toPromise();
+          if (values.length !== 0) {
+            property.value = values[values.length - 1];
+          }
+          properties[j] = property;
+        }
+      }
+
       this.site.assets[i] = Object.assign(asset, { properties });
     }
 

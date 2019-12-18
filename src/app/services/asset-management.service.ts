@@ -61,6 +61,6 @@ export interface PropertyResponse {
   name: string
   assetId: string
   type: string
-  value: number
+  value: any
   valueType: string
 }
