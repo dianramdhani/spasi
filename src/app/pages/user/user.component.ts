@@ -36,6 +36,12 @@ export class UserComponent {
         icon: 'alert-octagon',
         state: { to: '/user/alert-and-ticketing', params: {} }
       },
+      {
+        type: Type.LINK,
+        label: 'Sensor Explorer',
+        icon: 'disc',
+        state: { to: '/user/sensor-explorer', params: {} }
+      },
     ];
   }
 }
