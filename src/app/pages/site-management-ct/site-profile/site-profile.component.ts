@@ -4,7 +4,7 @@ import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
 import { BehaviorSubject, timer } from 'rxjs';
 import * as moment from 'moment';
 
-import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService } from 'src/app/services';
+import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
 import { tap } from 'rxjs/operators';
 
@@ -52,11 +52,11 @@ export class SiteProfileComponent implements OnInit {
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
     this.lastMarkerPoint.next({ latitude: this.site.latitude, longitude: this.site.longitude });
 
-    const deviceInterval = timer(0, 10000);
+    const deviceInterval = timer(0, 60000);
     deviceInterval.pipe(
       tap(async () => {
         // set 1 hari
-        const minDateTime = moment().subtract(1, 'd'),
+        const minDateTime = moment().subtract(15, 'm'),
           maxDateTime = moment();
 
         for (const i in this.site.assets) {
@@ -71,8 +71,10 @@ export class SiteProfileComponent implements OnInit {
               if (values.length !== 0) {
                 property.value = values[values.length - 1];
               }
-              properties[j] = property;
+            } else {
+              property.value = '?';
             }
+            properties[j] = property;
           }
 
           this.site.assets[i] = Object.assign(asset, { properties });
@@ -100,7 +102,10 @@ export class SiteProfileComponent implements OnInit {
     });
   }
 
-  toDateString(isoDate: string) {
-    return moment(new Date(isoDate)).format('YYYY-MM-DD HH:mm:ss');
+  deviceValueGenerator(property: PropertyResponse) {
+    return {
+      value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
+      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment(new Date(property.value.dataTime)).utcOffset('+0000').format('YYYY-MM-DD HH:mm:ss')
+    }
   }
 }
