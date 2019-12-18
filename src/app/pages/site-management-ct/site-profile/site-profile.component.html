@@ -50,14 +50,16 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="wd-200">Parameter Name (Unit)</th>
+                                        <th class="wd-250">Parameter Name (Unit)</th>
                                         <th>Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let property of asset.properties">
                                         <td>{{ property.name }} ({{ property.valueType }})</td>
-                                        <td>{{ property.value === null? 'null': property.value }}</td>
+                                        <td [title]="deviceValueGenerator(property).title">
+                                            {{ deviceValueGenerator(property).value }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
