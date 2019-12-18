@@ -62,7 +62,7 @@
                                             {{ deviceValueGenerator(property).value }}
                                         </td>
                                         <td class="tx-right">
-                                            <button class="btn btn-sm btn-primary"
+                                            <button class="btn btn-sm btn-primary" *ngIf="property.value !== '?'"
                                                 [routerLink]="['/user/site-management/health-history', property.id]">
                                                 Health History
                                             </button>

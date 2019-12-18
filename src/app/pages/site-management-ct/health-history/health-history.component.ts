@@ -34,6 +34,9 @@ export class HealthHistoryComponent implements OnInit {
         {
           id: 'y-axis-0',
           position: 'left',
+          ticks: {
+            suggestedMin: 0
+          }
         }
       ]
     }
