@@ -51,7 +51,7 @@ export class ModalSetSensorComponent implements OnInit {
     if (this.formSetSensor.valid) {
       this.showLoading = true;
       const { sensorPropertyId } = this.formSetSensor.value;
-      await this.assetManagementService.createAssetPropertyMapping(sensorPropertyId, this.assetPropertyId).toPromise();
+      await this.assetManagementService.createAssetPropertyMapping(this.assetPropertyId, sensorPropertyId).toPromise();
       this.showLoading = false;
       this.success.emit();
       this.activeModal.dismiss();
