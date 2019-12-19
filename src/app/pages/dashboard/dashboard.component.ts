@@ -161,11 +161,6 @@ export class DashboardComponent implements OnInit {
 
       if (sites.length !== 0) {
         const markers = sites.map(site => {
-          /**
-           * @todo
-           * tambah card no_com
-           */
-          // console.log(site);
           const _marker = marker(latLng(site.latitude, site.longitude), markerIcon[site.status]);
           _marker.addEventListener('click', () => this.zone.run(() => {
             this.focusSiteSubject.next(site);

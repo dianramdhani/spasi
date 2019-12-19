@@ -36,7 +36,6 @@ export class ConfigDeviceComponent implements OnInit {
         const property = properties[j],
           device = await this.deviceManagementService.getDeviceConfigurationsBy(property.id).toPromise();
         properties[j] = Object.assign(property, { device });
-        console.log({ device });
       }
       this.assets[i] = Object.assign(asset, { properties });
     }

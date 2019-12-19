@@ -29,7 +29,7 @@
                             <tr *ngFor="let property of asset.properties">
                                 <td>{{ property.name }}</td>
                                 <td>{{ property.device.deviceName }}</td>
-                                <td>{{ property.device.sensorName }}</td>
+                                <td>{{ property.device.sensorName }} - {{ property.device.sensorParam }}</td>
                                 <td>{{ property.device.sensorPropertyName }}</td>
                                 <td class="tx-right">
                                     <button class="btn btn-primary"
