@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header d-md-flex justify-content-between">
+    <div class="card-header d-lg-flex justify-content-between">
         <h6>Site Mapping</h6>
         <div class="form-inline">
             <label for="region" class="mg-r-10">Filter by Region</label>
@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <div class="row row-xs mg-b-10">
-            <div class="col-md-3 mg-t-10 mg-md-t-0">
+            <div class="col-lg-3 mg-t-10 mg-lg-t-0">
                 <div class="card ht-120 tx-center bg-pink danger"
                     title="Danger {{ toPercent(siteStatistics.danger, siteStatistics.all) }}%"
                     (click)="onStatusChange('DANGER', $event)">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mg-t-10 mg-md-t-0">
+            <div class="col-lg-3 mg-t-10 mg-lg-t-0">
                 <div class="card ht-120 tx-center bg-warning warning"
                     title="Warning {{ toPercent(siteStatistics.warning, siteStatistics.all) }}%"
                     (click)="onStatusChange('WARNING', $event)">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mg-t-10 mg-md-t-0">
+            <div class="col-lg-3 mg-t-10 mg-lg-t-0">
                 <div class="card ht-120 tx-center bg-brand-03 normal"
                     title="Normal {{ toPercent(siteStatistics.normal, siteStatistics.all) }}%"
                     (click)="onStatusChange('NORMAL', $event)">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mg-t-10 mg-md-t-0">
+            <div class="col-lg-3 mg-t-10 mg-lg-t-0">
                 <div class="card ht-120 tx-center bg-gray-5 no-comm"
                     title="No Communication {{ toPercent(siteStatistics.no_comm, siteStatistics.all) }}%"
                     (click)="onStatusChange('NO_COMM', $event)">
@@ -62,8 +62,8 @@
             </div>
         </div>
         <div class="row row-xs">
-            <div class="col-md-4">
-                <div class="card ht-500">
+            <div class="col-lg-4">
+                <div class="card ht-400">
                     <div class="card-header bd-b-0">
                         <h6>LIST {{ selectedRegion }} SITES</h6>
                         <p class="tx-13 tx-color-03 mg-b-0">
@@ -94,29 +94,33 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div style="height: 500px;" leaflet [leafletOptions]="mapOptions"
-                    (leafletMapReady)="onMapReady($event)"></div>
+            <div class="col-lg-8 mg-t-10 mg-lg-t-0">
+                <div class="ht-400" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
             </div>
         </div>
     </div>
 </div>
 <div class="card mg-t-10">
-    <h6 class="card-header">Alert and Ticketing</h6>
+    <h6 class="card-header">Reporting</h6>
     <div class="card-body row row-xs">
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="card">
-                <h6 class="mg-b-0 card-header tx-gray-500">Ticket</h6>
-                <div class="card-body pd-lg-10">
-                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                        [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors"
-                        [legend]="pieChartLegend">
-                    </canvas>
-                </div>
+                <h6 class="mg-b-0 card-header tx-gray-500">Region Availability</h6>
+                <iframe class="card-body ht-350"
+                    src="https://datastudio.google.com/embed/reporting/aa3a7c94-be51-49a2-a165-d21428360178/page/6Of9"
+                    frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card mg-t-10 mg-md-t-0">
+        <div class="col-lg-6">
+            <div class="card mg-t-10 mg-lg-t-0">
+                <h6 class="mg-b-0 card-header tx-gray-500">Ticket</h6>
+                <iframe class="card-body ht-350"
+                    src="https://datastudio.google.com/embed/reporting/f62bf697-abac-4c64-a5c9-4eeba4e80ed5/page/Z0f9"
+                    frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mg-t-10">
                 <h6 class="card-header tx-gray-500 bd-b-0">SLA and Escalation</h6>
                 <div class="table-responsive">
                     <table class="table table-invoice mg-b-0">
@@ -140,7 +144,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-6">
             <div class="card mg-t-10">
                 <h6 class="card-header tx-gray-500 bd-b-0">Reason Incident</h6>
                 <div class="table-responsive">
@@ -164,7 +168,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-6">
             <div class="card mg-t-10">
                 <h6 class="card-header tx-gray-500 bd-b-0">Most Frequent Issues</h6>
                 <div class="table-responsive">
@@ -188,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-6">
             <div class="card mg-t-10">
                 <h6 class="card-header tx-gray-500 bd-b-0">Most Problematic Site</h6>
                 <div class="table-responsive">

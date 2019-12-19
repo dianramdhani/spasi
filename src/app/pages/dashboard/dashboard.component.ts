@@ -1,15 +1,12 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { tileLayer, Map, icon, FeatureGroup, marker, latLng, featureGroup, Marker } from 'leaflet';
-import { ChartType, ChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject, Subject, timer } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { SiteManagementService, SiteResponse } from 'src/app/services';
 
 import { ModalSiteDetailComponent } from './modal-site-detail/modal-site-detail.component';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,32 +32,6 @@ export class DashboardComponent implements OnInit {
   mapOptions = { layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') };
   sitesSubject = new BehaviorSubject<SiteResponse[]>([]);
   focusSiteSubject = new Subject<SiteResponse>();
-
-  // Pie
-  pieChartOptions: ChartOptions = {
-    responsive: true,
-    legend: {
-      position: 'left',
-    },
-    plugins: {
-      datalabels: {
-        formatter: (value, ctx) => {
-          const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label;
-        },
-      },
-    }
-  };
-  pieChartLabels: Label[] = ['Open', 'Resolve', 'Closed'];
-  pieChartData: number[] = [300, 500, 100];
-  pieChartType: ChartType = 'pie';
-  pieChartLegend = true;
-  pieChartPlugins = [pluginDataLabels];
-  pieChartColors = [
-    {
-      backgroundColor: ['rgba(255,0,0,0.4)', 'rgba(0,255,0,0.4)', 'rgba(0,0,255,0.4)'],
-    },
-  ];
 
   constructor(
     private siteManagementService: SiteManagementService,
