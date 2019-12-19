@@ -12,29 +12,31 @@
         <h6 class="mg-b-0">List of Site</h6>
         <button class="btn btn-sm btn-primary" routerLink="site-form">Add Site</button>
     </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Site Name</th>
-                    <th>Region</th>
-                    <th>Type</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let site of sites">
-                    <td>{{ site.name }}</td>
-                    <td>{{ site.region }}</td>
-                    <td>{{ site.type }}</td>
-                    <td class="tx-right">
-                        <button class="btn btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
-                            Config Device
-                        </button>
-                        <button class="btn btn-primary" [routerLink]="['site-profile', site.id]">Detail</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions">
+                <thead>
+                    <tr>
+                        <th>Site Name</th>
+                        <th>Region</th>
+                        <th>Type</th>
+                        <th class="wd-200"></th>
+                    </tr>
+                <tbody>
+                    <tr *ngFor="let site of sites">
+                        <td>{{ site.name }}</td>
+                        <td>{{ site.region }}</td>
+                        <td>{{ site.type }}</td>
+                        <td class="tx-right">
+                            <button class="btn btn-sm btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
+                                Config Device
+                            </button>
+                            <button class="btn btn-sm btn-primary"
+                                [routerLink]="['site-profile', site.id]">Detail</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

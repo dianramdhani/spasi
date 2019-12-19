@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { SiteManagementService, SiteResponse } from 'src/app/services';
 
@@ -10,6 +11,14 @@ import { SiteManagementService, SiteResponse } from 'src/app/services';
 export class SiteManagementComponent implements OnInit {
   sites: SiteResponse[];
 
+  // datatable
+  dtTrigger = new Subject();
+  dtOptions: DataTables.Settings = {
+    columnDefs: [
+      { orderable: false, targets: -1 }
+    ]
+  };
+
   constructor(private siteManagementService: SiteManagementService) { }
 
   ngOnInit() {
@@ -18,5 +27,6 @@ export class SiteManagementComponent implements OnInit {
 
   async refreshSites() {
     this.sites = await this.siteManagementService.getSiteAll().toPromise();
+    this.dtTrigger.next();
   }
 }
