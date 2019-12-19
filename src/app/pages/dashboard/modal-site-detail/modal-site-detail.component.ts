@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 import { SiteResponse, TicketingService } from 'src/app/services';
 
@@ -10,15 +11,20 @@ import { SiteResponse, TicketingService } from 'src/app/services';
 })
 export class ModalSiteDetailComponent implements OnInit {
   @Input() site: SiteResponse;
-  incidents: [];
+  alerts: [];
 
   constructor(
     public activeModal: NgbActiveModal,
-    private ticketingService: TicketingService
+    private ticketingService: TicketingService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
-    this.incidents = await this.ticketingService.getIncidentBySiteId(this.site.id).toPromise();
-    console.log(this.incidents);
+    this.alerts = await this.ticketingService.getIncidentBySiteId(this.site.id).toPromise();
+  }
+
+  detail(alert: {}, e = null) {
+    this.router.navigate(['/user/alert-and-ticketing/alert-detail'], { queryParams: { alert: JSON.stringify(alert) } });
+    this.activeModal.dismiss();
   }
 }

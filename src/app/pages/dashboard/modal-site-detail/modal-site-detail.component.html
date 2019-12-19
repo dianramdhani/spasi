@@ -19,14 +19,13 @@
     <div class="form-group" *ngIf="site.status !== 'NORMAL' && site.status !== 'NO_COMM'">
         <label for="">Latest Incident</label>
         <ul class="mg-b-0">
-            <li class="pd-b-10" *ngFor="let incident of incidents">
-                <h6 class="mg-b-0">{{ incident.started_at | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</h6>
-                {{ incident.condition_name }}
+            <li class="pd-b-10" *ngFor="let alert of alerts">
+                <h6 class="mg-b-0">{{ alert.started_at | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</h6>
+                {{ alert.condition_name }}
+                <div>
+                    <button class="btn btn-sm btn-primary py-0" (click)="detail(alert, $event)">Detail</button>
+                </div>
             </li>
         </ul>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" routerLink="/user/dashboard/detail-device"
-        (click)="activeModal.dismiss('Cross click')">More Detail</button>
 </div>
