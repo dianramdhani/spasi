@@ -4,11 +4,12 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, timer } from 'rxjs';
 
 import { SiteManagementService, SiteResponse } from 'src/app/services';
 
 import { ModalSiteDetailComponent } from './modal-site-detail/modal-site-detail.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -70,7 +71,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.siteManagementService.getRegionAll()
       .subscribe(regions => this.regions = regions);
-    this.onRegionChange('ALL');
+    const updateDataInterval = timer(0, 60000);
+    updateDataInterval.pipe(tap(() => this.onRegionChange(this.selectedRegion))).toPromise();
   }
 
   async onRegionChange(selectedRegion, e = null) {
