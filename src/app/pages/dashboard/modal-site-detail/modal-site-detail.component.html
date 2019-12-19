@@ -16,9 +16,14 @@
         <label for="">Status</label>
         <p class="tx-gray-500">{{ site.status }}</p>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="site.status !== 'NORMAL' && site.status !== 'NO_COMM'">
         <label for="">Latest Incident</label>
-        <p class="tx-gray-500">incindent name (date)</p>
+        <ul class="mg-b-0">
+            <li class="pd-b-10" *ngFor="let incident of incidents">
+                <h6 class="mg-b-0">{{ incident.started_at | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</h6>
+                {{ incident.condition_name }}
+            </li>
+        </ul>
     </div>
 </div>
 <div class="modal-footer">

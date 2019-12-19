@@ -17,7 +17,8 @@
             <label for="sensorId">Sensor Name</label>
             <select id="sensorId" class="form-control" formControlName="sensorId">
                 <option value="">Select Sensor</option>
-                <option *ngFor="let sensor of sensors" [ngValue]="sensor.id">{{ sensor.name }}</option>
+                <option *ngFor="let sensor of sensors" [ngValue]="sensor.id">{{ sensor.name }} - {{ sensor.param }}
+                </option>
             </select>
         </div>
         <div class="form-group" *ngIf="formSetSensor.controls['sensorId'].valid">
@@ -31,8 +32,7 @@
     </div>
     <div class="modal-footer">
         <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Submit</button> -->
-        <button type="button" class="btn btn-primary" (click)="submit()"
-            [disabled]="!formSetSensor.valid">
+        <button type="button" class="btn btn-primary" (click)="submit()" [disabled]="!formSetSensor.valid">
             Submit
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="showLoading"></span>
         </button>

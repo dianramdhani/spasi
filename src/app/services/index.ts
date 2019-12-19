@@ -7,3 +7,4 @@ export * from './device-management.service';
 export * from './alert.service';
 export * from './historical-data.service';
 export * from './history.service';
+export * from './ticketing.service';
