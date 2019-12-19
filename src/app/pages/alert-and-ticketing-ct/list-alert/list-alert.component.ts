@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketingService } from 'src/app/services/ticketing.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-alert',
@@ -9,6 +10,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ListAlertComponent implements OnInit {
   alerts: [];
+
+  // datatable
+  dtTrigger = new Subject();
+  dtOptions: DataTables.Settings = {
+    columnDefs: [
+      { orderable: false, targets: -1 }
+    ]
+  };
+
   constructor(
     private ticketingService: TicketingService,
     private router: Router,
@@ -17,6 +27,7 @@ export class ListAlertComponent implements OnInit {
 
   async ngOnInit() {
     this.alerts = await this.ticketingService.getIncident().toPromise();
+    this.dtTrigger.next();
   }
 
   showDetail(alert: {}, e = null) {

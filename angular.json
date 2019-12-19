@@ -33,10 +33,12 @@
               "src/themes/dashforge/assets/css/dashforge.css",
               "src/themes/dashforge/assets/css/dashforge.dashboard.css",
               "node_modules/leaflet/dist/leaflet.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "src/themes/dashforge/lib/jquery/jquery.min.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
               "src/themes/dashforge/lib/bootstrap/js/bootstrap.bundle.min.js",
               "src/themes/dashforge/lib/feather-icons/feather.min.js",
               "src/themes/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js",

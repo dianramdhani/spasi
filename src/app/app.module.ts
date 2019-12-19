@@ -8,6 +8,7 @@ import { TreeModule } from 'angular-tree-search';
 import { HttpClientModule } from '@angular/common/http'
 import { ChartsModule } from 'ng2-charts';
 import { MomentModule } from 'ngx-moment';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,7 +68,8 @@ import { HealthHistoryComponent } from './pages/site-management-ct/health-histor
     HttpClientModule,
     ChartsModule,
     FormsModule,
-    MomentModule
+    MomentModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

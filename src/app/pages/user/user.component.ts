@@ -26,12 +26,6 @@ export class UserComponent {
       },
       {
         type: Type.LINK,
-        label: 'User Management',
-        icon: 'users',
-        state: { to: '/user/user-management', params: {} }
-      },
-      {
-        type: Type.LINK,
         label: 'Alert and Ticketing',
         icon: 'alert-octagon',
         state: { to: '/user/alert-and-ticketing', params: {} }
@@ -41,6 +35,12 @@ export class UserComponent {
         label: 'Sensor Explorer',
         icon: 'disc',
         state: { to: '/user/sensor-explorer', params: {} }
+      },
+      {
+        type: Type.LINK,
+        label: 'User Management',
+        icon: 'users',
+        state: { to: '/user/user-management', params: {} }
       },
     ];
   }
