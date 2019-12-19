@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
         <label for="">Status</label>
-        <p class="tx-gray-500">{{ site.status }}</p>
+        <p class="tx-gray-500">{{ site.status === 'NO_COMM'? 'NO COMMUNICATION': site.status }}</p>
     </div>
     <div class="form-group" *ngIf="site.status !== 'NORMAL' && site.status !== 'NO_COMM'">
         <label for="">Latest Incident</label>
