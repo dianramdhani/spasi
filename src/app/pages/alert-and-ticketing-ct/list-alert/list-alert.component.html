@@ -9,29 +9,31 @@
 </div>
 <div class="card">
     <h6 class="card-header">List Alert</h6>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Created Date</th>
-                    <th>Severity</th>
-                    <th>Site</th>
-                    <th>Condition</th>
-                    <th>State</th>
-                    <th class="wd-100" title="Service Level Agreement">SLA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let alert of alerts">
-                    <td>{{ alert.started_at | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</td>
-                    <td>{{ alert.severity }}</td>
-                    <td>{{ alert.name }}</td>
-                    <td>{{ alert.condition_name }}</td>
-                    <td>{{ alert.state }}</td>
-                    <td class="tx-right"><button class="btn btn-sm btn-primary"
-                            (click)="showDetail(alert, $event)">Detail</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions">
+                <thead>
+                    <tr>
+                        <th>Created Date</th>
+                        <th>Severity</th>
+                        <th>Site</th>
+                        <th>Condition</th>
+                        <th>State</th>
+                        <th class="wd-100 tx-center" title="Service Level Agreement">SLA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let alert of alerts">
+                        <td>{{ alert.started_at | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</td>
+                        <td>{{ alert.severity }}</td>
+                        <td>{{ alert.name }}</td>
+                        <td>{{ alert.condition_name }}</td>
+                        <td>{{ alert.state }}</td>
+                        <td class="tx-center"><button class="btn btn-sm btn-primary"
+                                (click)="showDetail(alert, $event)">Detail</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
