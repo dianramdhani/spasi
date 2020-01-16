@@ -20,7 +20,7 @@
                         <th>Site Name</th>
                         <th>Region</th>
                         <th>Type</th>
-                        <th class="wd-200"></th>
+                        <th class="wd-350"></th>
                     </tr>
                 <tbody>
                     <tr *ngFor="let site of sites">
@@ -30,6 +30,9 @@
                         <td class="tx-right">
                             <button class="btn btn-sm btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
                                 Config Device
+                            </button>
+                            <button class="btn btn-sm btn-primary mg-r-5" [routerLink]="['data-collection']">
+                                Data Collection
                             </button>
                             <button class="btn btn-sm btn-primary"
                                 [routerLink]="['site-profile', site.id]">Detail</button>

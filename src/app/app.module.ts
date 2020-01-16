@@ -32,6 +32,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ModalSiteDetailComponent } from './pages/dashboard/modal-site-detail/modal-site-detail.component';
 import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 import { HealthHistoryComponent } from './pages/site-management-ct/health-history/health-history.component';
+import { DataCollectionComponent } from './pages/site-management-ct/data-collection/data-collection.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { HealthHistoryComponent } from './pages/site-management-ct/health-histor
     ModalSiteDetailComponent,
     SensorExplorerComponent,
     HealthHistoryComponent,
+    DataCollectionComponent,
   ],
   imports: [
     BrowserModule,

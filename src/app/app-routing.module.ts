@@ -19,6 +19,7 @@ import { SiteProfileComponent } from './pages/site-management-ct/site-profile/si
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 import { HealthHistoryComponent } from './pages/site-management-ct/health-history/health-history.component';
+import { DataCollectionComponent } from './pages/site-management-ct/data-collection/data-collection.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
         path: 'site-management', component: SiteManagementCtComponent, children: [
           { path: '', component: SiteManagementComponent },
           { path: 'site-form', component: SiteFormComponent },
+          { path: 'data-collection', component: DataCollectionComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
           { path: 'site-profile/:siteId', component: SiteProfileComponent },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryComponent },

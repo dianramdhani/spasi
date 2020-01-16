@@ -1,0 +1,361 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">Data Collection</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">
+                <a [routerLink]="['../']" routerLinkActive="router-link-active">Site Management</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Data Collection</li>
+        </ol>
+    </nav>
+</div>
+<div class="card">
+    <h6 class="card-header">Form Data Collection</h6>
+    <div class="card-body" [ngSwitch]="collectionSelected.value">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Collection Type</label>
+            <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="collectionSelected">
+                    <option *ngFor="let collection of collections" [ngValue]="collection">{{collection.title}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'mysql'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Host</label>
+                        <input type="text" class="form-control" placeholder="Host">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Port</label>
+                        <input type="number" class="form-control" placeholder="Port">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Database</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Database">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Authentication</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">User name</label>
+                        <input type="text" class="form-control" placeholder="User name">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'oracle'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Host</label>
+                        <input type="text" class="form-control" placeholder="Host">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Port</label>
+                        <input type="number" class="form-control" placeholder="Port">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Database</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Database">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Authentication</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">User name</label>
+                        <input type="text" class="form-control" placeholder="User name">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'postgresql'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">JDBC URL</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="JDBC URL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Host</label>
+                        <input type="text" class="form-control" placeholder="Host">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Port</label>
+                        <input type="number" class="form-control" placeholder="Port">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Database/Scheme</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Database/Scheme">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Authentication</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">User name</label>
+                        <input type="text" class="form-control" placeholder="User name">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'mongodb'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Host</label>
+                        <input type="text" class="form-control" placeholder="Host">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Port</label>
+                        <input type="number" class="form-control" placeholder="Port">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Database</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Database">
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'access'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">JDBC URL</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="JDBC URL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Path</label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'rest'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">URL</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="URL">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Method</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option selected>POST</option>
+                        <option>GET</option>
+                        <option>UPDATE</option>
+                        <option>DELETE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Header</label>
+                <div class="col-sm-10">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>key1</td>
+                                <td>value1</td>
+                            </tr>
+                            <tr>
+                                <td>key2</td>
+                                <td>value2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Params</label>
+                <div class="col-sm-10">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>key1</td>
+                                <td>value1</td>
+                            </tr>
+                            <tr>
+                                <td>key2</td>
+                                <td>value2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary mr-2">Test Connection</button>
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'soap'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Initial WSDL</label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary mr-2">Test Connection</button>
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'localfile'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">File Path</label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary mr-2">Test Connection</button>
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'sftp'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Server</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Host</label>
+                        <input type="text" class="form-control" placeholder="Host">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Port</label>
+                        <input type="number" class="form-control" placeholder="Port">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Authentication</label>
+                <div class="col-sm-10 row pr-0">
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">User name</label>
+                        <input type="text" class="form-control" placeholder="User name">
+                    </div>
+                    <div class="col-sm pr-0">
+                        <label class="tx-gray-500">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary mr-2">Test Connection</button>
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'webcrawl'">
+            <hr class="py-2">
+            <h6>{{ collectionSelected.title }} Settings</h6>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">URL</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="URL">
+                </div>
+            </div>
+            <div class="pt-4 tx-right">
+                <button class="btn btn-primary mr-2">Test Connection</button>
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+    </div>
+</div>
