@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  statusEdit = false;
   roles: string[];
   regions: string[];
   sites: SiteResponse[];
@@ -34,6 +35,21 @@ export class UserFormComponent implements OnInit {
 
     this.roles = await this.userManagementService.getRoles().toPromise();
     this.onRoleChange();
+
+    this.checkEdit();
+  }
+
+  async checkEdit() {
+    const username = this.route.snapshot.paramMap.get('username');
+    if (username) {
+      this.statusEdit = true;
+      const user = await this.userManagementService.getUserByUsername(username).toPromise();
+      this.formUser.patchValue(user);
+      if (user.role === 'SITE') {
+        const site = await this.siteManagementService.getSiteByUser(username).toPromise();
+        console.log(site);
+      }
+    }
   }
 
   onRoleChange() {
@@ -65,7 +81,7 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  async submit() {
+  async add() {
     const { username, email, role, region, site } = this.formUser.value;
     await this.userManagementService.createUser(username, email, role).toPromise();
     switch (role) {
@@ -77,5 +93,19 @@ export class UserFormComponent implements OnInit {
         break;
     }
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  async delete() {
+    if (confirm('Are you sure to remove this user?')) {
+      const { role, username } = this.formUser.value;
+      switch (role) {
+        case 'REGION':
+          await this.userManagementService.removeUserRegionByUsername(username).toPromise();
+          break;
+        case 'SITE':
+          await this.userManagementService.removeUserSiteByUsername(username).toPromise();
+          break;
+      }
+    }
   }
 }

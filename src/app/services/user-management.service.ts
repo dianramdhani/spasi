@@ -12,7 +12,7 @@ export class UserManagementService {
     this.url = config.api;
   }
 
-  getUserByUsername(username) {
+  getUserByUsername(username: string) {
     return this.httpClient.get<UserResponse>(`${this.url}/userManagement/users/${username}`);
   }
 
@@ -35,6 +35,14 @@ export class UserManagementService {
 
   createUserSite(username: string, siteId: string) {
     return this.httpClient.post(`${this.url}/userManagement/users/${username}/site/${siteId}`, {});
+  }
+
+  removeUserRegionByUsername(username: string) {
+    return this.httpClient.delete(`${this.url}/userManagement/users/${username}/region`);
+  }
+
+  removeUserSiteByUsername(username: string) {
+    return this.httpClient.delete(`${this.url}/userManagement/users/${username}/site`);
   }
 }
 

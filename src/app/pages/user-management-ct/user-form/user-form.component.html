@@ -1,5 +1,7 @@
 <div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
-    <h4 class="mg-b-0 tx-spacing--1">Add User</h4>
+    <h4 class="mg-b-0 tx-spacing--1">
+        {{ statusEdit? 'Edit User': 'Add User'}}
+    </h4>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-style1 mg-b-10">
             <li class="breadcrumb-item">Home</li>
@@ -69,8 +71,13 @@
             </div>
         </div>
     </div>
-    <div class="card-footer tx-right">
-        <button class="btn btn-primary mg-r-5" [disabled]="!formUser.valid" (click)="submit()">Submit</button>
+    <div class="card-footer tx-right" *ngIf="statusEdit === false">
+        <button class="btn btn-primary mg-r-5" [disabled]="!formUser.valid" (click)="add()">Submit</button>
         <button class="btn btn-danger" routerLink="../">Cancel</button>
+    </div>
+    <div class="card-footer tx-right" *ngIf="statusEdit === true">
+        <button class="btn btn-primary mg-r-5" [disabled]="!formUser.valid">Edit User</button>
+        <button type="button" class="btn btn-secondary mg-r-5" (click)="delete()">Delete User</button>
+        <button type="button" class="btn btn-danger" routerLink="../../">Cancel</button>
     </div>
 </form>
