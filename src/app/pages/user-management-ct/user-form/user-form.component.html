@@ -8,22 +8,23 @@
         </ol>
     </nav>
 </div>
-<div class="card">
+<form class="card" [formGroup]="formUser">
     <h6 class="card-header">User Form</h6>
     <div class="card-body">
         <div class="form-group form-row">
-            <label for="" class="col-md-2 col-form-label">Username</label>
+            <label for="username" class="col-md-2 col-form-label">Username</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Enter username">
+                <input type="text" id="username" class="form-control" placeholder="Enter username"
+                    formControlName="username">
             </div>
         </div>
         <div class="form-group form-row">
             <label for="" class="col-md-2 col-form-label">Email</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Enter email">
+                <input type="text" class="form-control" placeholder="Enter email" formControlName="email">
             </div>
         </div>
-        <div class="form-group form-row">
+        <!-- <div class="form-group form-row">
             <label for="" class="col-md-2 col-form-label">Password</label>
             <div class="col-md-10">
                 <div class="form-row">
@@ -35,43 +36,41 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="form-group form-row">
-            <label for="" class="col-md-2 col-form-label">Role</label>
+            <label for="role" class="col-md-2 col-form-label">Role</label>
             <div class="col-md-10">
-                <select name="" id="" class="form-control">
-                    <option value="">Please select role</option>
-                    <option value="">Role 1</option>
-                    <option value="">Role 2</option>
-                    <option value="">Role 3</option>
+                <select id="role" class="form-control" formControlName="role" #roleEl>
+                    <option value="" disabled>Please select role</option>
+                    <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
                 </select>
             </div>
         </div>
-        <div class="form-group form-row">
-            <label for="" class="col-md-2 col-form-label">Region</label>
+        <div class="form-group form-row" *ngIf="roleEl.value === 'REGION' || roleEl.value === 'SITE'">
+            <label for="region" class="col-md-2 col-form-label">Region</label>
             <div class="col-md-10">
-                <select name="" id="" class="form-control">
+                <select id="region" class="form-control" formControlName="region">
                     <option value="">Please select region</option>
-                    <option value="">Role 1</option>
-                    <option value="">Role 2</option>
-                    <option value="">Role 3</option>
+                    <ng-container *ngIf="regions">
+                        <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>
-        <div class="form-group form-row">
-            <label for="" class="col-md-2 col-form-label">Site</label>
+        <div class="form-group form-row" *ngIf="roleEl.value === 'SITE'">
+            <label for="site" class="col-md-2 col-form-label">Site</label>
             <div class="col-md-10">
-                <select name="" id="" class="form-control">
+                <select id="site" class="form-control" formControlName="site">
                     <option value="">Please select site</option>
-                    <option value="">Role 1</option>
-                    <option value="">Role 2</option>
-                    <option value="">Role 3</option>
+                    <ng-container *ngIf="sites">
+                        <option *ngFor="let site of sites" [value]="site.id">{{ site.name }}</option>
+                    </ng-container>
                 </select>
             </div>
         </div>
     </div>
     <div class="card-footer tx-right">
-        <button class="btn btn-primary mg-r-5">Submit</button>
+        <button class="btn btn-primary mg-r-5" [disabled]="!formUser.valid" (click)="submit()">Submit</button>
         <button class="btn btn-danger" routerLink="../">Cancel</button>
     </div>
-</div>
+</form>
