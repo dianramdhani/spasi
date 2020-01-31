@@ -22,7 +22,9 @@
                     <i [attr.data-feather]="menu.icon"></i> <span>{{ menu.label }}</span>
                 </a>
                 <ul *ngIf="menu.type === type.HASSUBMENUS">
-                    <li *ngFor="let subMenu of menu.subMenus"><a href="">{{ subMenu.label }}</a></li>
+                    <li *ngFor="let subMenu of menu.subMenus" routerLinkActive="active">
+                        <a href="" [routerLink]="[subMenu.state.to]">{{ subMenu.label }}</a>
+                    </li>
                 </ul>
             </li>
         </ul>

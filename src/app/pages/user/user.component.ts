@@ -42,6 +42,21 @@ export class UserComponent {
         icon: 'users',
         state: { to: '/user/user-management', params: {} }
       },
+      {
+        type: Type.HASSUBMENUS,
+        label: 'Reporting',
+        icon: 'file-text',
+        subMenus: [
+          {
+            label: 'Komparasi PLN vs Battery Load',
+            state: { to: '/user/reporting/pln-vs-bl', params: {} }
+          },
+          {
+            label: 'Komparasi PLN vs Rectifier Load',
+            state: { to: '/user/reporting/pln-vs-rl', params: {} }
+          }
+        ]
+      },
     ];
   }
 }

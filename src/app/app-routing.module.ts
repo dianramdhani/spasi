@@ -19,6 +19,9 @@ import { SiteProfileComponent } from './pages/site-management-ct/site-profile/si
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 import { HealthHistoryComponent } from './pages/site-management-ct/health-history/health-history.component';
+import { ReportingCtComponent } from './pages/reporting-ct/reporting-ct.component';
+import { PlnVsBlComponent } from './pages/reporting-ct/pln-vs-bl/pln-vs-bl.component';
+import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.component';
 
 
 const routes: Routes = [
@@ -49,6 +52,12 @@ const routes: Routes = [
         ]
       },
       { path: 'sensor-explorer', component: SensorExplorerComponent },
+      {
+        path: 'reporting', component: ReportingCtComponent, children: [
+          { path: 'pln-vs-bl', component: PlnVsBlComponent },
+          { path: 'pln-vs-rl', component: PlnVsRlComponent }
+        ]
+      }
     ]
   },
   { path: '**', redirectTo: '/user/dashboard' }
