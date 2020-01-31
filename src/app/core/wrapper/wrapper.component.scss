@@ -34,3 +34,18 @@ $ASIDE-WIDTH: 300px;
         margin-left: $ASIDE-WIDTH;
     }
 }
+
+.nav-item-cus ul {
+    margin: 0;
+    padding-left: 34px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+
+    a {
+        display: block;
+        color: rgba(27, 46, 75, 0.75);
+        padding: 2px 0;
+    }
+}

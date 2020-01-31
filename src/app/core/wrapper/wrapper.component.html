@@ -12,7 +12,7 @@
                     'nav-label': menu.type === type.TITLE, 
                     'mg-t-25': menu.type === type.TITLE && i > 0,
                     'nav-item': menu.type === type.LINK, 
-                    'nav-item with-sub': menu.type === type.HASSUBMENUS
+                    'nav-item with-sub nav-item-cus': menu.type === type.HASSUBMENUS
                 }" routerLinkActive="nav-item active">
                 <ng-container *ngIf="menu.type === type.TITLE">{{ menu.label }}</ng-container>
                 <a href="" class="nav-link" *ngIf="menu.type === type.LINK" [routerLink]="[menu.state.to]">

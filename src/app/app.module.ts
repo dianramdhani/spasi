@@ -35,6 +35,7 @@ import { HealthHistoryComponent } from './pages/site-management-ct/health-histor
 import { ReportingCtComponent } from './pages/reporting-ct/reporting-ct.component';
 import { PlnVsBlComponent } from './pages/reporting-ct/pln-vs-bl/pln-vs-bl.component';
 import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.compo
     ChartsModule,
     FormsModule,
     MomentModule,
-    DataTablesModule
+    DataTablesModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
