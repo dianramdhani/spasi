@@ -13,7 +13,7 @@
         <button class="btn btn-sm btn-primary" routerLink="user-form">Add User</button>
     </div>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-hover mb-0">
             <thead>
                 <tr>
                     <th>Username</th>
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of users" title="Click for edit" [routerLink]="['user-form', user.username]">
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.role }}</td>

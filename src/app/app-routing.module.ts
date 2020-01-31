@@ -39,6 +39,7 @@ const routes: Routes = [
         path: 'user-management', component: UserManagementCtComponent, children: [
           { path: '', component: ListUserComponent },
           { path: 'user-form', component: UserFormComponent },
+          { path: 'user-form/:username', component: UserFormComponent }
         ]
       },
       {

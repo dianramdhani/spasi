@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { AssetResponse } from './asset-management.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +71,14 @@ export class SiteManagementService {
    */
   getSiteByRegion(region: string) {
     return this.httpClient.get<SiteResponse[]>(`${this.url}/siteManagement/sites/region/${region}`);
+  }
+
+
+  getSiteByUser(username: string): Observable<SiteResponse> {
+    return this.httpClient.get<SiteResponse>(`${this.url}/siteManagement/sites/user/${username}`)
+      .pipe(
+        map(sites => sites[0])
+      );
   }
 }
 
