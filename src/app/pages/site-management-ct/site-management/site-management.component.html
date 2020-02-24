@@ -7,7 +7,8 @@
         </ol>
     </nav>
 </div>
-<div class="card">
+<div class="ht-400" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"></div>
+<div class="card mt-2">
     <div class="card-header d-md-flex justify-content-between">
         <h6 class="mg-b-0">List of Site</h6>
         <button class="btn btn-sm btn-primary" routerLink="site-form">Add Site</button>
@@ -20,6 +21,7 @@
                         <th>Site Name</th>
                         <th>Region</th>
                         <th>Type</th>
+                        <th>Status</th>
                         <th class="wd-200"></th>
                     </tr>
                 <tbody>
@@ -27,6 +29,7 @@
                         <td>{{ site.name }}</td>
                         <td>{{ site.region }}</td>
                         <td>{{ site.type }}</td>
+                        <td>{{ site.status }}</td>
                         <td class="tx-right">
                             <button class="btn btn-sm btn-primary mg-r-5" [routerLink]="['config-device', site.id]">
                                 Config Device
