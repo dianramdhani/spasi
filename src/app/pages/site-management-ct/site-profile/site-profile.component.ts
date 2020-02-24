@@ -108,4 +108,8 @@ export class SiteProfileComponent implements OnInit {
       title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment(new Date(property.value.dataTime)).utcOffset('+0000').format('YYYY-MM-DD HH:mm:ss')
     }
   }
+
+  test(data: any, event: Event) {
+    console.log(data);
+  }
 }
