@@ -1,16 +1,18 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import * as moment from 'moment';
 import { HistoryService } from 'src/app/services';
 import { Chart } from 'chart.js';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-health-history-widget',
-  templateUrl: './health-history-widget.component.html',
-  styleUrls: ['./health-history-widget.component.scss']
+  selector: 'app-health-history-v2',
+  templateUrl: './health-history-v2.component.html',
+  styleUrls: ['./health-history-v2.component.scss']
 })
-export class HealthHistoryWidgetComponent implements OnInit {
-  @Input('assetPropertyId') assetId: string;
+export class HealthHistoryV2Component implements OnInit {
+  assetId: string;
+  sensorName: string;
   periods = [
     {
       label: '1 Hour',
@@ -61,16 +63,17 @@ export class HealthHistoryWidgetComponent implements OnInit {
   @ViewChild('chart', { static: true }) chartEl: ElementRef;
   chart: Chart;
 
-  constructor(private historyService: HistoryService) { }
+  constructor(
+    private historyService: HistoryService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.assetId = this.route.snapshot.params.assetPropertyId;
     this.chart = new Chart(this.chartEl.nativeElement, {
       type: 'line', options: {
         responsive: false,
-        title: {
-          display: true,
-          text: 'Last 1 Day'
-        }
+        title: { display: true }
       }
     });
     this.drawChart();
@@ -81,7 +84,7 @@ export class HealthHistoryWidgetComponent implements OnInit {
       .subscribe(histories => {
         if (histories.length) {
           const data: Chart.ChartData = {
-            labels: histories.map(history => moment.utc(history.dataTime).format('HH:mm')),
+            labels: histories.map(history => moment.utc(history.dataTime).format('YYYY-MM-DD HH:mm')),
             datasets: [
               {
                 label: histories[0].subparamName,
@@ -93,7 +96,9 @@ export class HealthHistoryWidgetComponent implements OnInit {
             ]
           };
           this.chart.data = data;
+          this.chart.options.title.text = `Last ${this.periodsSelected.label}`;
           this.chart.update();
+          this.sensorName = histories[0].sensorName;
         }
       });
   }
