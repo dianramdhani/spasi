@@ -83,7 +83,7 @@ export class HealthHistoryWidgetComponent implements OnInit {
       .subscribe(histories => {
         if (histories.length) {
           const data: Chart.ChartData = {
-            labels: histories.map(history => moment(history.dataTime).format('LTS')),
+            labels: histories.map(history => moment.utc(history.dataTime).format('HH:mm')),
             datasets: [
               {
                 label: histories[0].subparamName,

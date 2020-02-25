@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
 import { BehaviorSubject, timer } from 'rxjs';
 import * as moment from 'moment';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
 import { tap } from 'rxjs/operators';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-site-profile',
   templateUrl: './site-profile.component.html',
   styleUrls: ['./site-profile.component.scss']
 })
-export class SiteProfileComponent implements OnInit {
+export class SiteProfileComponent implements OnInit, OnDestroy {
   site = {
     id: '',
     name: '',
@@ -56,7 +58,7 @@ export class SiteProfileComponent implements OnInit {
     deviceInterval.pipe(
       tap(async () => {
         // set 1 hari
-        const minDateTime = moment().subtract(15, 'm'),
+        const minDateTime = moment().subtract(1, 'd'),
           maxDateTime = moment();
 
         for (const i in this.site.assets) {
@@ -83,6 +85,10 @@ export class SiteProfileComponent implements OnInit {
     ).toPromise();
   }
 
+  ngOnDestroy() {
+
+  }
+
   onMapReady(map: Map) {
     const markerMap = marker(latLng(0, 0), {
       icon: icon({
@@ -105,11 +111,7 @@ export class SiteProfileComponent implements OnInit {
   deviceValueGenerator(property: PropertyResponse) {
     return {
       value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
-      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment(new Date(property.value.dataTime)).utcOffset('+0000').format('YYYY-MM-DD HH:mm:ss')
+      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')
     }
-  }
-
-  test(data: any, event: Event) {
-    console.log(data);
   }
 }
