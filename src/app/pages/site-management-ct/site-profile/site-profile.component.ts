@@ -8,6 +8,7 @@ import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
 import { tap } from 'rxjs/operators';
+import { formatNumber } from '@angular/common';
 
 @AutoUnsubscribe()
 @Component({
@@ -111,8 +112,8 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
 
   deviceValueGenerator(property: PropertyResponse) {
     // console.log(property);
-    return {  
-      value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
+    return {
+      value: property.value === null ? 'null' : property.value === '?' ? '?' : formatNumber(+property.value.subparamValue, 'en', '.0-2'),
       title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')
     }
   }

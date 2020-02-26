@@ -65,7 +65,7 @@
                 <div class="card-body row">
                     <div class="col-4 d-flex flex-column justify-content-center align-items-center"
                         [title]="deviceValueGenerator(property).title">
-                        <h3 class="mg-b-0">{{ +(deviceValueGenerator(property).value) | number: '.0-2' }}
+                        <h3 class="mg-b-0">{{ deviceValueGenerator(property).value }}
                             <small *ngIf="property.value">{{ property.valueType }}</small></h3>
                         <span class="tx-gray-500"
                             *ngIf="property.value">{{ deviceValueGenerator(property).title }}</span>
