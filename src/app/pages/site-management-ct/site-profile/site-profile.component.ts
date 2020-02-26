@@ -34,6 +34,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   };
   lastMarkerPoint = new BehaviorSubject({ latitude: 0, longitude: 0 });
   dataTimer: Subscription;
+  readonly lastMinuteData = 5;
 
   constructor(
     private route: ActivatedRoute,
@@ -111,10 +112,17 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   }
 
   deviceValueGenerator(property: PropertyResponse) {
-    // console.log(property);
+    let isBefore = false;
+    if (property.value !== null) {
+      const timeData = moment(moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')),
+        timeCompare = moment().subtract(this.lastMinuteData, 'minute');
+      isBefore = !timeCompare.isBefore(timeData);
+    }
+
     return {
       value: property.value === null ? 'null' : property.value === '?' ? '?' : formatNumber(+property.value.subparamValue, 'en', '.0-2'),
-      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')
+      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm'),
+      isBefore
     }
   }
 }
