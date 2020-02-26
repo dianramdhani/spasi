@@ -1,15 +1,18 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
-import { HistoryService } from 'src/app/services';
 import { Chart } from 'chart.js';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
+import { HistoryService } from 'src/app/services';
+import { Subscription } from 'rxjs';
+
+@AutoUnsubscribe()
 @Component({
   selector: 'app-health-history-widget',
   templateUrl: './health-history-widget.component.html',
   styleUrls: ['./health-history-widget.component.scss']
 })
-export class HealthHistoryWidgetComponent implements OnInit {
+export class HealthHistoryWidgetComponent implements OnInit, OnDestroy {
   @Input('assetPropertyId') assetId: string;
   periods = [
     {
@@ -61,6 +64,9 @@ export class HealthHistoryWidgetComponent implements OnInit {
   @ViewChild('chart', { static: true }) chartEl: ElementRef;
   chart: Chart;
 
+  // subscriber
+  historySubscription: Subscription;
+
   constructor(private historyService: HistoryService) { }
 
   ngOnInit() {
@@ -76,10 +82,22 @@ export class HealthHistoryWidgetComponent implements OnInit {
     this.drawChart();
   }
 
+  ngOnDestroy() {
+    console.log('remove widget');
+  }
+
   drawChart() {
-    this.historyService.getData(this.assetId, this.periodsSelected.value.startdate, this.periodsSelected.value.enddate)
+    this.historySubscription = this.historyService.getData(this.assetId, this.periodsSelected.value.startdate, this.periodsSelected.value.enddate)
       .subscribe(histories => {
         if (histories.length) {
+          function removeData(chart: Chart) {
+            chart.data.labels.pop();
+            chart.data.datasets.forEach((dataset) => {
+              dataset.data.pop();
+            });
+            chart.update();
+          }
+
           const data: Chart.ChartData = {
             labels: histories.map(history => moment.utc(history.dataTime).format('HH:mm')),
             datasets: [
@@ -92,6 +110,7 @@ export class HealthHistoryWidgetComponent implements OnInit {
               }
             ]
           };
+          removeData(this.chart);
           this.chart.data = data;
           this.chart.update();
         }

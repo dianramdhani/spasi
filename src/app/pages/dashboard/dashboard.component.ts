@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { tileLayer, Map, icon, FeatureGroup, marker, latLng, featureGroup, Marker } from 'leaflet';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Subject, timer } from 'rxjs';
+import { BehaviorSubject, Subject, timer, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
@@ -35,6 +35,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   sitesSubject = new BehaviorSubject<SiteResponse[]>([]);
   focusSiteSubject = new Subject<SiteResponse>();
 
+  // update data subscriber
+  updateDataSubscription: Subscription;
+
   constructor(
     private siteManagementService: SiteManagementService,
     private zone: NgZone,
@@ -45,7 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.siteManagementService.getRegionAll()
       .subscribe(regions => this.regions = regions);
     const updateDataInterval = timer(0, 60000);
-    updateDataInterval.pipe(tap(() => this.onRegionChange(this.selectedRegion))).toPromise();
+    this.updateDataSubscription = updateDataInterval.pipe(tap(() => this.onRegionChange(this.selectedRegion))).subscribe();
   }
 
   ngOnDestroy() {

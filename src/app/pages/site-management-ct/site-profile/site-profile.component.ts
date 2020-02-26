@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
-import { BehaviorSubject, timer } from 'rxjs';
+import { BehaviorSubject, timer, Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
@@ -32,6 +32,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
     center: latLng(46.879966, -121.726909)
   };
   lastMarkerPoint = new BehaviorSubject({ latitude: 0, longitude: 0 });
+  dataTimer: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,7 +56,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
     this.lastMarkerPoint.next({ latitude: this.site.latitude, longitude: this.site.longitude });
 
     const deviceInterval = timer(0, 120000);
-    deviceInterval.pipe(
+    this.dataTimer = deviceInterval.pipe(
       tap(async () => {
         // set 1 hari
         const minDateTime = moment().subtract(1, 'd'),
@@ -82,7 +83,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
           this.site.assets[i] = Object.assign(asset, { properties });
         }
       })
-    ).toPromise();
+    ).subscribe();
   }
 
   ngOnDestroy() {
@@ -109,7 +110,8 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   }
 
   deviceValueGenerator(property: PropertyResponse) {
-    return {
+    console.log(property);
+    return {  
       value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
       title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')
     }
