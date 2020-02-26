@@ -33,6 +33,7 @@
     "datatables.net-dt": "^1.10.20",
     "feather-icons": "^4.24.1",
     "jquery": "^3.4.1",
+    "jquery-sparkline": "^2.4.0",
     "leaflet": "^1.6.0",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.0",

@@ -110,7 +110,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   }
 
   deviceValueGenerator(property: PropertyResponse) {
-    console.log(property);
+    // console.log(property);
     return {  
       value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
       title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')

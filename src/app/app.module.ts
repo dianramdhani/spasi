@@ -38,6 +38,7 @@ import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.compo
 import { CommonModule } from '@angular/common';
 import { HealthHistoryWidgetComponent } from './pages/site-management-ct/site-profile/health-history-widget/health-history-widget.component';
 import { HealthHistoryV2Component } from './pages/site-management-ct/health-history-v2/health-history-v2.component';
+import { HealthHistoryWidgetV2Component } from './pages/site-management-ct/site-profile/health-history-widget-v2/health-history-widget-v2.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { HealthHistoryV2Component } from './pages/site-management-ct/health-hist
     PlnVsRlComponent,
     HealthHistoryWidgetComponent,
     HealthHistoryV2Component,
+    HealthHistoryWidgetV2Component,
   ],
   imports: [
     BrowserModule,
