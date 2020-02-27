@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/chartist/dist/chartist.css",
               "src/themes/dashforge/lib/@fortawesome/fontawesome-free/css/all.min.css",
               "src/themes/dashforge/lib/ionicons/css/ionicons.min.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
