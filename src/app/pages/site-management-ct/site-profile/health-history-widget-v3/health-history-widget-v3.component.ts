@@ -34,6 +34,7 @@ export class HealthHistoryWidgetV3Component implements OnInit, AfterViewInit, On
               series: [histories.map(history => +history.subparamValue)]
             },
             options: Chartist.ILineChartOptions = {
+              height: '200px',
               showArea: true,
               showLine: false,
               showPoint: false,

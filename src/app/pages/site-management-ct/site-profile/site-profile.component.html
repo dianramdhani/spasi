@@ -79,15 +79,17 @@
                         }">
                             {{ deviceValueGenerator(property).title }}
                         </div>
-                        <small class="tx-danger" *ngIf="deviceValueGenerator(property).isBefore">
-                            This data is last {{ lastMinuteData }} minutes!
-                        </small>
-                        <button class="btn btn-sm btn-secondary mg-t-30" *ngIf="property.value !== '?'"
-                            [routerLink]="['/user/site-management/health-history', property.id]">
-                            Historical
-                        </button>
+                        <div *ngIf="property.value !== '?'">
+                            <small class="tx-danger" *ngIf="deviceValueGenerator(property).isBefore">
+                                This data is last {{ lastMinuteData }} minutes!
+                            </small>
+                            <button class="btn btn-sm btn-secondary mg-t-30"
+                                [routerLink]="['/user/site-management/health-history', property.id]">
+                                Historical
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-8" *ngIf="property.value !== '?'">
                         <app-health-history-widget-v3 [assetPropertyId]="property.id"></app-health-history-widget-v3>
                     </div>
                 </div>
