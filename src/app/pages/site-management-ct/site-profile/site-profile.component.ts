@@ -25,7 +25,8 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
     latitude: 0,
     longitude: 0,
     status: '',
-    assets: []
+    assets: [],
+    lastConnected: ''
   };
   mapOptions = {
     layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }),
