@@ -22,6 +22,7 @@ import { HealthHistoryComponent } from './pages/site-management-ct/health-histor
 import { ReportingCtComponent } from './pages/reporting-ct/reporting-ct.component';
 import { PlnVsBlComponent } from './pages/reporting-ct/pln-vs-bl/pln-vs-bl.component';
 import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.component';
+import { HealthHistoryV2Component } from './pages/site-management-ct/health-history-v2/health-history-v2.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
           { path: 'site-profile/:siteId', component: SiteProfileComponent },
-          { path: 'health-history/:assetPropertyId', component: HealthHistoryComponent },
+          // { path: 'health-history/:assetPropertyId', component: HealthHistoryComponent },
+          { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]
       },
       {

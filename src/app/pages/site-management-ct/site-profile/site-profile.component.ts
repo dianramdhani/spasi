@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
-import { BehaviorSubject, timer } from 'rxjs';
+import { BehaviorSubject, timer, Subscription } from 'rxjs';
 import * as moment from 'moment';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
 import { tap } from 'rxjs/operators';
+import { formatNumber } from '@angular/common';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-site-profile',
   templateUrl: './site-profile.component.html',
   styleUrls: ['./site-profile.component.scss']
 })
-export class SiteProfileComponent implements OnInit {
+export class SiteProfileComponent implements OnInit, OnDestroy {
   site = {
     id: '',
     name: '',
@@ -22,7 +25,8 @@ export class SiteProfileComponent implements OnInit {
     latitude: 0,
     longitude: 0,
     status: '',
-    assets: []
+    assets: [],
+    lastConnected: ''
   };
   mapOptions = {
     layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }),
@@ -30,6 +34,8 @@ export class SiteProfileComponent implements OnInit {
     center: latLng(46.879966, -121.726909)
   };
   lastMarkerPoint = new BehaviorSubject({ latitude: 0, longitude: 0 });
+  dataTimer: Subscription;
+  readonly lastMinuteData = 5;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,11 +58,11 @@ export class SiteProfileComponent implements OnInit {
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
     this.lastMarkerPoint.next({ latitude: this.site.latitude, longitude: this.site.longitude });
 
-    const deviceInterval = timer(0, 60000);
-    deviceInterval.pipe(
+    const deviceInterval = timer(0, 120000);
+    this.dataTimer = deviceInterval.pipe(
       tap(async () => {
         // set 1 hari
-        const minDateTime = moment().subtract(15, 'm'),
+        const minDateTime = moment().subtract(1, 'd'),
           maxDateTime = moment();
 
         for (const i in this.site.assets) {
@@ -80,7 +86,11 @@ export class SiteProfileComponent implements OnInit {
           this.site.assets[i] = Object.assign(asset, { properties });
         }
       })
-    ).toPromise();
+    ).subscribe();
+  }
+
+  ngOnDestroy() {
+
   }
 
   onMapReady(map: Map) {
@@ -103,9 +113,17 @@ export class SiteProfileComponent implements OnInit {
   }
 
   deviceValueGenerator(property: PropertyResponse) {
+    let isBefore = false;
+    if (property.value !== null) {
+      const timeData = moment(moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm')),
+        timeCompare = moment().subtract(this.lastMinuteData, 'minute');
+      isBefore = !timeCompare.isBefore(timeData);
+    }
+
     return {
-      value: property.value === null ? 'null' : property.value === '?' ? '?' : property.value.subparamValue,
-      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment(new Date(property.value.dataTime)).utcOffset('+0000').format('YYYY-MM-DD HH:mm:ss')
+      value: property.value === null ? 'null' : property.value === '?' ? '?' : formatNumber(+property.value.subparamValue, 'en', '.0-2'),
+      title: property.value === null ? 'Data not update.' : property.value === '?' ? 'Device not connected.' : moment.utc(property.value.dataTime).format('YYYY-MM-DD HH:mm'),
+      isBefore
     }
   }
 }
