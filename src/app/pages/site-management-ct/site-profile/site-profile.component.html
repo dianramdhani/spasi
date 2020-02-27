@@ -79,7 +79,7 @@
                         }">
                             {{ deviceValueGenerator(property).title }}
                         </div>
-                        <div *ngIf="property.value !== '?'">
+                        <div class="tx-center" *ngIf="property.value !== '?'">
                             <small class="tx-danger" *ngIf="deviceValueGenerator(property).isBefore">
                                 This data is last {{ lastMinuteData }} minutes!
                             </small>
