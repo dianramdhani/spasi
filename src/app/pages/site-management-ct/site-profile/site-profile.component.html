@@ -57,7 +57,24 @@
     </div>
 </div>
 
-<app-sensor-compare></app-sensor-compare>
+<div class="card pt-2 px-3 mb-2">
+    <ngb-tabset [destroyOnHide]="false">
+        <ngb-tab title="Graph Compare">
+            <ng-template ngbTabContent>
+                <div class="py-4 px-1">
+                    <app-sensor-compare></app-sensor-compare>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Data Analytics">
+            <ng-template ngbTabContent>
+                <iframe class="card-body ht-800 py-4 px-1 wd-100p"
+                    src="https://datastudio.google.com/embed/reporting/f49f7c0a-e6fa-436c-803f-f5b11f840a64/page/wVOGB"
+                    frameborder="0" style="border:0" allowfullscreen></iframe>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>
 
 <div class="card mb-2" *ngFor="let asset of site.assets">
     <div class="card-header d-flex justify-content-between">
