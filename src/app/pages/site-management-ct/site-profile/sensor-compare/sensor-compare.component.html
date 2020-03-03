@@ -1,0 +1,44 @@
+<div class="card mb-2">
+    <h6 class="card-header">Graphs Compare</h6>
+    <div class="card-body">
+        <div class="mb-4">
+            <div class="form-group form-inline"
+                *ngFor="let formGraph of formGraphs.controls; let indexFormGraph = index" [formGroup]="formGraph">
+                <label class="mr-2">Asset :</label>
+                <select class="form-control mr-4" formControlName="assetIndex"
+                    (change)="formGraph.get('propertyIndex').setValue(null)">
+                    <option [ngValue]="null" disabled>Select Asset</option>
+                    <option *ngFor="let asset of assets; let indexAsset = index" [ngValue]="indexAsset">
+                        {{ asset.name }}
+                    </option>
+                </select>
+                <ng-container *ngIf="formGraph.get('assetIndex').valid">
+                    <label class="mr-2">Property :</label>
+                    <select class="form-control mr-4" formControlName="propertyIndex">
+                        <option [ngValue]="null" disabled>Select Property</option>
+                        <option
+                            *ngFor="let property of assets[formGraph.get('assetIndex').value].properties; let indexProperty = index"
+                            [ngValue]="indexProperty">
+                            {{ property.name }}
+                        </option>
+                    </select>
+                </ng-container>
+                <button class="btn btn-danger" (click)="removeGraph(indexFormGraph, $event)">Remove Graph</button>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-primary mr-1" (click)="addGraph()">Add Graph</button>
+                <button class="btn btn-primary" [disabled]="!formGraphs.valid" (click)="showGraph()">Show Graph</button>
+            </div>
+        </div>
+        <div [hidden]="!this.histories.length">
+            <hr>
+            <div class="form-group form-inline">
+                <label class="mr-2">Period : </label>
+                <select class="form-control" [(ngModel)]="periodsSelected" (ngModelChange)="showGraph()">
+                    <option *ngFor="let period of periods" [ngValue]="period">{{ period.label }}</option>
+                </select>
+            </div>
+            <canvas #chart style="width: 100%; height: 500px;"></canvas>
+        </div>
+    </div>
+</div>
