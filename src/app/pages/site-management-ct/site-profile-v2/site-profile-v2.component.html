@@ -1,0 +1,41 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">Detail Site</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../../">Site Management</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail Site</li>
+        </ol>
+    </nav>
+</div>
+<div class="table-responsive">
+    <table style="zoom: 0.75;">
+        <tr>
+            <td>
+                <app-item [item]="acPln[0]" *ngIf="acPln.length"></app-item>
+            </td>
+            <td>
+                <table class="mg-b-100">
+                    <tr>
+                        <td>
+                            <app-item [item]="rectifierSummary[0]" *ngIf="rectifierSummary.length"></app-item>
+                        </td>
+                        <td>
+                            <app-item *ngFor="let item of rectifierDetail" [item]="item"></app-item>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <app-item [item]="batterySummary[0]" *ngIf="batterySummary.length"></app-item>
+                        </td>
+                        <td>
+                            <app-item *ngFor="let item of batteryDetail" [item]="item"></app-item>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

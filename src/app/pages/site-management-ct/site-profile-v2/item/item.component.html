@@ -1,0 +1,21 @@
+<div class="card card-body wd-500 mr-2 mb-2">
+    <h6>{{ item.groupName }}</h6>
+    <div class="table-responsive mb-0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Property Name</th>
+                    <th>Value ({{ item.assetPropertyDatas[0].unitOfMeasurement }})</th>
+                    <th>Data Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let property of item.assetPropertyDatas">
+                    <td>{{ property.propertyName }}</td>
+                    <td>{{ property.value | number: '.0-2' }}</td>
+                    <td>{{ property.dataTime | date: 'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
