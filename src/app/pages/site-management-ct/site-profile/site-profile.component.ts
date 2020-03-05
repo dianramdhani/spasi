@@ -61,7 +61,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
     this.lastMarkerPoint.next({ latitude: this.site.latitude, longitude: this.site.longitude });
 
-    const deviceInterval = timer(0, 120000);
+    const deviceInterval = timer(0, 300000);
     this.dataTimer = deviceInterval.pipe(
       tap(async () => {
         // set 1 hari
