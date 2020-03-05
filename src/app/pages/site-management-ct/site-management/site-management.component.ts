@@ -82,7 +82,34 @@ export class SiteManagementComponent implements OnInit {
           iconUrl: './assets/img/marker-icon-no_comm.png',
           shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
         })
-      }
+      },
+      MAJOR: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-warning.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
+      MINOR: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-warning.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
+      CRITICAL: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-danger.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
     };
 
     let lastLayer: FeatureGroup;

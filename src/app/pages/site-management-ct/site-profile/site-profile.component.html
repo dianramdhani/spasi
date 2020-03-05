@@ -39,7 +39,10 @@
                             'bg-danger': site.status === 'DANGER',
                             'bg-warning': site.status === 'WARNING',
                             'bg-success': site.status === 'NORMAL',
-                            'bg-secondary': site.status === 'NO_COMM'
+                            'bg-secondary': site.status === 'NO_COMM',
+                            'bg-danger': site.status === 'CRITICAL',
+                            'bg-orange': site.status === 'MAJOR',
+                            'bg-warning': site.status === 'MINOR'
                             }"></span> {{ site.status }}
                     </div>
                 </div>

@@ -27,7 +27,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     danger: 0,
     warning: 0,
     normal: 0,
-    no_comm: 0
+    no_comm: 0,
+    critical: 0,
+    major: 0,
+    minor: 0,
   };
 
   // map
@@ -70,7 +73,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       danger: this.filteredSites.filter(site => site.status === 'DANGER').length,
       warning: this.filteredSites.filter(site => site.status === 'WARNING').length,
       normal: this.filteredSites.filter(site => site.status === 'NORMAL').length,
-      no_comm: this.filteredSites.filter(site => site.status === 'NO_COMM').length
+      no_comm: this.filteredSites.filter(site => site.status === 'NO_COMM').length,
+      critical: this.filteredSites.filter(site => site.status === 'CRITICAL').length,
+      major: this.filteredSites.filter(site => site.status === 'MAJOR').length,
+      minor: this.filteredSites.filter(site => site.status === 'MINOR').length,
     }
 
     // set to map
@@ -131,7 +137,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
           iconUrl: './assets/img/marker-icon-no_comm.png',
           shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
         })
-      }
+      },
+      MAJOR: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-warning.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
+      MINOR: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-warning.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
+      CRITICAL: {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [10, 41],
+          popupAnchor: [2, -40],
+          iconUrl: './assets/img/marker-icon-danger.png',
+          shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+        })
+      },
     };
     let lastLayer: FeatureGroup;
     this.sitesSubject.subscribe(sites => {
