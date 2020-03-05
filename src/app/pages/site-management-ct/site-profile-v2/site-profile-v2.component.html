@@ -8,27 +8,34 @@
         </ol>
     </nav>
 </div>
-<div class="table-responsive">
+<strong *ngIf="loading">Loading...</strong>
+<div class="table-responsive" *ngIf="!loading">
     <table style="zoom: 0.75;">
         <tr>
-            <td>
-                <app-item [item]="acPln[0]" *ngIf="acPln.length"></app-item>
+            <td class="d-flex flex-column">
+                <app-item [item]="acPln[0]" *ngIf="acPln.length" [src]="'assets/img/bts.png'"></app-item>
+                <div>
+                    <button class="btn btn-primary"
+                        [routerLink]="['/user/site-management/site-profile-old', siteId]">More Detail</button>
+                </div>
             </td>
             <td>
-                <table class="mg-b-100">
+                <table class="mg-b-20 bd bd-3">
                     <tr>
-                        <td>
-                            <app-item [item]="rectifierSummary[0]" *ngIf="rectifierSummary.length"></app-item>
+                        <td class="d-flex">
+                            <app-item [item]="rectifierSummary[0]" *ngIf="rectifierSummary.length"
+                                [src]="'assets/img/rectifier.png'"></app-item>
                         </td>
                         <td>
                             <app-item *ngFor="let item of rectifierDetail" [item]="item"></app-item>
                         </td>
                     </tr>
                 </table>
-                <table>
+                <table class="bd bd-3">
                     <tr>
-                        <td>
-                            <app-item [item]="batterySummary[0]" *ngIf="batterySummary.length"></app-item>
+                        <td class="d-flex">
+                            <app-item [item]="batterySummary[0]" *ngIf="batterySummary.length"
+                                [src]="'assets/img/battery.png'"></app-item>
                         </td>
                         <td>
                             <app-item *ngFor="let item of batteryDetail" [item]="item"></app-item>

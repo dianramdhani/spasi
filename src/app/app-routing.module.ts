@@ -35,7 +35,7 @@ const routes: Routes = [
           { path: '', component: SiteManagementComponent },
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
-          // { path: 'site-profile/:siteId', component: SiteProfileComponent },
+          { path: 'site-profile-old/:siteId', component: SiteProfileComponent },
           { path: 'site-profile/:siteId', component: SiteProfileV2Component },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]

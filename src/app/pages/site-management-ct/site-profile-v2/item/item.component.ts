@@ -9,6 +9,7 @@ import { SiteDashboard } from 'src/app/services/site-dashboard.service';
 })
 export class ItemComponent implements OnInit {
   @Input('item') item: SiteDashboard;
+  @Input('src') src: string;
 
   constructor() { }
 

@@ -14,6 +14,8 @@ export class SiteProfileV2Component implements OnInit {
   batterySummary: SiteDashboard[] = [];
   acPln: SiteDashboard[] = [];
 
+  siteId: string;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +24,7 @@ export class SiteProfileV2Component implements OnInit {
 
   ngOnInit() {
     const siteId = this.route.snapshot.params.siteId;
+    this.siteId = siteId;
     Promise.all([
       this.siteDashboardService.getSiteById(siteId, 'Rectifier Detail').toPromise(),
       this.siteDashboardService.getSiteById(siteId, 'Rectifier Summary').toPromise(),
@@ -34,6 +37,7 @@ export class SiteProfileV2Component implements OnInit {
       this.batteryDetail = res[2];
       this.batterySummary = res[3];
       this.acPln = res[4];
+      this.loading = false;
       console.log(this.acPln, res);
     });
   }

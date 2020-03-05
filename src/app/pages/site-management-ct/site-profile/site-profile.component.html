@@ -46,12 +46,15 @@
                             }"></span> {{ site.status }}
                     </div>
                 </div>
-                <div class="form-group row mb-0">
+                <div class="form-group row">
                     <label for="" class="col-md-3">Last Connected</label>
                     <div class="col-md-9">
                         {{ site.lastConnected | date: 'medium' }}
                     </div>
                 </div>
+                <button class="btn btn-primary" [routerLink]="['/user/site-management/site-profile', siteId]">
+                    Site Dashboard
+                </button>
             </div>
         </div>
     </div>

@@ -37,6 +37,8 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   dataTimer: Subscription;
   readonly lastMinuteData = 5;
 
+  siteId: string;
+
   constructor(
     private route: ActivatedRoute,
     private siteManagementService: SiteManagementService,
@@ -53,6 +55,7 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
 
     const siteId = this.route.snapshot.params.siteId,
       site = await this.siteManagementService.getSiteById(siteId).toPromise();
+    this.siteId = siteId;
     this.site = Object.assign(this.site, site);
 
     this.site.assets = await this.siteManagementService.getAssetBySite(this.site.id).toPromise();
