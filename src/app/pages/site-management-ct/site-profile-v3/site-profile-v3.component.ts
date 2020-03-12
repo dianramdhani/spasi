@@ -1,29 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { formatNumber } from '@angular/common';
 import { tileLayer, latLng, Map, marker, icon } from 'leaflet';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, timer, Subscription } from 'rxjs';
 
 import { SiteManagementService, SiteResponse, AssetResponse, AssetManagementService, PropertyByAssetAndGroupResponse, PropertyResponse, HistoricalDataService, DeviceManagementService } from 'src/app/services';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-site-profile-v3',
   templateUrl: './site-profile-v3.component.html',
   styleUrls: ['./site-profile-v3.component.scss']
 })
-export class SiteProfileV3Component implements OnInit {
+export class SiteProfileV3Component implements OnInit, OnDestroy {
   siteDetail: {
     site: SiteResponse,
     assets: AssetAndPropertiesGroup[]
-  };
+  } = {
+      site: null,
+      assets: []
+    };
   readonly lastMinuteData = 5;
+
+  // map
   mapOptions = {
     layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }),
     zoom: 13,
     center: latLng(46.879966, -121.726909)
   };
   lastMarkerPoint = new BehaviorSubject({ latitude: 0, longitude: 0 });
+
+  // collaps
+  assetsIsCollapsed: boolean[] = [];
+
+  dataTimer: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +45,14 @@ export class SiteProfileV3Component implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getSiteDetail();
+    const deviceInterval = timer(0, 300000);
+    this.dataTimer = deviceInterval.pipe(
+      tap(() => this.getSiteDetail())
+    ).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.dataTimer.unsubscribe();
   }
 
   protected async getSiteDetail() {
@@ -80,8 +98,6 @@ export class SiteProfileV3Component implements OnInit {
       }
       this.siteDetail.assets.push(_asset);
     }
-
-    console.log(this.siteDetail);
   }
 
   deviceValueGenerator(property: PropertyResponse) {

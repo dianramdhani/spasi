@@ -30,7 +30,17 @@
                         </tr>
                         <tr>
                             <th class="wd-200">Status</th>
-                            <td>{{ siteDetail.site.status }}</td>
+                            <td>
+                                <span class="dot mr-2" [ngClass]="{
+                                    'bg-danger': siteDetail.site.status === 'DANGER',
+                                    'bg-warning': siteDetail.site.status === 'WARNING',
+                                    'bg-success': siteDetail.site.status === 'NORMAL',
+                                    'bg-secondary': siteDetail.site.status === 'NO_COMM',
+                                    'bg-danger': siteDetail.site.status === 'CRITICAL',
+                                    'bg-orange': siteDetail.site.status === 'MAJOR',
+                                    'bg-warning': siteDetail.site.status === 'MINOR'
+                                    }"></span>{{ siteDetail.site.status }}
+                            </td>
                         </tr>
                         <tr>
                             <th class="wd-200">Last Connected</th>
@@ -45,10 +55,11 @@
             </div>
         </div>
     </div>
-    <div class="card mb-2" *ngFor="let asset of siteDetail.assets">
-        <h6 class="card-header">{{ asset.asset.name }}</h6>
-        <div class="card-body">
-            <div class="row row-xs" *ngFor="let group of asset.propertiesGroup; let i = index;">
+    <div class="card mb-2" *ngFor="let asset of siteDetail.assets; let iAsset = index">
+        <h6 class="card-header" (click)="assetsIsCollapsed[iAsset] = !assetsIsCollapsed[iAsset]">{{ asset.asset.name }}
+        </h6>
+        <div class="card-body" [ngbCollapse]="assetsIsCollapsed[iAsset]">
+            <div class="row row-xs" *ngFor="let group of asset.propertiesGroup; let iProperty = index;">
                 <div class="col-12">
                     <h6 class="tx-primary">{{ group[0].propertyGroup }}</h6>
                 </div>
@@ -83,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12" *ngIf="i !== asset.propertiesGroup.length - 1">
+                <div class="col-12" *ngIf="iProperty !== asset.propertiesGroup.length - 1">
                     <hr>
                 </div>
             </div>
