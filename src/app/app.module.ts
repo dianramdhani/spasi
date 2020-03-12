@@ -43,6 +43,7 @@ import { HealthHistoryWidgetV3Component } from './pages/site-management-ct/site-
 import { SensorCompareComponent } from './pages/site-management-ct/site-profile/sensor-compare/sensor-compare.component';
 import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
 import { ItemComponent } from './pages/site-management-ct/site-profile-v2/item/item.component';
+import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-v3/site-profile-v3.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ItemComponent } from './pages/site-management-ct/site-profile-v2/item/i
     SensorCompareComponent,
     SiteProfileV2Component,
     ItemComponent,
+    SiteProfileV3Component,
   ],
   imports: [
     BrowserModule,

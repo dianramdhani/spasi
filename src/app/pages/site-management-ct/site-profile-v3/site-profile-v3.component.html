@@ -1,0 +1,92 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">Detail Site</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../../">Site Management</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail Site</li>
+        </ol>
+    </nav>
+</div>
+<h6 *ngIf="!siteDetail.assets.length">Loading...</h6>
+<ng-container *ngIf="siteDetail.assets.length">
+    <div class="row row-xs mb-2">
+        <div class="col-lg">
+            <div class="card mb-2">
+                <h6 class="card-header">Site Detail</h6>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th class="wd-200">Site Name</th>
+                            <td>{{ siteDetail.site.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="wd-200">Type Site</th>
+                            <td>{{ siteDetail.site.type }}</td>
+                        </tr>
+                        <tr>
+                            <th class="wd-200">Region</th>
+                            <td>{{ siteDetail.site.region }}</td>
+                        </tr>
+                        <tr>
+                            <th class="wd-200">Status</th>
+                            <td>{{ siteDetail.site.status }}</td>
+                        </tr>
+                        <tr>
+                            <th class="wd-200">Last Connected</th>
+                            <td>{{ siteDetail.site.lastConnected | date: 'medium' }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div style="height: 350px;" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)">
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2" *ngFor="let asset of siteDetail.assets">
+        <h6 class="card-header">{{ asset.asset.name }}</h6>
+        <div class="card-body">
+            <div class="row row-xs" *ngFor="let group of asset.propertiesGroup; let i = index;">
+                <div class="col-12">
+                    <h6 class="tx-primary">{{ group[0].propertyGroup }}</h6>
+                </div>
+                <div class="col-lg-6" *ngFor="let property of group">
+                    <div class="card mb-2">
+                        <h6 class="card-header tx-gray-500">{{ property.name }}</h6>
+                        <div class="card-body row">
+                            <div class="col-4 d-flex flex-column justify-content-center align-items-center"
+                                [title]="deviceValueGenerator(property).title">
+                                <h4 class="mg-b-0">{{ deviceValueGenerator(property).value }}
+                                    <small *ngIf="property.value">{{ property.valueType }}</small></h4>
+                                <div [ngClass]="{ 
+                                'tx-danger': deviceValueGenerator(property).isBefore,
+                                'tx-gray-500': !deviceValueGenerator(property).isBefore
+                            }">
+                                    {{ deviceValueGenerator(property).title }}
+                                </div>
+                                <div class="tx-center" *ngIf="property.value !== '?'">
+                                    <small class="tx-danger" *ngIf="deviceValueGenerator(property).isBefore">
+                                        This data is last {{ lastMinuteData }} minutes!
+                                    </small>
+                                    <button class="btn btn-sm btn-secondary mg-t-30"
+                                        [routerLink]="['/user/site-management/health-history', property.id]">
+                                        Historical
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-8" *ngIf="property.value !== '?'">
+                                <app-health-history-widget-v3 [assetPropertyId]="property.id">
+                                </app-health-history-widget-v3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" *ngIf="i !== asset.propertiesGroup.length - 1">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

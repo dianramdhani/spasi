@@ -47,20 +47,42 @@ export class AssetManagementService {
   createAssetPropertyMapping(assetPropertyId: string, sensorPropertyId: string) {
     return this.httpClient.post(`${this.url}/assetManagement/assets/sensors/properties/mapping`, { assetPropertyId, sensorPropertyId, id: 0 });
   }
+
+  /**
+   * Get array of group name by asset.
+   * @param assetId - Assety id.
+   */
+  getPropertyGroupByAsset(assetId: string) {
+    return this.httpClient.get<string[]>(`${this.url}/assetManagement/assets/${assetId}/properties/group`);
+  }
+
+  /**
+   * Get Property by grouping name.
+   * @param assetId - Asset id.
+   * @param propertyGroup - Property group string from getPropertyGroupByAsset.
+   */
+  getPropertyByAssetAndGroup(assetId: string, propertyGroup: string) {
+    return this.httpClient.get<PropertyByAssetAndGroupResponse[]>(`${this.url}/assetManagement/assets/${assetId}/properties/group/${propertyGroup}`);
+  }
 }
 
 export interface AssetResponse {
   id: string,
   name: string,
   siteId: string,
-  type: string
+  type: string,
+  image: string
 }
 
-export interface PropertyResponse {
+export class PropertyResponse {
   id: string
   name: string
   assetId: string
   type: string
   value: any
   valueType: string
+}
+
+export class PropertyByAssetAndGroupResponse extends PropertyResponse {
+  propertyGroup: string
 }

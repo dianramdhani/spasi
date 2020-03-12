@@ -89,5 +89,6 @@ export interface SiteResponse {
   status: string,
   type: string,
   longitude: number,
-  latitude: number
+  latitude: number,
+  lastConnected: string
 }

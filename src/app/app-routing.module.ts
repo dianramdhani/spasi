@@ -22,7 +22,7 @@ import { ReportingCtComponent } from './pages/reporting-ct/reporting-ct.componen
 import { PlnVsBlComponent } from './pages/reporting-ct/pln-vs-bl/pln-vs-bl.component';
 import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.component';
 import { HealthHistoryV2Component } from './pages/site-management-ct/health-history-v2/health-history-v2.component';
-import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
+import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-v3/site-profile-v3.component';
 
 
 const routes: Routes = [
@@ -36,7 +36,7 @@ const routes: Routes = [
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
           { path: 'site-profile-old/:siteId', component: SiteProfileComponent },
-          { path: 'site-profile/:siteId', component: SiteProfileV2Component },
+          { path: 'site-profile/:siteId', component: SiteProfileV3Component },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]
       },
