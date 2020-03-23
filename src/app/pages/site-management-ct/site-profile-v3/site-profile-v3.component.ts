@@ -4,9 +4,10 @@ import * as moment from 'moment';
 import { formatNumber } from '@angular/common';
 import { tileLayer, latLng, Map, marker, icon } from 'leaflet';
 import { BehaviorSubject, timer, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { replace } from 'feather-icons';
 
 import { SiteManagementService, SiteResponse, AssetResponse, AssetManagementService, PropertyByAssetAndGroupResponse, PropertyResponse, HistoricalDataService, DeviceManagementService } from 'src/app/services';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-site-profile-v3',
@@ -21,6 +22,7 @@ export class SiteProfileV3Component implements OnInit, OnDestroy {
       site: null,
       assets: []
     };
+  siteId: string;
   readonly lastMinuteData = 5;
 
   // map
@@ -67,6 +69,9 @@ export class SiteProfileV3Component implements OnInit, OnDestroy {
     this.siteDetail.site = site;
     this.lastMarkerPoint.next({ latitude: site.latitude, longitude: site.longitude });
 
+    // get siteId
+    this.siteId = siteId;
+
     // get assets
     const assets: AssetResponse[] = await this.siteManagementService.getAssetBySite(siteId).toPromise();
     for (const iAssets in assets) {
@@ -97,6 +102,7 @@ export class SiteProfileV3Component implements OnInit, OnDestroy {
         _asset.propertiesGroup.push(propertiesGroup);
       }
       this.siteDetail.assets.push(_asset);
+      setTimeout(() => replace(), 100);
     }
   }
 

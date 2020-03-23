@@ -15,7 +15,6 @@ import { AlertAndTicketingCtComponent } from './pages/alert-and-ticketing-ct/ale
 import { ListAlertComponent } from './pages/alert-and-ticketing-ct/list-alert/list-alert.component';
 import { AlertDetailComponent } from './pages/alert-and-ticketing-ct/alert-detail/alert-detail.component';
 import { ConfigDeviceComponent } from './pages/site-management-ct/config-device/config-device.component';
-import { SiteProfileComponent } from './pages/site-management-ct/site-profile/site-profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SensorExplorerComponent } from './pages/sensor-explorer/sensor-explorer.component';
 import { ReportingCtComponent } from './pages/reporting-ct/reporting-ct.component';
@@ -23,6 +22,7 @@ import { PlnVsBlComponent } from './pages/reporting-ct/pln-vs-bl/pln-vs-bl.compo
 import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.component';
 import { HealthHistoryV2Component } from './pages/site-management-ct/health-history-v2/health-history-v2.component';
 import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-v3/site-profile-v3.component';
+import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
 
 
 const routes: Routes = [
@@ -35,8 +35,8 @@ const routes: Routes = [
           { path: '', component: SiteManagementComponent },
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
-          { path: 'site-profile-old/:siteId', component: SiteProfileComponent },
-          { path: 'site-profile/:siteId', component: SiteProfileV3Component },
+          { path: 'site-profile-old/:siteId', component: SiteProfileV3Component },
+          { path: 'site-profile/:siteId', component: SiteProfileV2Component },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]
       },

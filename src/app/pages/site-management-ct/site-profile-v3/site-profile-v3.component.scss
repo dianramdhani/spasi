@@ -4,3 +4,15 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+.custom-collapse:hover {
+    cursor: pointer;
+    
+    h6 {
+        color: #0168fa;
+    }
+
+    svg {
+        color: #0168fa;
+    }
+}

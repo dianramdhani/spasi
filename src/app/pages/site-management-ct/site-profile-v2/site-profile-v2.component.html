@@ -13,7 +13,7 @@
     <table style="zoom: 0.75;">
         <tr>
             <td class="d-flex flex-column">
-                <app-item [item]="acPln[0]" *ngIf="acPln.length" [src]="'assets/img/bts.png'"></app-item>
+                <app-item [item]="acPln[0]" *ngIf="acPln.length" [src]="'assets/img/electric-tower.svg'"></app-item>
                 <div>
                     <button class="btn btn-primary"
                         [routerLink]="['/user/site-management/site-profile-old', siteId]">More Detail</button>
@@ -24,7 +24,7 @@
                     <tr>
                         <td class="d-flex">
                             <app-item [item]="rectifierSummary[0]" *ngIf="rectifierSummary.length"
-                                [src]="'assets/img/rectifier.png'"></app-item>
+                                [src]="'assets/img/rectifier.svg'"></app-item>
                         </td>
                         <td>
                             <app-item *ngFor="let item of rectifierDetail" [item]="item"></app-item>
@@ -35,7 +35,7 @@
                     <tr>
                         <td class="d-flex">
                             <app-item [item]="batterySummary[0]" *ngIf="batterySummary.length"
-                                [src]="'assets/img/battery.png'"></app-item>
+                                [src]="'assets/img/battery.svg'"></app-item>
                         </td>
                         <td>
                             <app-item *ngFor="let item of batteryDetail" [item]="item"></app-item>
