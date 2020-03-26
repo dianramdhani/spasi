@@ -8,7 +8,7 @@
     </div>
     <div id="navbarMenu" class="aside-body">
         <ul class="nav nav-aside">
-            <li *ngFor="let menu of menus; let i = index" [ngClass]="{
+            <li class="mb-2" *ngFor="let menu of menus; let i = index" [ngClass]="{
                     'nav-label': menu.type === type.TITLE, 
                     'mg-t-25': menu.type === type.TITLE && i > 0,
                     'nav-item': menu.type === type.LINK, 

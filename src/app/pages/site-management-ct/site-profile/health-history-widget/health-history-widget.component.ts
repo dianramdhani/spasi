@@ -1,12 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 import { Chart } from 'chart.js';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { HistoryService } from 'src/app/services';
-import { Subscription } from 'rxjs';
+import { Subscription, Subscriber } from 'rxjs';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-health-history-widget',
   templateUrl: './health-history-widget.component.html',
@@ -83,7 +81,9 @@ export class HealthHistoryWidgetComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('remove widget');
+    if (this.historySubscription instanceof Subscriber) {
+      this.historySubscription.unsubscribe();
+    }
   }
 
   drawChart() {

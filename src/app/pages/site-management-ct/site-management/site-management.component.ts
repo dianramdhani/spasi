@@ -1,5 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, NgZone, OnDestroy } from '@angular/core';
+import { Subject, Subscriber, Subscription } from 'rxjs';
 import { Map, tileLayer, FeatureGroup, marker, latLng, featureGroup, icon, Marker } from 'leaflet';
 
 import { SiteManagementService, SiteResponse } from 'src/app/services';
@@ -11,7 +11,7 @@ import { ModalSiteDetailComponent } from '../../dashboard/modal-site-detail/moda
   templateUrl: './site-management.component.html',
   styleUrls: ['./site-management.component.scss']
 })
-export class SiteManagementComponent implements OnInit {
+export class SiteManagementComponent implements OnDestroy {
   sites: SiteResponse[];
 
   // datatable
@@ -24,6 +24,7 @@ export class SiteManagementComponent implements OnInit {
 
   // site
   focusSiteSubject = new Subject<SiteResponse>();
+  focusSiteSubscriber: Subscription;
 
   // map
   mapOptions = { layers: tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png') };
@@ -34,8 +35,10 @@ export class SiteManagementComponent implements OnInit {
     private modal: NgbModal
   ) { }
 
-  ngOnInit() {
-    // this.refreshSites();
+  ngOnDestroy() {
+    if (this.focusSiteSubscriber instanceof Subscriber) {
+      this.focusSiteSubscriber.unsubscribe();
+    }
   }
 
   async refreshSites() {
@@ -141,7 +144,7 @@ export class SiteManagementComponent implements OnInit {
       opacity: 0.6
     };
     let lastFocusMarker: Marker;
-    this.focusSiteSubject.subscribe(site => {
+    this.focusSiteSubscriber = this.focusSiteSubject.subscribe(site => {
       if (lastFocusMarker) {
         lastFocusMarker.removeFrom(map);
       }

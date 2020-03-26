@@ -1,15 +1,13 @@
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { tileLayer, Map, icon, FeatureGroup, marker, latLng, featureGroup, Marker } from 'leaflet';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Subject, timer, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, timer, Subscription, Subscriber } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
 import { SiteManagementService, SiteResponse } from 'src/app/services';
 
 import { ModalSiteDetailComponent } from './modal-site-detail/modal-site-detail.component';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -55,10 +53,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    if (this.updateDataSubscription instanceof Subscriber) {
+      this.updateDataSubscription.unsubscribe();
+    }
   }
 
-  async onRegionChange(selectedRegion, e = null) {
+  async onRegionChange(selectedRegion: string, e = null) {
     if (selectedRegion === 'ALL') {
       this.sites = await this.siteManagementService.getSiteAll().toPromise();
     } else {

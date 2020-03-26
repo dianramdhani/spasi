@@ -22,22 +22,22 @@
             <td>
                 <table class="mg-b-20 bd bd-3">
                     <tr>
-                        <td class="d-flex">
+                        <td class="d-flex pt-2 pl-2">
                             <app-item [item]="rectifierSummary[0]" *ngIf="rectifierSummary.length"
                                 [src]="'assets/img/rectifier.svg'"></app-item>
                         </td>
-                        <td>
+                        <td class="pt-2 pl-2">
                             <app-item *ngFor="let item of rectifierDetail" [item]="item"></app-item>
                         </td>
                     </tr>
                 </table>
                 <table class="bd bd-3">
                     <tr>
-                        <td class="d-flex">
+                        <td class="d-flex pt-2 pl-2">
                             <app-item [item]="batterySummary[0]" *ngIf="batterySummary.length"
                                 [src]="'assets/img/battery.svg'"></app-item>
                         </td>
-                        <td>
+                        <td class="pt-2 pl-2">
                             <app-item *ngFor="let item of batteryDetail" [item]="item"></app-item>
                         </td>
                     </tr>

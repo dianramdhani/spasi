@@ -3,14 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { tileLayer, latLng, Map, icon, marker } from 'leaflet';
 import { BehaviorSubject, timer, Subscription } from 'rxjs';
 import * as moment from 'moment';
-import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
 
-import { SiteManagementService, SiteResponse, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
+import { SiteManagementService, AssetManagementService, DeviceManagementService, PropertyResponse } from 'src/app/services';
 import { HistoricalDataService } from 'src/app/services/historical-data.service';
 import { tap } from 'rxjs/operators';
 import { formatNumber } from '@angular/common';
 
-@AutoUnsubscribe()
 @Component({
   selector: 'app-site-profile',
   templateUrl: './site-profile.component.html',
@@ -93,7 +91,9 @@ export class SiteProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    if (this.dataTimer instanceof Subscription) {
+      this.dataTimer.unsubscribe();
+    }
   }
 
   onMapReady(map: Map) {
