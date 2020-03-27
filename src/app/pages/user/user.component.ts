@@ -48,11 +48,11 @@ export class UserComponent {
         icon: 'file-text',
         subMenus: [
           {
-            label: 'Komparasi PLN vs Battery Load',
+            label: 'Battery Load Comparation',
             state: { to: '/user/reporting/pln-vs-bl', params: {} }
           },
           {
-            label: 'Komparasi PLN vs Rectifier Load',
+            label: 'Rectifier Load Comparation',
             state: { to: '/user/reporting/pln-vs-rl', params: {} }
           }
         ]
