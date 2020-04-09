@@ -1,0 +1,16 @@
+#chart {
+    height: 500px;
+    width: 500px;
+
+    .bar {
+        fill: steergb(19, 85, 139)
+    }
+
+    .bar:hover {
+        fill: brown;
+    }
+
+    .axis--x path {
+        display: none;
+    }
+}

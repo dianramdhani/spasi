@@ -44,6 +44,8 @@ import { SensorCompareComponent } from './pages/site-management-ct/site-profile/
 import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
 import { ItemComponent } from './pages/site-management-ct/site-profile-v2/item/item.component';
 import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-v3/site-profile-v3.component';
+import { SiteProfileV4Component } from './pages/site-management-ct/site-profile-v4/site-profile-v4.component';
+import { SiteProfileV5Component } from './pages/site-management-ct/site-profile-v5/site-profile-v5.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-
     SiteProfileV2Component,
     ItemComponent,
     SiteProfileV3Component,
+    SiteProfileV4Component,
+    SiteProfileV5Component,
   ],
   imports: [
     BrowserModule,

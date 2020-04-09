@@ -23,6 +23,8 @@ import { PlnVsRlComponent } from './pages/reporting-ct/pln-vs-rl/pln-vs-rl.compo
 import { HealthHistoryV2Component } from './pages/site-management-ct/health-history-v2/health-history-v2.component';
 import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-v3/site-profile-v3.component';
 import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
+import { SiteProfileV4Component } from './pages/site-management-ct/site-profile-v4/site-profile-v4.component';
+import { SiteProfileV5Component } from './pages/site-management-ct/site-profile-v5/site-profile-v5.component';
 
 
 const routes: Routes = [
@@ -36,7 +38,8 @@ const routes: Routes = [
           { path: 'site-form', component: SiteFormComponent },
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
           { path: 'site-profile-old/:siteId', component: SiteProfileV3Component },
-          { path: 'site-profile/:siteId', component: SiteProfileV2Component },
+          // { path: 'site-profile/:siteId', component: SiteProfileV2Component },
+          { path: 'site-profile/:siteId', component: SiteProfileV5Component },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]
       },
