@@ -25,6 +25,7 @@ import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-
 import { SiteProfileV2Component } from './pages/site-management-ct/site-profile-v2/site-profile-v2.component';
 import { SiteProfileV4Component } from './pages/site-management-ct/site-profile-v4/site-profile-v4.component';
 import { SiteProfileV5Component } from './pages/site-management-ct/site-profile-v5/site-profile-v5.component';
+import { SiteProfileV6Component } from './pages/site-management-ct/site-profile-v6/site-profile-v6.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
           { path: 'config-device/:siteId', component: ConfigDeviceComponent },
           { path: 'site-profile-old/:siteId', component: SiteProfileV3Component },
           // { path: 'site-profile/:siteId', component: SiteProfileV2Component },
-          { path: 'site-profile/:siteId', component: SiteProfileV5Component },
+          { path: 'site-profile/:siteId', component: SiteProfileV6Component },
           { path: 'health-history/:assetPropertyId', component: HealthHistoryV2Component },
         ]
       },

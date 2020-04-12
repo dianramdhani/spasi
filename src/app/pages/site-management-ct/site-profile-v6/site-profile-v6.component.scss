@@ -1,0 +1,45 @@
+app-site-profile-v6 {
+    $move-to-top: -160px;
+
+    svg {
+        position: absolute;
+        top: $move-to-top;
+
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font: 12px sans-serif;
+        }
+
+        .node--internal text {
+            text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+    }
+
+    .table-detail {
+        position: absolute;
+        width: 400px;
+        height: 250px;
+        $margin-y: 30px;
+        margin-bottom: $margin-y;
+        margin-top: calc(#{$margin-y} + #{$move-to-top});
+
+        .card-body {
+            overflow-y: auto;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}
