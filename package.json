@@ -31,6 +31,7 @@
     "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-datalabels": "^0.7.0",
     "d3": "^5.15.1",
+    "d3-flextree": "^2.1.1",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
     "feather-icons": "^4.24.1",

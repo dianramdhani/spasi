@@ -1,0 +1,147 @@
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">Detail Site</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item" aria-current="page"><a href="" routerLink="../../">Site Management</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail Site</li>
+        </ol>
+    </nav>
+</div>
+<div style="position: relative;">
+    <svg #svg></svg>
+
+    <div id="ac-pln" class="card svg-card" *ngIf="acPln.length" [ngStyle]="{
+            marginTop: topMargin + 'px',
+            maxHeight: heightCard - 20 + 'px',
+            width: widthCard - 50 + 'px'
+        }">
+        <h6 class="card-header">{{ acPln[0].groupName }}</h6>
+        <div class="card-body">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of acPln[0].assetPropertyDatas">
+                        <td>{{ item.propertyName }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.unitOfMeasurement }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="rectifier" class="card svg-card" *ngIf="rectifierSummary.length" [ngStyle]="{
+        marginTop: topMargin + 'px',
+        maxHeight: heightCard - 20 + 'px',
+        width: widthCard - 50 + 'px'
+    }">
+        <h6 class="card-header">{{ rectifierSummary[0].groupName }}</h6>
+        <div class="card-body">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of rectifierSummary[0].assetPropertyDatas">
+                        <td>{{ item.propertyName }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.unitOfMeasurement }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="battery" class="card svg-card" *ngIf="batterySummary.length" [ngStyle]="{
+        marginTop: topMargin + 'px',
+        maxHeight: heightCard - 20 + 'px',
+        width: widthCard - 50 + 'px'
+    }">
+        <h6 class="card-header">{{ batterySummary[0].groupName }}</h6>
+        <div class="card-body">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batterySummary[0].assetPropertyDatas">
+                        <td>{{ item.propertyName }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.unitOfMeasurement }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngFor="let rectifierDetail of rectifierDetails; let index = index;" [id]="'rectifier-detail-' + index"
+        class="card svg-card-2" [ngStyle]="{
+            marginTop: topMargin + 'px',
+            maxHeight: heightCard - 20 + 'px',
+            width: widthCard - 50 + 'px'
+        }">
+        <h6 class="card-header">{{ rectifierDetail.groupName }}</h6>
+        <div class="card-body">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of rectifierDetail.assetPropertyDatas">
+                        <td>{{ item.propertyName }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.unitOfMeasurement }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngFor="let batteryDetail of batteryDetails; let index = index;" [id]="'battery-detail-' + index"
+        class="card svg-card-2" [ngStyle]="{
+            marginTop: topMargin + 'px',
+            maxHeight: heightCard - 20 + 'px',
+            width: widthCard - 50 + 'px'
+        }">
+        <h6 class="card-header">{{ batteryDetail.groupName }}</h6>
+        <div class="card-body">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Property Name</th>
+                        <th>Value</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of batteryDetail.assetPropertyDatas">
+                        <td>{{ item.propertyName }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>{{ item.unitOfMeasurement }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<h6 *ngIf="loading">Loading...</h6>

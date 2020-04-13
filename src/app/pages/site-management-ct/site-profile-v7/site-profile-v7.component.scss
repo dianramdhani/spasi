@@ -1,0 +1,46 @@
+app-site-profile-v7 {
+    svg {
+        position: absolute;
+
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 3px;
+        }
+
+        .node text {
+            font: 12px sans-serif;
+        }
+
+        .node--internal text {
+            text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+    }
+
+    .svg-card,
+    .svg-card-2 {
+        position: absolute;
+
+        .card-body {
+            overflow-y: auto;
+        }
+
+        table {
+            zoom: 0.8;
+        }
+    }
+
+    .svg-card {
+        transform: translateY(30px);
+    }
+
+    .svg-card-2 {
+        transform: translate(80%, -10%);
+    }
+}

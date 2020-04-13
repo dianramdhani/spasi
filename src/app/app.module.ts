@@ -47,6 +47,7 @@ import { SiteProfileV3Component } from './pages/site-management-ct/site-profile-
 import { SiteProfileV4Component } from './pages/site-management-ct/site-profile-v4/site-profile-v4.component';
 import { SiteProfileV5Component } from './pages/site-management-ct/site-profile-v5/site-profile-v5.component';
 import { SiteProfileV6Component } from './pages/site-management-ct/site-profile-v6/site-profile-v6.component';
+import { SiteProfileV7Component } from './pages/site-management-ct/site-profile-v7/site-profile-v7.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { SiteProfileV6Component } from './pages/site-management-ct/site-profile-
     SiteProfileV4Component,
     SiteProfileV5Component,
     SiteProfileV6Component,
+    SiteProfileV7Component,
   ],
   imports: [
     BrowserModule,
