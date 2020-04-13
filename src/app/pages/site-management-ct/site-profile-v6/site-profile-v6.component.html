@@ -12,30 +12,131 @@
 <div style="position: relative;">
     <svg #svg></svg>
 
-    <div id="ac-power" class="card table-detail hidden">
-        <h6 class="card-header">AC Power</h6>
-        <div class="card-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam fugiat tempora aspernatur dolores earum
-            assumenda adipisci facilis? Delectus accusantium quod ab nulla numquam doloremque, blanditiis, repellat
-            maxime velit voluptatum unde?
+    <div id="ac-power" class="table-detail hidden">
+        <div class="card" *ngIf="acPlnObs | async as acPln; else loading">
+            <h6 class="card-header">{{ acPln[0].groupName }}</h6>
+            <div class="card-body">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Property Name</th>
+                            <th>Value</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of acPln[0].assetPropertyDatas">
+                            <td>{{ item.propertyName }}</td>
+                            <td>{{ item.value }}</td>
+                            <td>{{ item.unitOfMeasurement }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div id="rectifier" class="card table-detail hidden">
-        <h6 class="card-header">Rectifier</h6>
-        <div class="card-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam fugiat tempora aspernatur dolores earum
-            assumenda adipisci facilis? Delectus accusantium quod ab nulla numquam doloremque, blanditiis, repellat
-            maxime velit voluptatum unde?
+    <div id="rectifier" class="table-detail hidden">
+        <div class="card">
+            <h6 class="card-header">Rectifier</h6>
+            <div class="card-body">
+                <ng-container *ngIf="rectifierSummaryObs | async as rectifierSummary; else loading2">
+                    <h6>Summary</h6>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Property Name</th>
+                                <th>Value</th>
+                                <th>Unit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of rectifierSummary[0].assetPropertyDatas">
+                                <td>{{ item.propertyName }}</td>
+                                <td>{{ item.value }}</td>
+                                <td>{{ item.unitOfMeasurement }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-container>
+                <hr>
+                <ng-container *ngIf="rectifierDetailsObs | async as rectifierDetails; else loading2">
+                    <h6>Detail</h6>
+                    <ul>
+                        <li *ngFor="let rectifierDetail of rectifierDetails">
+                            <small class="tx-bold">{{ rectifierDetail.groupName }}</small>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="tx-gray-500">Property Name</th>
+                                        <th class="tx-gray-500">Value</th>
+                                        <th class="tx-gray-500">Unit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of rectifierDetail.assetPropertyDatas">
+                                        <td>{{ item.propertyName }}</td>
+                                        <td>{{ item.value }}</td>
+                                        <td>{{ item.unitOfMeasurement }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </ng-container>
+            </div>
         </div>
     </div>
 
-    <div id="battery" class="card table-detail hidden">
-        <h6 class="card-header">Battery</h6>
-        <div class="card-body">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam fugiat tempora aspernatur dolores earum
-            assumenda adipisci facilis? Delectus accusantium quod ab nulla numquam doloremque, blanditiis, repellat
-            maxime velit voluptatum unde?
+    <div id="battery" class=" table-detail hidden">
+        <div class="card">
+            <h6 class="card-header">Battery</h6>
+            <div class="card-body">
+                <ng-container *ngIf="batterySummaryObs | async as batterySummary; else loading2">
+                    <h6>Summary</h6>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Property Name</th>
+                                <th>Value</th>
+                                <th>Unit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of batterySummary[0].assetPropertyDatas">
+                                <td>{{ item.propertyName }}</td>
+                                <td>{{ item.value }}</td>
+                                <td>{{ item.unitOfMeasurement }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-container>
+                <hr>
+                <ng-container *ngIf="batteryDetailsObs | async as batterDetails; else loading2">
+                    <h6>Detail</h6>
+                    <ul>
+                        <li *ngFor="let batteryDetail of batterDetails">
+                            <small class="tx-bold">{{ batteryDetail.groupName }}</small>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="tx-gray-500">Property Name</th>
+                                        <th class="tx-gray-500">Value</th>
+                                        <th class="tx-gray-500">Unit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of batteryDetail.assetPropertyDatas">
+                                        <td>{{ item.propertyName }}</td>
+                                        <td>{{ item.value }}</td>
+                                        <td>{{ item.unitOfMeasurement }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </ng-container>
+            </div>
         </div>
     </div>
 
@@ -68,3 +169,11 @@
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <h6 class="card card-body tx-center">Loading...</h6>
+</ng-template>
+
+<ng-template #loading2>
+    <h6 class="tx-center">Loading...</h6>
+</ng-template>

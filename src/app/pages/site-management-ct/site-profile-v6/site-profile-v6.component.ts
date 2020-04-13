@@ -1,5 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
+import { ActivatedRoute } from '@angular/router';
+
+import { SiteDashboardService, SiteDashboard } from 'src/app/services/site-dashboard.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-site-profile-v6',
@@ -9,10 +13,26 @@ import * as d3 from 'd3';
 })
 export class SiteProfileV6Component implements AfterViewInit {
   @ViewChild('svg', { static: true }) svg: ElementRef;
+  siteId: string;
+  acPlnObs: Observable<SiteDashboard[]>;
+  rectifierSummaryObs: Observable<SiteDashboard[]>;
+  rectifierDetailsObs: Observable<SiteDashboard[]>;
+  batterySummaryObs: Observable<SiteDashboard[]>;
+  batteryDetailsObs: Observable<SiteDashboard[]>;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private siteDashboardService: SiteDashboardService
+  ) { }
 
   ngAfterViewInit() {
+    this.siteId = this.route.snapshot.params.siteId;
+    this.acPlnObs = this.siteDashboardService.getSiteById(this.siteId, 'AC PLN');
+    this.rectifierSummaryObs = this.siteDashboardService.getSiteById(this.siteId, 'Rectifier Summary');
+    this.rectifierDetailsObs = this.siteDashboardService.getSiteById(this.siteId, 'Rectifier Detail');
+    this.batterySummaryObs = this.siteDashboardService.getSiteById(this.siteId, 'Battery Summary');
+    this.batteryDetailsObs = this.siteDashboardService.getSiteById(this.siteId, 'Battery Detail');
+
     setTimeout(() => this.render(), 1000);
   }
 
@@ -29,22 +49,23 @@ export class SiteProfileV6Component implements AfterViewInit {
               name: 'Battery',
               id: '#battery'
             },
-            {
-              name: 'DC Load',
-              id: '#dc-load'
-            },
+            // {
+            //   name: 'DC Load',
+            //   id: '#dc-load'
+            // },
           ]
         }
       ]
     };
 
-    let margin = { top: 0, right: 90, bottom: 100, left: 90 },
+    let margin = { top: 20, right: 90, bottom: 100, left: 90 },
       width = 1200 - margin.left - margin.right,
       height = 800 - margin.top - margin.bottom;
 
     let treemap = d3.tree()
-      .size([height, width])
-      .separation((a, b) => a.parent == b.parent ? 2 : 1);
+    .nodeSize([500, 500])
+      // .size([height, width])
+      // .separation((a, b) => a.parent == b.parent ? 2 : 1);
 
     let nodes: any = treemap(d3.hierarchy(treeData, (d: any) => {
       return d.children;
@@ -94,5 +115,4 @@ export class SiteProfileV6Component implements AfterViewInit {
       })
       .text((d: any) => { return d.data.name; })
   }
-
 }
