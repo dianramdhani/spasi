@@ -34,7 +34,7 @@
     "feather-icons": "^4.24.1",
     "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng2-charts": "^2.3.0",
     "ngx-moment": "^3.5.0",
     "popper.js": "^1.16.0",
